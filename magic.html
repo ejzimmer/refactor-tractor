@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<style>
+		@font-face {
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 900;
+			src: local('Lato Black'), local('Lato-Black'),
+					url('./css/lato-v16-latin-900.woff2') format('woff2');
+		}
+		@font-face {
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 300;
+			src: local('Lato Black'), local('Lato-Black'),
+					url('./css/lato-v16-latin-regular.woff2') format('woff2');
+		}
+
+		*, *::before, *::after {
+			box-sizing: border-box;
+		}
+		body {
+			--dark-blue: #0C2E41;
+			--light-blue: #15A9DD;
+			--yellow: #F2E34B;
+			--red: #7B0001;
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			font-family: Lato, sans-serif;
+		}
+		
+		header {
+			background: conic-gradient(from .75turn at bottom,
+			var(--dark-blue), var(--light-blue) 5deg,
+			var(--dark-blue), var(--light-blue) 20deg,
+			var(--dark-blue), var(--light-blue) 50deg,
+			var(--dark-blue), var(--light-blue) 83deg,
+			var(--dark-blue), var(--light-blue) 110deg,
+			var(--dark-blue), var(--light-blue) 150deg,
+			var(--dark-blue), var(--light-blue) 170deg, var(--light-blue) 178deg,
+			var(--dark-blue) 180deg);
+			background-color: var(--dark-blue);
+		}
+
+		h1 {
+			display: flex;
+			justify-content: center;
+		}
+		h1 img {
+			height: 100px;
+		}
+
+		main {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		nav {
+			flex-grow: 1;
+			background: var(--dark-blue);
+			box-shadow: 7px 0 var(--dark-blue);
+		}
+
+		nav ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+		}
+		nav li {
+			min-width: 3em;
+			text-align: center;
+			padding: calc(1em - 4px);
+			border-bottom: 4px solid transparent;
+			color: white;
+			font-weight: 900;
+		}
+		nav li:first-child, nav li:hover {
+			background-color: var(--dark-blue);
+			color: var(--yellow);
+			border-bottom-color: currentColor;
+			cursor: pointer;
+		}
+		nav li span {
+			display: none;
+		}
+		@media (min-width: 511px) {
+			nav li span {
+				display: initial;
+			}
+		}
+
+		h2 {
+			font-size: 16px;
+			padding-top: 1em;
+			padding-left: .5em;
+		}
+		article {
+			flex-grow: 99999;
+			flex-basis: 450px;
+			padding: 3vw;
+			display: flex;
+		}
+		article .content {
+			display: grid;
+			grid-gap: 20px;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			grid-auto-rows: min-content;
+			flex: 1 0 auto;
+		}
+		article .content > div {
+			min-width: 200px;
+			min-height: 200px;
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+		.content > div::before {
+			content: '';
+			display: inline-block;
+			width: 1px;
+			height: 0;
+			padding-bottom: 50%;
+		}
+		aside {
+			margin-left: 3vw;
+			display: flex;
+			flex-direction: column;
+		}
+		aside div {
+			width: 220px;
+			height: 300px;
+			background: url('images/Slurm.jpg');
+			margin-bottom: 3vw;
+		}
+
+		footer {
+			padding: .5em;
+			color: white;
+			background: linear-gradient(to right, var(--dark-blue) 100px, var(--light-blue));
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1><img src="images/Futurama_1999_logo.svg" alt="Futurama"></h1>
+	</header>
+	<main>
+		<nav>
+			<ul>
+				<li><span>Season</span> 1 </li>
+				<li><span>Season</span> 2 </li>
+				<li><span>Season</span> 3 </li>
+				<li><span>Season</span> 4 </li>
+				<li><span>Season</span> 5 </li>
+			</ul>
+		</nav>
+		<article>
+			<div class="content">
+				<div><h2>Space Pilot 3000</h2></div>
+				<div><h2>The Series Has Landed</h2></div>
+				<div><h2>I, Roommate</h2></div>
+				<div><h2>Love's Labours Lost in Space</h2></div>
+				<div><h2>Fear of a Bot Planet</h2></div>
+				<div><h2>A Fishful of Dollars</h2></div>		
+				<div><h2>My Three Suns</h2></div>
+				<div><h2>A Big Piece of Garbage</h2></div>
+				<div><h2>Hell is Other Robots</h2></div>		
+			</div>
+			<aside>
+				<div></div>
+				<div></div>
+			</aside>
+		</article>
+	</main>
+	<div style="flex: 1 1 0"></div>
+	<footer>
+			<div>Futurama logo by Xeworlebi, Public Domain, https://commons.wikimedia.org/w/index.php?curid=15242748</div>
+	</footer>
+
+	<script>
+		document.querySelectorAll('.content > div').forEach((element, index) => {
+			const e = index + 1;
+			element.style.backgroundImage = `url('images/futurama_s1_e${e}.jpg')`;
+		});
+	</script>
+</body>
+</html>
