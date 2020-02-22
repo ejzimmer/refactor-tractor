@@ -16,15 +16,20 @@ html * {
  * GLOBAL STYLES
  *********************************************/
 body {
+  --main-colour: hsl(192, 100%, 11%);
+  --margin-size: 20px;
+  --background-gradient: linear-gradient(135deg, hsl(0, 70%, 85%), hsl(39, 100%, 90%), hsl(60, 100%, 90%), hsl(120, 84%, 95%), hsl(240, 100%, 95%), hsl(281, 80%, 95%)  );
+  color: var(--main-colour);
   background: linear-gradient(135deg, hsl(0, 70%, 85%), hsl(39, 100%, 90%), hsl(60, 100%, 90%), hsl(120, 84%, 95%), hsl(240, 100%, 95%), hsl(281, 80%, 95%)  );
   background-color: white; 
 }
 
 .reveal {
-  font-family: "Lato", sans-serif;
+  font-family: Raleway, sans-serif;
   font-size: 40px;
   font-weight: normal;
-  color: #002b36; }
+  color: #002b36; 
+}
 
 ::selection {
   color: #fff;
@@ -83,6 +88,8 @@ p {
 .reveal iframe {
   max-width: 95%;
   max-height: 95%; 
+  align-self: center;
+  justify-self: center;
 }
 
 strong, b {
@@ -204,14 +211,6 @@ pre code {
 /*********************************************
  * IMAGES
  *********************************************/
-.reveal section img {
-  margin: 15px 0px;
-  background: rgba(255, 255, 255, 0.12);
-
-.reveal section img.plain {
-  border: 0;
-  box-shadow: none; }
-
 .reveal a img {
   -webkit-transition: all .15s linear;
   -moz-transition: all .15s linear;
@@ -245,4 +244,24 @@ pre code {
  *********************************************/
 @media print {
   .backgrounds {
-    background-color: #002b36; } }
+    background-color: #002b36; 
+  } 
+}
+
+.inverse {
+  background: var(--main-colour);
+  border-radius: var(--margin-size);
+  font-family: Kalam, sans-serif;
+  font-size: 120px;
+  font-weight: 700;
+}
+.inverse > * {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--background-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+    

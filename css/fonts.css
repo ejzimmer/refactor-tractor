@@ -1,0 +1,48 @@
+@font-face {
+	font-family: 'Futurama';
+	font-style: normal;
+	font-weight: 400;
+	src: url('./fr-bold.woff') format('woff');
+}
+@font-face {
+	font-family: 'Kalam';
+	font-style: normal;
+	font-weight: 400;
+	src: url('./kalam-v10-latin-regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Kalam';
+	font-style: normal;
+	font-weight: 700;
+	src: url('./kalam-v10-latin-700.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 400;
+	src: url('./raleway-v14-latin-regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 700;
+	src: url('./raleway-v14-latin-700.woff2') format('woff2');
+}
+/* montaga-regular - latin */
+@font-face {
+  font-family: 'Montaga';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montaga'), local('Montaga-Regular'),
+       url('montaga-v7-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('montaga-v7-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* marck-script-regular - latin */
+@font-face {
+  font-family: 'Marck Script';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Marck Script'), local('MarckScript-Regular'),
+       url('marck-script-v10-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('marck-script-v10-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}

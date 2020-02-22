@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Holy Grail layout</title>
+
+	<link rel="stylesheet" href="fonts.css">
+
+	<style>
+		body {
+			height: 100vh;
+			margin: 0;
+			font-family: Raleway, sans-serif;
+			display: flex;
+			flex-direction: column;
+		}
+		img {
+			width: 100%;
+		}
+		.holy-grail {
+			font-size: 20px;
+			height: 100%;
+		}
+		.holy-grail ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		.holy-grail li {
+			padding: 20px;
+		}
+		.container {
+			display: flex;
+			flex-grow: 1;
+		}
+		.header {
+			padding: 40px;
+			text-align: center;
+			background: hsl(200, 70%, 80%);
+			font-size: 4vmin;
+			font-weight: bold;
+		}
+		.nav {
+			background: hsl(150, 70%, 80%);
+			flex: 0 0 300px;
+		}
+		.content {
+			background: hsl(100, 70%, 80%);
+			flex: 1 1 450px;
+		}
+		.images { 
+			background: hsl(50, 70%, 80%);
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			flex: 0 0 25vw;
+		}
+		.footer {
+			padding: 40px;
+			background: hsl(0, 70%, 80%);
+		}
+		.content p {
+			margin: 40px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="holy-grail">
+		<div class="header">The Holy Grail</div>
+		<div class="container">
+			<div class="nav">
+				<ul>
+					<li>Arthur, King of Britons</li>
+					<li>Sir Lancelot the Brave</li>
+					<li>Patsy</li>
+					<li>Sir Robin, the Not-quite-as-brave-as-Sir-Lancelot</li>
+					<li>Sir Bedevere the Wise</li>
+					<li>Sir Galahad the Pure</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p>King Arthur was a legendary British leader who, according to medieval histories and romances, led the defence of Britain against Saxon invaders in the late 5th and early 6th centuries. The details of Arthur's story are mainly composed of folklore and literary invention, and modern historians generally agree that he is unhistorical.[2][3] The sparse historical background of Arthur is gleaned from various sources, including the Annales Cambriae, the Historia Brittonum, and the writings of Gildas. Arthur's name also occurs in early poetic sources such as Y Gododdin.[4]</p>
+				<p>Arthur is a central figure in the legends making up the Matter of Britain. The legendary Arthur developed as a figure of international interest largely through the popularity of Geoffrey of Monmouth's fanciful and imaginative 12th-century Historia Regum Britanniae (History of the Kings of Britain).[5] In some Welsh and Breton tales and poems that date from before this work, Arthur appears either as a great warrior defending Britain from human and supernatural enemies or as a magical figure of folklore, sometimes associated with the Welsh otherworld Annwn.[6] How much of Geoffrey's Historia (completed in 1138) was adapted from such earlier sources, rather than invented by Geoffrey himself, is unknown.</p>
+			</div>
+			<div class="images">
+				<img src="images/king-arthur.jpeg" alt="king arthur">
+				<img src="images/arthur-and-black-knight.jpg" alt="king arthur fighting the black knight">
+				<img src="images/knights.jpg" alt="the knights of the round table">
+			</div>
+		</div>
+		<div class="footer">
+			something about monty python or something. Something really long so it wraps and 
+			the footer height changes when the window resizes
+		</div>	
+	</div>
+</body>
+</html>
