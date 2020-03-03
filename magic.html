@@ -61,6 +61,7 @@
 		main {
 			display: flex;
 			flex-wrap: wrap;
+			flex-grow: 1;
 		}
 
 		nav {
@@ -109,6 +110,7 @@
 			flex-basis: 450px;
 			padding: 3vw;
 			display: flex;
+			flex-wrap: wrap;
 		}
 		article .content {
 			display: grid;
@@ -132,14 +134,9 @@
 		}
 		aside {
 			margin-left: 3vw;
-			display: flex;
-			flex-direction: column;
-		}
-		aside div {
 			width: 220px;
-			height: 300px;
 			background: url('images/Slurm.jpg');
-			margin-bottom: 3vw;
+			background-size: contain;
 		}
 
 		footer {
@@ -176,12 +173,9 @@
 				<div><h2>Hell is Other Robots</h2></div>		
 			</div>
 			<aside>
-				<div></div>
-				<div></div>
 			</aside>
 		</article>
 	</main>
-	<div style="flex: 1 1 0"></div>
 	<footer>
 			<div>Futurama logo by Xeworlebi, Public Domain, https://commons.wikimedia.org/w/index.php?curid=15242748</div>
 	</footer>
