@@ -105,7 +105,7 @@ body {
 }
 
 
-.fragment[class^=highlight] {
+.fragment[class^=highlight], .fragment.highlight {
   opacity: 1;
   visibility: inherit;
 }
@@ -122,7 +122,15 @@ body {
   --text-colour: #17ff2e;
 }
 .blue {
-  --text-colour: #1b91ff;
+  --text-colour: hsl(209, 100%, 55%);
+}
+
+pre code .fragment.transient {
+  height: 0;
+}
+pre code .fragment.highlight.current-fragment {
+  background: hsl(209 50% 55% / .5);
+  font-weight: bolder;
 }
 
 

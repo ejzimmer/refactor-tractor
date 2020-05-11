@@ -6,6 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 
+	<link rel="stylesheet" href="css/fonts.css">
+
 	<style>
 		@font-face {
 			font-family: 'Lato';
@@ -118,20 +120,45 @@
 			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 			grid-auto-rows: min-content;
 			flex: 1 0 auto;
+			list-style: none;
+			padding-left: 0;
+			position: relative;
 		}
-		article .content > div {
-			min-width: 200px;
+		article .content > li {
+			cursor: pointer;
 			min-height: 200px;
+		}
+		.img {
+			padding-top: 50%;
 			background-size: contain;
 			background-repeat: no-repeat;
+			background-position: center;
 		}
-		.content > div::before {
-			content: '';
-			display: inline-block;
-			width: 1px;
-			height: 0;
-			padding-bottom: 50%;
+		.image-limiter {
+			width: 100%;
+			margin: auto;
 		}
+
+		.description {
+			display: none;
+			font-family: Raleway;
+			columns: 3 200px;
+			column-gap: 1em;
+		}
+		.show-description {
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: hsl(0 0% 100% / .95);
+			width: 100%;
+			padding: 30px;
+			box-shadow: 0 5px 3px hsl(0 0% 40% / .8);
+			max-width: 50vw;
+		}
+		.show-description .description {
+			display: block;
+		}
+
 		aside {
 			margin-left: 3vw;
 			width: 220px;
@@ -161,17 +188,8 @@
 			</ul>
 		</nav>
 		<article>
-			<div class="content">
-				<div><h2>Space Pilot 3000</h2></div>
-				<div><h2>The Series Has Landed</h2></div>
-				<div><h2>I, Roommate</h2></div>
-				<div><h2>Love's Labours Lost in Space</h2></div>
-				<div><h2>Fear of a Bot Planet</h2></div>
-				<div><h2>A Fishful of Dollars</h2></div>		
-				<div><h2>My Three Suns</h2></div>
-				<div><h2>A Big Piece of Garbage</h2></div>
-				<div><h2>Hell is Other Robots</h2></div>		
-			</div>
+			<ul class="content">
+			</ul>
 			<aside>
 			</aside>
 		</article>
@@ -181,10 +199,48 @@
 	</footer>
 
 	<script>
-		document.querySelectorAll('.content > div').forEach((element, index) => {
-			const e = index + 1;
-			element.style.backgroundImage = `url('images/futurama_s1_e${e}.jpg')`;
-		});
+		const content = document.querySelector('ul.content')
+		const episodes = [
+			{ 
+				title: 'Space Pilot 3000',
+				description: 'On December 31, 1999, a pizza delivery guy named Philip J. Fry delivers a pizza to "Applied Cryogenics" in New York City only to discover that the order was actually a prank call. Dejected and demoralized, he stops in the deserted lab to eat the pizza while outside the whole world is getting ready to celebrate the beginning of New Year, while sitting on a chair. At midnight, Fry loses his balance on the chair and falls into an open cryonic tube and is frozen as it immediately activates. He is defrosted on Tuesday, December 31, 2999, in what is now New New York City. He is taken to a fate assignment officer named Leela, a purple-haired cyclops. To his misfortune, Fry is assigned the computer-determined permanent career of delivery boy, and flees into the city when Leela tries to implant Fry\'s career chip designating his job. He dodges an attack from Leela and she falls into the cryonic tube that Fry fell into one thousand years ago. The timer sets itself to one thousand years. Fry reduces the timer to five minutes so that Leela isn\'t trapped for long, but he still has enough time to desert her.'
+		  },
+			{ title: 'The Series Has Landed' },
+			{ title: 'I, Roommate' },
+			{ title: 'Love\'s Labours Lost in Space' },
+			{ title: 'Fear of a Bot Planet' },
+			{ title: 'A Fishful of Dollars' },
+			{ title: 'My Three Suns' },
+			{ title: 'A Big Piece of Garbage' },
+			{ title: 'Hell is Other Robots' }
+		]
+		episodes.forEach((episode, index) => {
+			const li = document.createElement('li')
+
+			const imageLimiter = document.createElement('div')
+			imageLimiter.classList.add('image-limiter')
+			li.appendChild(imageLimiter)
+
+			const imgContainer = document.createElement('div')
+			imgContainer.classList.add('img')
+			imgContainer.style.backgroundImage = `url('images/futurama_s1_e${index + 1}.jpg')`;
+			imageLimiter.appendChild(imgContainer)
+
+			const h2 = document.createElement('h2')
+			h2.textContent = episode.title
+			li.appendChild(h2)
+
+			const description = document.createElement('div')
+			description.classList.add('description')
+			description.textContent = episode.description;
+			li.appendChild(description)
+
+			content.appendChild(li)
+
+			li.addEventListener('click', function() {
+				this.classList.toggle('show-description')
+			})
+		})
 	</script>
 </body>
 </html>

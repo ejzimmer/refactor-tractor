@@ -23,22 +23,32 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
+		<script src="js/reveal.js"></script>
+
 		<style>
+			* {
+				box-sizing: border-box;
+			}
+
 			body {
 				--dark-blue: hsl(202, 69%, 15%);
 				--light-blue: #15A9DD;
 				--light-orange: hsl(19, 87%, 62%);
 				--dark-orange: hsl(24, 100%, 38%);
-				--light-red: rgb(204, 6, 6);
+				--light-red: hsl(0, 94%, 41%);
 				--red: #7B0001;
 				--shadow: hsl(202, 69%, 15%, .4);
-				--green: hsl(125, 72%, 63%);
+				--green: hsl(125, 94%, 41%);
+				--dark-green: hsl(125 94% 20%);
+				--gradient-start: hsl(259, 71%, 80%);
+				--gradient-end: hsl(265, 58%, 50%);
+				--yellow: #F2E34B;
 			}
 
 			.notes {
 				display: none;
 			}
-			pre {
+			pre, .browser {
 				-moz-tab-size: 2;
 				border: 4px solid hsl(200, 10%, 55%);
 				border-top-width: 32px;
@@ -112,6 +122,81 @@
 				align-items: center;
 				justify-items: center;
 			}
+
+			.inverse ul {
+				font-size: .6em;
+				padding: 1.3em;
+				padding-left: 1.5em;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: space-between;
+			}
+			.inverse ul li {
+				margin: 0;
+			}
+
+			.inverse h2 {
+				margin: 0;
+				font-size: 2em;
+				padding: 0;
+			}
+
+			.reveal .slides > section.auto-height {
+				height: auto;
+			}
+			.columns {
+				column-gap: 2em;
+				column-rule: 2px solid currentColor;
+				font-family: Montaga, Times, serif;
+				font-size: 20px;
+				text-align: left;
+				background: hsla(0, 0%, 100%, .4);
+				padding: 40px;
+				border-radius: 10px;
+				max-width: 100%;
+			}
+
+			p:first-child {
+				margin-top: 0;
+			}
+
+			.resize {
+				overflow: hidden;
+				resize: horizontal;
+			}
+
+			.fragment.transient {
+				display: none;
+			}
+			.fragment.transient.current-fragment {
+				display: block;
+			}
+
+			.shiny {
+				position: relative;
+				font-size: 6em;
+			}
+			.shiny::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -5%;
+				width: 110%;
+				height: 100%;
+				background-image: linear-gradient(-45deg, transparent 45%, hsla(0, 0%, 100%, .8) 50%, transparent 55%);
+				background-size: 200% 200%;
+				background-position: 110% 110%;
+				background-repeat: no-repeat;
+				transition: background-position;
+				transition-duration: 3s;
+				transition-delay: 1s;
+			}
+
+			.present .shiny::after {
+				background-position: -10% -10%;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -153,126 +238,380 @@
 						.intro {
 							grid-template-rows: auto auto 1fr;
 						}
+						.intro a {
+							text-align: left;
+							align-self: center;
+							font-weight: bold;
+						}
 					</style>
 					<div style="justify-self: left; font-family: Futurama; margin-top: 2em;">@ErinJZimmer</div>
 					<ul>
-						<li>Senior developer at Shine Solutions</li>
+						<li>Community Engineering Lead at Cogent</li>
 						<li>Mozilla Tech Speaker</li>
 						<li>Google Developer Expert</li>
 					</ul>
+					<a href="https://layouts.ez.codes">https://layouts.ez.codes</a>
 					<img src="images/zoidberg-knitting.gif" alt="" style="position: fixed; left: 644px; top: 379px;">
-					<div class="notes">
-						i care about resposnive design and you should too!
-					</div>
 				</section>
 
 				<section>
-					<img class="shadow" src="images/StatCounter-comparison-eu-monthly-201902-202002.png" alt="">
-				</section>
-
-				<section>
-					<img class="shadow" src="images/StatCounter-comparison-ww-monthly-201902-202002.png" alt="">
-				</section>
-
-				<style>
-					.inverse ul {
-						font-size: .6em;
-						padding: 1.3em;
-						padding-left: 1.5em;
-						display: flex;
-						flex-direction: column;
-						align-items: flex-start;
-						justify-content: space-between;
-					}
-					.inverse ul li {
-						margin: 0;
-					}
-				</style>	
-				<section class="inverse">
-					<ul>
-						<li class="fragment">multi-column layout</li>
-						<li class="fragment">flexbox</li>
-						<li class="fragment">grid</li>
-					</ul>
-				</section>
-
-				<section class="inverse">
-					<div>multi-column layout</div>
-					<div class="notes">
-						start with the simplest
-						also the least useful, really
-						think of it as a warm up
-					</div>
-				</section>
-
-				<section class="auto-height">
 					<style>
-						.reveal .slides > section.auto-height {
-							height: auto;
-						}
-						.columns {
-							column-gap: 2em;
-							column-rule: 2px solid black;
-							font-family: Montaga, Times, serif;
-							font-size: 20px;
+						.awesome-css {
+							width: 350px;
+							height: 350px;
+							border: 4px solid currentColor;
+							place-self: center;
 							text-align: left;
-							background: hsla(0, 0%, 100%, .4);
-							padding: 40px;
-							border-radius: 10px;
-							max-width: 100%;
+							padding: .5ch;
+							font-size: 2em;
+							text-transform: uppercase;
 						}
-						.columns.simple-columns {
-							columns: 3;
-						}
-
-						p:first-child {
-							margin-top: 0;
-						}
-
-						.resize {
-							overflow: hidden;
-							resize: horizontal;
-						}
-
-						.simple-columns {
-							columns: 3;
-						}	
 					</style>
-					<div class="columns simple-columns resize">
-						<p style="margin-top: 0">Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.</p>
-						<p>Orbiting this at a distance of roughly ninety-two million miles	is an utterly insignificant little blue green planet whose ape-descended life forms are so amazingly primitive that they still	think digital watches are a pretty neat idea.</p>
-						<p>This planet has - or rather had - a problem, which was this: most	of the people living on it were unhappy for pretty much of the time.	Many solutions were suggested for this problem, but most of these	were largely concerned with the movements of small green pieces	of paper, which is odd because on the whole it wasn't the small	green pieces of paper that were unhappy.							</p>
-						<p>And so the problem remained; lots of the people were mean, and	most of them were miserable, even the ones with digital watches.							</p>
-						<p>Many were increasingly of the opinion that they'd all made a big	mistake in coming down from the trees in the first place. And	some suggested that even the trees had been a bad move, and that no	one should ever have left the oceans.							</p>
-						<div class="notes">
-							Even a layout like this, where the text can flow between the columns was quite difficult 
-							without employing something like JavaScript
+					<div class="awesome-css">
+						CSS<br>
+						is<br>
+						awesome<br>
+					</div>
+					<div class="notes">
+						Today, CSS is actually pretty good at layouts - especially responsive layouts.
+						(and if you're ending up with a result like this, you're probably doing it wrong)
+					</div>
+				</section>
+
+				<section class="frameworks">
+					<style>
+						.frameworks {
+							grid-template-rows: repeat(3, 1fr);
+							grid-template-columns: repeat(3, 1fr);
+							margin: auto;
+						}
+						.frameworks img {
+							height: 100%;
+						}
+					</style>
+					<img src="images/Bootstrap_logo.svg" alt="bootstrap">
+					<img src="images/foundation.svg" alt="foundation">
+					<img src="images/pure-logo.png" alt="pure">
+					<img src="images/bulma-seeklogo.com.svg" alt="bulma">
+					<img src="images/semantic-ui.svg" alt="semantic UI">
+					<img src="images/materialize-seeklogo.com.svg" alt="materialize">
+					<img src="images/spectre-css.jpg" alt="spectre.css">
+					<img src="images/susy.svg" alt="susy">
+					<img src="images/milligram.svg" alt="milligram">
+
+					<div class="notes">
+						for a start, there are a whole heap of frameworks out there to help you
+						you would not believe how many of them have logos that are just the letter S
+					</div>
+				</section>
+
+				<section data-state="menuFlip" class="bootstrap">
+					<script>
+						Reveal.addEventListener('menuFlip', () => {
+
+							const resizeObserver = new ResizeObserver(entries => {
+								for (let entry of entries) {
+									if (entry.borderBoxSize.inlineSize < 640) {
+										menu.style.flexDirection = 'column'
+									} else {
+										menu.style.flexDirection = 'row'
+									}
+								}
+							})
+
+							const menu = document.querySelector('ul.menu-flip');
+							resizeObserver.observe(menu)
+						})
+					</script>
+					<style>
+						.bootstrap {
+							position: relative;
+							grid-template-rows: 100px 1fr;
+						}
+						.bootstrap .resize.grid {
+							width: 300px;
+							position: absolute;
+							left: 50%;
+							transform: translate(-50%);
+						}
+						.menu-flip {
+							list-style-type: none;
+							display: flex;
+							margin-left: 0;
+						}
+						.menu-flip li {
+							flex: 1;
+						}
+						.menu li {
+							text-align: center;
+							color: white;
+							padding: .5em;
+							margin: 0;
+							background: linear-gradient(145deg, var(--gradient-start) -90%, var(--gradient-end));
+							box-shadow: inset 2px 2px 2px hsla(0, 100%, 100%, .4), inset -2px -2px 2px var(--shadow), 1px 1px 2px var(--shadow);
+						}
+					</style>
+					<div class="resize grid">
+						<ul class="menu-flip menu">
+							<li>Home</li>
+							<li>About</li>
+							<li>Blog</li>
+							<li>Contact</li>
+						</ul>
+					</div>
+					<div></div>
+					<div style="display: flex; flex-direction: column; justify-content: center;">
+						<pre class="fragment transient"><code class="html">
+<nav class="container">
+	<ul class="row">
+		<li class="col-sm">Home</li>
+		<li class="col-sm">About</li>
+		<li class="col-sm">Blog</li>
+		<li class="col-sm">Contact</li>
+	</ul>
+</nav>
+						</code></pre>
+
+						<pre class="fragment transient"><code class="css">
+nav ul {
+	display: flex;
+	flex-direction: column;
+
+	@media (min-width: 576px) {
+		flex-direction: row;
+	}
+}
+						</code></pre>
+					</div>
+					<div class="notes">
+						for example, we can create a responsive menu that flips between 
+						a vertical alignment on mobile and a horizontal alignment on larger screens
+						- using bootstrap, defining columns 
+						- or, if you prefer to write your own, using a very simple media query
+					</div>
+				</section>
+
+				<section data-background-image="images/popplers.png" data-background-size="25%" data-background-position="5% 90%">
+					<h2 style="place-self: center; font-size: 3em">the problem with<br> media queries</h2>
+				</section>
+
+				<section class="devices">
+					<style>
+						.devices {
+							grid-template-columns: auto auto;
+							grid-gap: 5%;
+							align-items: center;
+							justify-items: center;
+						}
+						.devices h2 {
+							grid-column: 1 / -1;
+							margin: 0;
+						}
+						.mobile-phone {
+							--width: 225px;
+							--item-width: 80%;
+							justify-self: end;
+						}
+						.tablet {
+							--width: 550px;
+							--item-width: 100px;
+							justify-self: start;
+						}
+						.mobile-phone, .tablet {
+							width: var(--width);
+							height: 400px;
+							background-color: hsl(0, 0%, 20%);
+							border-radius: 20px;
+							padding: 15px;
+							padding-top: 20px;
+							padding-bottom: 30px;
+							align-self: start;
+						}
+						.screen {
+							width: 100%;
+							height: 100%;
+							background-color: white;
+							box-shadow: inset 2px 2px 4px hsl(0 0% 20% / .4);
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							gap: 20px;
+							overflow: hidden;
+						}
+
+						nav > div {
+							height: 30px;
+							width: 100%;
+							background: hsl(0 0% 70%);
+						}
+
+						.mobile-phone nav, .browser nav {
+							display: flex;
+							flex-direction: column;
+							width: 100%;
+							gap: 2px;
+						}
+
+						.tablet nav {
+							grid-column: 1 / -1;
+							display: flex;
+							justify-content: center;
+							gap: 2px;
+						}
+
+						.devices .screen > div {
+							width: var(--item-width);
+							height: 100px;
+							background-color: hsl(0 0% 70%);
+							flex-shrink: 0;
+						}
+
+						.tablet .screen {
+							display: grid;
+							grid-template-columns: repeat(4, var(--item-width));
+							justify-content: center;
+							align-content: start;
+						}
+
+						.browser {
+							width: 500px;
+							height: 80%;
+							position: absolute;
+							top: 20%;
+							left: 50%;
+							transform: translate(-50%);
+							padding: 0;
+							--item-width: 80%;
+						}
+
+					</style>
+					<h2>the web is continuous</h2>
+					<div class="mobile-phone">
+						<div class="screen">
+							<nav>
+								<div></div>
+								<div></div>
+								<div></div>
+							</nav>
+							<div></div>
+							<div></div>
+							<div></div>
 						</div>
-					</div>				
+					</div>
+					<div class="tablet">
+						<div class="screen">
+							<nav>
+								<div></div>
+								<div></div>
+								<div></div>
+							</nav>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+					<div class="browser fragment">
+						<div class="screen">
+							<nav>
+								<div></div>
+								<div></div>
+								<div></div>
+							</nav>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+					<div class="notes">
+						as a very basic example, consider these 2 mockups
+						on a phone, you have some nav items stacked at the top, 
+						then a single column of content 
+						on a tablet, you have some nav items spread across the top,
+						and multiple layers of content
+						you could easily build this  using a single media query
+						the thing about the web though, is that it's not discrete like this 
+						yes, those two screen sizes exist, but so does every other size 
+						in between. and these mockups tell us nothing about how our page 
+						should behave in those in-between sizes 
+						obviously, there should be layouts that include 2 or 3 columns 
+						of content, but at what point should the nav switch from vertical 
+						to horizontal?
+						to some extent, we can mitigate this by using breakpoints 
+						specific to our design, rather than creating designs to fit 
+						specific sized screens 
+						however, that still leaves another problem						
+					</div>
+				</section>
+
+				<section class="with-heading">
+					<style>
+						.parabox {
+					  	width: 400px;
+						  height: 320px;
+							background-image: url('images/parabox.png');
+							background-size: cover;
+							background-position: center top;
+  						border-radius: 30% 70% 26% 74% / 44% 34% 66% 56%;
+						}
+					</style>
+					<h2>You don't have all the context</h2>
+					<ul>
+						<li class="fragment">How big is the content?</li>
+						<li class="fragment">How big is the container?</li>
+					</ul>
+					<div class="parabox"></div>
+					<div class="notes">
+						you don't have all the context at build time 
+
+						how much content? how big is it? 
+						have fonts/images loaded? 
+						has the user changed the font?
+
+						you might know the container if you know everything that's on 
+						the viewport, but not always
+					</div>
 				</section>
 
 				<section class="centre">
-					<pre><code class="css">.columns {
-	columns: 3;
-	column-gap: 2em;
-	column-rule: 2px solid black;
-}
-					</code></pre>
-										<div class="notes">
-											These days, however, we can accomplish this with some very simple CSS.
-					
-											We can actually do even better than that, and make a columns a little more responsive.
-										</div>
-									</section>
-					
-									<section>
-					<pre><code class="css">.columns {
-	columns: 3 200px;
-	column-gap: 2em;
-	column-rule: 2px solid black;
-}
-					</code></pre>
+					<div style="font-family: Kalam; font-size: 80px;">What can we do instead?</div>
 				</section>
+
+				<section class="centre">
+					<h2 style="font-size: 80px">Let the browser work it out</h2>
+					<div class="notes">
+						remember, the flexibility of the web is a feature, not a bug
+						instead of trying to code around it, we should be using it to our advantage
+						we don't need to code for every possible situation with imperfect information 
+						instead, we can give the browser some boundaries and guidelines and let it work 
+						out the fine detail using the information it has available
+					</div>
+				</section>
+
+				<section class="inverse">
+					<h2>columns</h2>
+					<div class="notes">
+						start by looking at an example using newspaper-style columns
+						not a pattern you see often on the web because infinite scroll 
+						could make sense in the context of a design where you have a container 
+						of limited height
+					</div>
+				</section>
+
+				<section data-background-image="images/Futurama-Head-Museum.jpg" data-background-position="center" data-background-size="auto"></section>
 
 				<section class="auto-height">
 					<style>
@@ -286,66 +625,19 @@
 						<p>This planet has - or rather had - a problem, which was this: most	of the people living on it were unhappy for pretty much of the time.	Many solutions were suggested for this problem, but most of these	were largely concerned with the movements of small green pieces	of paper, which is odd because on the whole it wasn't the small	green pieces of paper that were unhappy.							</p>
 						<p>And so the problem remained; lots of the people were mean, and	most of them were miserable, even the ones with digital watches.							</p>
 						<p>Many were increasingly of the opinion that they'd all made a big	mistake in coming down from the trees in the first place. And	some suggested that even the trees had been a bad move, and that no	one should ever have left the oceans.							</p>
-				</section>
-
-				<section>
-					<div style="margin: auto; font-size: 80px; font-family: Kalam">More declarative CSS</div>
-				</section>
 				
-				<section class="side-by-side">
-					<pre><code class="js" style="font-size: .5em">
-function getNames(users) {
-	const names = [];
-
-	for (let i = 0; i < user.length; i++) {
-		const u = users[i];
-		names.push(`${u.gName} ${u.famName}`);
-	}
-
-	return names;
-}
-					</code></pre>
-
-					<pre class="fragment"><code class="js" style="font-size: .5em">
-function getNames(users) {
-	return users.map((user) => `${user.gName} ${user.famName}`);
-}
-					</code></pre>
-					<div class="notes">
-						- imperative vs declarative loop in js
-						- declarative is shorter because we're just telling the js engine 
-							what we want to happen, not how to do it
-						- easier to understand, can mean less errors 
-						- trade-off: can't control how loop runs eg can't increment by 2
-					</div>
+						<div class="notes">
+							this used to be quite complicated to do 
+							you don't know how big anything is on the web 
+								you don't know how many columns can fit, or how wide
+								you don't know the font for sure, so you're not sure how much space the text takes up
+							instead, you'd have to do something with javascript to work out the dimensions
+							and which text goes in which column at runtime
+							then use CSS with media queries to set up the columns, something like...
+						</div>
 				</section>
 
 				<section>
-					<blockquote cite="https://resilientwebdesign.com/">
-						When a feature is available in a declarative language, not only is it easier to write, it's also more robust.
-					</blockquote>
-					<cite>
-						Jeremy Keith, <em>Resilient Web Design</em>
-					</cite>
-				</section>
-
-				<section>
-					<pre><code class="css">
-.red-box {
-	width: 300px;
-	height: 300px;
-	background-color: red;
-}
-					</code></pre>
-
-					<div class="notes">
-						CSS is a declarative language by nature - if we want to draw a red box, we 
-						just say we want a red box, we don't need to stuff around with cursors and 
-						vectors and whatnot
-					</div>
-				</section>
-
-				<section class="side-by-side">
 					<pre><code class="css" style="font-size: .7em; line-height: 1">.column {
 	min-width: 200px;
 	width: 100%;
@@ -371,882 +663,339 @@ function getNames(users) {
 .column:not(:last-child) {
 	border-right: 2px solid black;
 }</code></pre>
+					<div class="notes">
+						this css is complicated and error-prone because it's 
+						using values that rely on each, but not obviously so 
+						(can't use variables in a media queries)
+					</div>
+				</section>
 
-					<pre class="fragment"><code class="css" style="font-size: .75em">
+				<section class="centre">
+					<h2 class="shiny">css columns</h2>
+				</section>
+
+				<section>
+					<style>
+						.columns-description li {
+							margin: .2em 0;
+						}
+					</style>
+					<pre><code class="css" style="font-size: .75em" data-noescape>
 .columns {
-	columns: 5 200px;
-	column-gap: 2em;
-	column-rule: 2px solid black;
+	columns: 3 200px;
 }
 					</code></pre>
-					<div class="notes">
-						now, I'm not sure if there are _degrees_ of declarativeness, but if we 
-						were to implement the behaviour of columns the way we normally build pages
-						with all the breakpoints and whatnot...
-
-						compared to how we do it with columns... 
-
-						the second one definitely feels more declarative to me
-					</div>
-				</section>
-
-				<section>
-					<blockquote cite="https://resilientwebdesign.com/">
-						Relinquishing control does not mean relinquishing quality. Quite the opposite. In acknowledging the many unknowns involved in designing for the web, designers can craft in a resilient flexible way that is true to the medium.
-					</blockquote>
-					<cite>
-						Jeremy Keith <em>Resilient Web Design</em>
-					</cite>
-				</section>
-
-				<section>
-					even if you've got designs for phone and tablet and desktop, you don't have everything covered
-					the browser knows more than us about how the page is being displayed - it knows the device it's being displayed on
-					it's better to leave some of the decisions to it
-					this is true not just for columns, but also for flexbox and grid
-				</section>
-					
-				<section class="centre">
-					<a style="font-family: Kalam; color: currentColor; font-size: 80px;" href="responsive-columns.html" target="_blank">Responsive to container</a>
-					<div class="notes">
-						A slightly more subtle point: columns are responsive when compared to the 
-						_container_ that they're in, NOT the viewport
-						What do I mean by that? show demo
-						This is especially important when building reusable components, and it's 
-						feature that all of columns, flexbox and grid have in common
-					</div>
-				</section>
-				<section class="white resize">
-					<style>
-						.white {
-							background: hsla(0, 0%, 100%, .6);
-							border-radius: 25px;
-							border-radius: 25px;
-							grid-template-rows: min-content;
-							font-size: .45em;
-						}
-						.ad-options {
-							color: #202124;
-							columns: 3 300px;
-							padding: 20px;
-							margin: 0;
-						}
-						.ad-options li {
-							display: flex;
-							align-items: center;
-							background: #f1f3f4;
-							height: 50px;
-							border-radius: 25px;
-							margin-bottom: 10px;
-							transition: all 0.3s ease 0s;
-							break-inside: avoid;
-						}
-						.ad-options li:hover {
-							background-color: #dadce0;
-    					box-shadow: 0 1px 1px 0 rgba(32,33,36,0.302), 0 3px 6px 2px rgba(32,33,36,0.149);
-						}
-						.ad-options img {
-							width: 40px;
-							margin-right: .5em;
-						}
-						hr {
-							height: 1px;
-							width: 90%;
-							color: #dadce0;	
-						}
-						.ad-networks {
-							border: 1px solid #dadce0;
-							border-radius: 8px;
-							display: grid;
-							grid-template-columns: 30px 1fr 30px 1fr;
-							grid-gap: 10px;
-							padding: 20px;
-							margin: 20px;
-							text-align: left;
-							font-size: .95em;
-						}
-					</style>
-					<ul class="ad-options">
-						<li style="margin-top: 0">
-							<img src="images/google-categories/cupcake.svg">
-							<div>35-44 years old</div>
-						</li>
-						<li>
-							<img src="images/google-categories/gender.svg">
-							<div>Female</div>
-						</li>
-						<li>
-							<img src="images/google-categories/games.svg">
-							<div>Action & Platform Games</div>
-						</li>
-						<li>
-							<img src="images/google-categories/games.svg">
-							<div>Adventure Games</div>
-						</li>
-						<li>
-							<img src="images/google-categories/plane.svg">
-							<div>Air Travel</div>
-						</li>
-						<li>
-							<img src="images/google-categories/football.svg">
-							<div>American Football</div>
-						</li>
-						<li>
-							<img src="images/google-categories/audio.svg">
-							<div>Audio Equipment</div>
-						</li>
-						<li>
-							<img src="images/google-categories/tennis-ball.svg">
-							<div>Australian Football</div>
-						</li>
-						<li>
-							<img src="images/google-categories/mens-interests.svg">
-							<div>Men's Interests</div>
-						</li>
-						<li>
-							<img src="images/google-categories/tv.svg">
-							<div>TV - Sci-Fi Shows</div>
-						</li>
-						<li>
-							<img src="images/google-categories/briefcase.svg">
-							<div>Urban Travel</div>
-						</li>
-						<li>
-							<img src="images/google-categories/car.svg">
-							<div>Vehicle shopping</div>
-						</li>
-						<li>
-							<img src="images/google-categories/web.svg">
-							<div>Web Development</div>
-						</li>
-						<li>
-							<img src="images/google-categories/womens-interests.svg">
-							<div>Women's Interests</div>
-						</li>
+					<ul style="font-family: Kalam" class="columns-description">
+						<li class="fragment">I'd like a multi-column layout</li>
+						<li class="fragment">No more than 3 columns</li>
+						<li class="fragment">I'd like the columns to be about 200px wide</li>
 					</ul>
-					<hr>
-					<div class="ad-networks">
-						<img src="images/google-categories/info.png" alt="">
-						<div>
-							<p>Google is one of many ad networks that personalises ads, based on your activity online.</p>
-							<p>Go to <a href="https://https://optout.aboutads.info/?c=2&lang=EN">Your Online Choices</a> to control ads from other ad networks.</p>
-						</div>
-						<svg viewBox="0 0 24 24" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" class=""><path d="M20.5,11 L19,11 L19,7 C19,5.9 18.1,5 17,5 L13,5 L13,3.5 C13,2.12 11.88,1 10.5,1 C9.12,1 8,2.12 8,3.5 L8,5 L4,5 C2.9,5 2.01,5.9 2.01,7 L2.01,10.8 L3.5,10.8 C4.99,10.8 6.2,12.01 6.2,13.5 C6.2,14.99 4.99,16.2 3.5,16.2 L2,16.2 L2,20 C2,21.1 2.9,22 4,22 L7.8,22 L7.8, 20.5 C7.8,19.01 9.01,17.8 10.5,17.8 C11.99,17.8 13.2,19.01 13.2,20.5 L13.2,22 L17,22 C18.1,22 19,21.1 19,20 L19,16 L20.5,16 C21.88,16 23,14.88 23,13.5 C23,12.12 21.88,11 20.5,11" id="Page-1" fill="#5F6368"></path></svg>
-						<div>
-							You can install a browser plugin to maintain your preference to opt out of personalised ads from Google, even if you've cleared your cookies. <a href="https://https://adssettings.google.com/authenticated?hl=en-GB">Learn how</a>
-						</div>
-					</div>
-				</section>
-
-				<section class="with-heading">
-					<h2>Multi-column layout</h2>
-					<ul>
-						<li class="fragment">More declarative CSS</li>
-						<li class="fragment">Responsive to container</li>
-						<li class="fragment">Maybe useful?</li>
-					</ul>
-				</section>
-
-				<section class="inverse">
-					<div>Sizing things with CSS</div>
-				</section>
-
-				<section class="with-heading with-example">
-					<style>
-						.with-heading.with-example {
-							grid-template-areas: 'h h' 'l e';
-						}
-						.with-heading.with-example h2 {
-							grid-area: h;
-						}
-						.with-heading.with-example ul {
-							grid-area: l;
-						}
-						.with-heading.with-example pre {
-							height: auto;
-							grid-area: e;
-						}
-						pre code.one-at-a-time .fragment {
-							display: none;
-						}
-						pre code.one-at-a-time .fragment.current-fragment {
-							display: block;
-						}
-					</style>
-					<h2>An element can be sized</h2>
-					<ul style="margin-left: 2.5em">
-						<li class="fragment" data-fragment-index="1">in pixels</li>
-						<li class="fragment" data-fragment-index="2">relative to font-size</li>
-						<li class="fragment" data-fragment-index="3">according to its content</li>
-						<li class="fragment" data-fragment-index="4">relative to its parent</li>
-						<li class="fragment" data-fragment-index="5">relative to the viewport</li>
-					</ul>
-					<pre style="height: 300px; width: 330px"><code class="css one-at-a-time" data-noescape>
-.element {
-<span class="fragment" data-fragment-index="1">	width: 400px;
-	height: 420px;</span><span class="fragment" data-fragment-index="2">	width: 10em;
-	height: 12em;</span><span class="fragment" data-fragment-index="3">	width: max-content;
-	height: auto;</span><span class="fragment" data-fragment-index="4">	width: 90%;
-	height: 100%;</span><span class="fragment" data-fragment-index="5">	width: 8vmin;
-	height: 4vh;</span>}
-					</code></pre>
 					<div class="notes">
-						can only be sized relative to ONE thing
-						that thing can't be a sibling element
-						would be good to do an example of setting each of these in CSS next to the list
-						In a language like English, which runs left-to-right, top-to-bottom, this makes setting 
-						heights particularly difficult.
+						Now, you can do it like this instead
+						description of code
+						by passing control to the browser, we end up with code that is "more declarative"
+						it's easier to write, easier to read, and guaranteed to work in more situations
 					</div>
 				</section>
 
-				<section class="align-top">
-					<div style="margin: auto; display: grid; grid-gap: .5em">
-						<a href="holy-grail-flex-2.html" target="_blank">Holy Grail layout</a>
-					</div>
-
-					<div class="notes">
-						So creating layouts like this was quite difficult, specifically
-						- columns are all the same height: sized relative to each others' content
-						- middle column width varies according to the viewport width, which means the
-						  height of its content changes
-						- the footer sticks to the bottom: positioned relative to the viewport, or 
-							the columns		
-						MAKE  THE NICE ONE PROPER RESPONSIVE			  
-					</div>
-				</section>
-				<section class="side-by-side">
-					<pre><code class="html" style="font-size: .8em"><header></header>
-<div class="container">
-	<main></main>
-	<nav></nav>
-	<div class="images"></div>
-</div>
-<footer></footer></code></pre>
-					<pre class="fragment" style="max-height: 100%"><code class="css" style="font-size: .6em">body {
-	min-height: 100vh;
-	margin: 0;
-	min-width: 500px;
-	--nav-width: 300px;
-	--images-width: 25vw;
-}
-.container {
-	padding-left: var(--nav-width);
-	padding-right: var(--images-width);
-	overflow: hidden;
-}
-.container > * {
-	--big-number: 2000px;
-	position: relative;
-	float: left;
-	padding-bottom: var(--big-number);
-	margin-bottom: calc(-1 * var(--big-number));
-}		
-main {
-	width: 100%;
-}
-nav {
-	width: var(--nav-width);
-	right: var(--nav-width);
-	margin-left: -100%;
-}
-.images {
-	width: var(--images-width);
-	margin-right: calc(-1 * var(--images-width));
-}
-footer {
-	clear: both;
-	position: relative;
-}</code></pre>
-				<div class="notes">
-					HTML is OK - only one extra element
-					But you need all this CSS, and it's doing weird things with paddings and margins and stuff 
-					Also, this layout is going to completely break on small screens
-					And if you think you don't need to worry about small screens...
-				</div>
-				</section>
-
-				<section class="centre">
-					<a href="holy-grail-floats.html" target="_blank">Holy Grail Attempt 1</a>
-					<div class="notes">
-						We can do something kind of like it with floats 
-						- the right column can't be centred
-						- it completely falls apart on a small screen	
-					</div>
-				</section>
-
-				<section class="futurama-meme">
+				<section class="different-widths">
 					<style>
-						.futurama-meme {
-							grid-template-columns: fit-content 1fr;
-							align-items: center;
-							--yellow: #fcd741;
-							font-family: Futurama;
-							color: var(--light-red);
-							font-size: 80px;
-							text-transform: uppercase;
-							text-shadow: 2px 2px var(--yellow), 
-													-2px -2px var(--yellow),  
-													2px -2px var(--yellow),
-													-2px 2px var(--yellow),
-													6px 6px var(--dark-blue);
+						.different-widths {
+							grid-template-columns: 1fr 3fr;
+							grid-gap: 40px;
 						}
-					</style>
-					<div class="futurama-meme">Good news everyone!</div>
-					<img src="images/farnsworth.png" alt="">
-					<div class="notes">flexbox gives us options</div>
-				</section>
-
-				<section class="inverse">
-					<div>flexbox</div>
-					<div class="notes">
-						this is where things start getting exciting
-						remember before how we could only place and size elements relative to a parent or 
-						immediate sibling? flexbox changes all that.
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.flex.example .element {
-							--side: 109px;
-							width: var(--side);
-							height: var(--side);
-							margin-bottom: 1px;
-							margin-right: 1px;
-						}
-						select {
-							background: transparent;
-							color: currentColor;
-							border: none;
-							font-size: 1.2em;
-							-moz-appearance: none;
-							cursor: pointer;
-						}
-						.example.resize.flex {
-							outline: 2px dashed currentColor;
-						}
-					</style>
-					<div style="position: fixed; right: 0; top: 50%; transform: translateY(-50%);">
-						<pre style="width: auto"><code class="css" data-noescape="">.container {
-	display: <select onchange="changeFlex(event)" id="change-flex"><option value="block">block</option><option value="flex">flex</option></select>
-}</code></pre>
-					</div>
-<div class="example resize flex">
-	<div class="element"></div>
-	<div class="element"></div>
-	<div class="element resize"></div>
-	<div class="element"></div>
-	<div class="element"></div>
-	<div class="element"></div>
-</div>
-
-<script>
-	function changeFlex(event) {
-		const display = event.target.selectedOptions[0].value;
-		const container = document.querySelector('.example.resize.flex');
-		container.style.display = display;
-	}
-</script>
-<div class="notes">
-	- to start: block elements, one below the other 
-	- flex: now... they're all next to each other! indistinguishable from inline-block, who cares?
-	- really: elements are now all sized and positioned relative to the parent _and_ each other
-
-	- if we make the container smaller, all the elements will shrink
-	- if we make one of the elements bigger, the others will get smaller
-</div>
-				</section>
-				<section class="with-heading">
-					<style>
-						.fragment.highlight {
-							visibility: visible;
-							opacity: 1;
-						}
-						.fragment.highlight.visible, .fragment.highlight.visible *, .fragment .colour, .colour.green .hljs-selector-tag {
-							color: var(--highlight-colour);
-							font-weight: normal;
-							text-decoration-style: var(--decoration);
-							text-decoration-line: underline;
-						}
-						.green {
-							--highlight-colour: var(--green);
-							--decoration: solid;
-						}
-						.blue {
-							--highlight-colour: var(--light-blue);
-							--decoration: dotted;
-						}
-						.orange {
-							--highlight-colour: var(--light-orange);
-							--decoration: wavy;
-						}
-					</style>
-					<pre><code class="css" style="font-size: 1.2em; line-height: 1.4" data-noescape="">
-<span class="fragment" data-fragment-index="1">flex-basis: <span class="fragment highlight green" data-fragment-index="4">140px</span>;</span>
-<span class="fragment" data-fragment-index="2">flex-grow: <span class="fragment highlight blue" data-fragment-index="4">3</span>;</span>
-<span class="fragment" data-fragment-index="3">flex-shrink: <span class="fragment highlight orange" data-fragment-index="4">1</span>;</span>
-					</code></pre>
-
-					<pre data-fragment-index="4" class="fragment" style="align-self: flex-start; font-size: .7em"><code class="css" data-noescape="">
-flex: <span class="colour blue">3</span> <span class="colour orange">1</span> <span class="colour green">140px</span>;
-					</code></pre>
-
-					<div class="notes">
-						because flex elements are sized relative to each other AND the the container, we 
-						actually need three properties to control the size of a flex element 
-						flex-grow, flex-shrink and flex-basis
-						flex: grow shrink basis - do an example with real values and colour code them
-	
-						basis: our starting amount
-						grow/shrink - how much to grow/shrink relative to each other	
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.flex-stuff {
-							display: flex;
-							align-self: center;
-						}
-					</style>
-					<div class="example flex-stuff resize">
-						<div class="element" style="flex: 0 0 var(--side)">
-							flex: 0 0 250px;
-						</div>
-						<div class="element" style="flex: 1 1 var(--side)">
-							flex: 1 1 250px;
-						</div>
-						<div class="element" style="flex: 2 2 var(--side)">
-							flex: 2 2 250px;
-						</div>
-					</div>
-				</section>
-
-				<section class="centre">
-					<img style="width: 100%" src="images/accident.gif" alt="">
-					<div class="notes">
-						flexbox also comes with some built in guard rails to stop you 
-						er shooting yourself in the foot
-					</div>
-				</section>
-
-				<section class="centre">
-					<style>
-						.example.min-content {
-							display: flex;
-							font-family: Futurama;
-						}
-						.example.min-content .element {
-							flex: 1 1 200px;
-						}
-					</style>
-					<div class="example resize min-content">
-						<div class="element">Turanga Leela</div>
-						<div class="element">Amy Wong</div>
-						<div class="element">Bender Bending Rodrigues</div>
-					</div>
-				</section>
-
-				<section class="flex-sizing">
-					<style>
-						.flex-sizing {
-							grid-template-rows: min-content;
-						}
-						.flex-sizing ul {
-							justify-self: center;
-						}
-						.flex-sizing em {
-							font-size: 80px;
-							font-family: 'League Gothic';
-							text-transform: uppercase;
-						}
-					</style>
-					<h2>flex items can be sized relative to</h2>
-					<ul>
-						<li>the container</li>
-						<li>their basis size</li>
-						<li>their content</li>
-						<li>their siblings</li>
-					</ul>
-					<em>all at the same time</em>
-					<div class="notes">
-						which allows us to do things like the columns in our holy grail layout
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.holy-grail-columns {
-							display: flex;
-							font-size: 20px;
-							padding: 40px;
-						}
-						.holy-grail-columns ul {
-							list-style-type: none;
-							margin: 0;
-							padding: 0;
-						}
-						.holy-grail-columns li {
-							padding: 20px;
-						}
-						.holy-grail-columns li:first-child {
-							padding-top: 0;
-						}
-						.holy-grail-columns .nav {
-							flex: 0 1 300px;
-						}
-						.holy-grail-columns .content {
-							flex: 1 1 0;
-							margin-right: 20px;
-						}
-						.holy-grail-columns .images {
-							flex: 0 1 25%;
-						}
-					</style>
-					<div class="holy-grail-columns white resize">
-						<div class="nav">
-							<ul>
-								<li><a href="#">Arthur, King of Britons</a></li>
-								<li><a href="#">Sir Lancelot the Brave</a></li>
-								<li><a href="#">Patsy</a></li>
-								<li><a href="#">Sir Robin, the Not-quite-as-brave-as-Sir-Lancelot</a></li>
-								<li><a href="#">Sir Bedevere the Wise</a></li>
-								<li><a href="#">Sir Galahad the Pure</a></li>
-							</ul>
-						</div>
-						<div class="content">
-							<p>King Arthur was a legendary British leader who, according to medieval histories and romances, led the defence of Britain against Saxon invaders in the late 5th and early 6th centuries. The details of Arthur's story are mainly composed of folklore and literary invention, and modern historians generally agree that he is unhistorical.[2][3] The sparse historical background of Arthur is gleaned from various sources, including the Annales Cambriae, the Historia Brittonum, and the writings of Gildas. Arthur's name also occurs in early poetic sources such as Y Gododdin.[4]</p>
-						</div>
-						<div class="images">
-							<img src="images/king-arthur.jpeg" alt="king arthur">
-							<img src="images/arthur-and-black-knight.jpg" alt="king arthur fighting the black knight">
-						</div>				
-					</div>
-				</section>
-
-				<section class="side-by-side">
-					<pre><code class="html" style="font-size: .8em"><header></header>
-<div class="container">
-	<nav></nav>
-	<main></main>
-	<div class="images"></div>
-</div>
-<footer></footer></code></pre>
-					<pre class="fragment" data-fragment-index="1" style="height: min-content;"><code class="css" data-noescape="" style="height: min-height; max-height: 100%; font-size: .8em"><span class="fragment" data-fragment-index="2">body {
-	display: flex;
-	flex-direction: column;
-}</span>
-.container {
-	display: flex;
-	<span class="fragment" data-fragment-index="2">flex-grow: 1;</span>
-}
-nav {
-	flex: 0 1 300px;
-}
-.content {
-	flex: 1 1 0;
-}
-.images {
-	flex: 0 1 25%;
-}</code></pre>
-				</section>
-
-				<section class="centre">
-					<a href="holy-grail-flex.html" target="_blank">Holy Grail Attempt 2</a>
-					<div class="notes">
-						same layout as floats
-						less broken
-						still not great on tiny screens
-					</div>
-				</section>
-
-				<section>
-					<pre><code class="css" style="overflow: hidden" data-noescape="">.container {
-	<span class="fragment highlight green" data-fragment-index="1">flex-wrap: wrap;</span>
-}
-
-nav {
-	flex: <span class="fragment highlight green" data-fragment-index="2">1</span> 1 300px;
-}
-
-.content {
-	flex: <span class="fragment highlight green" data-fragment-index="3">9999</span> 1 0;
-}
-
-.images {
-	flex: <span class="fragment highlight green" data-fragment-index="2">1</span> 0 25%;
-}</code></pre>
-				</section>
-
-				<section class="centre">
-					<a href="holy-grail-flex-2.html" target="_blank">Holy Grail Attempt 3</a>
-					<div class="notes">
-						so now we've got a flexible layout, that reflows according to the size of 
-						its container, without any breakpoints
-					</div>
-				</section>
-
-				<section class="centre">
-					<style>
-						.extended-input-container {
-							padding: 40px;
-							width: 100%;
-							justify-self: start;
-						}
-						.extended-input {
-							--border: 2px solid hsl(273, 39%, 40%);
-							display: flex;
-							height: 3em;
-							align-self: center;
-							border: var(--border);
-							border-radius: 6px;
-							font-family: Futurama;
-							font-size: 40px;
-						}
-						.extended-input .icon, .extended-input button {
-							--gradient-start: hsl(259, 71%, 80%);
-							--gradient-end: hsl(265, 58%, 50%);
-							  background: 
-									linear-gradient(90deg, hsla(0, 0%, 100%, .1) -90%, transparent), 
-									linear-gradient(hsla(0, 0%, 100%, .1) -90%, transparent), 
-									linear-gradient(145deg, var(--gradient-start) -90%, var(--gradient-end));
-						}
-						.extended-input .icon {
-							flex: 0 0 100px;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							font-size: 80px;
-							padding: 0 .25em;
-							border-right: var(--border);
-						}
-						.extended-input input {
-							flex: 1 1 5em;
-							border-radius: 0;
-							border: 0;
-							font: inherit;
-							padding-left: .5em;
-						}
-						.extended-input button {
-							flex: 0 0 0;
-							border-radius: 0;
-							border: 0;
-							color: white;
-							padding: 0 .5em;
-							border-left: var(--border);
-							font: inherit;
-							cursor: pointer;
-						}
-						.extended-input button:active {
-							background: var(--gradient-end);
-						}
-					</style>
-					<div class="resize extended-input-container">
-						<div class="extended-input">
-							<div class="icon">🚀</div>
-							<input type="text">
-							<button>Go!</button>
-						</div>	
-					</div>
-
-					<pre class="fragment"><code class="css">
-.container {
-	display: flex;
-}
-.icon, button {
-	flex: 0 0 100px;
-}
-input {
-	flex: 1 1 0;
-}
-					</code></pre>
-				</section>
-
-				<section class="with-heading">
-					<img src="images/flexo.png" style="position: fixed; bottom: 0; left: 0;"alt="">
-					<h2>flexbox</h2>
-					<ul style="position: relative;">
-						<li class="fragment">declarative</li>
-						<li class="fragment">responsive to container</li>
-						<li class="fragment">size items relative to lots of things</li>
-						<li class="fragment">definitely useful</li>
-					</ul>
-				</section>
-
-				<section class="inverse">
-					<div>Positioning in CSS</div>
-				</section>
-
-				<section>
-					<style>
-						.html-only, .with-css {
-							justify-self: center;
-						}
-						.html-only .element, .with-css .element {
-							display: block;
-						}
-			
-						.html-only .element {
-							color: var(--main-colour);
-							border: 8px solid currentColor;
-							background: transparent;
-							box-shadow: none;
-							border-radius: 0;
-							width: 25vmin;
-							height: 25vmin;
-							text-align: left;
-						}
-						.html-only .element .element, .with-css .element .element {
-							width: 40%;
-							height: 40%;
-						}
-						.html-only .element .element, .html-only .element + .element {
-							color: hsl(20, 20%, 30%);
-							border-width: 4px;
-						}
-					</style>
-					<div class="html-only">
-						<div class="element">
-							<div class="element fragment" data-fragment-index="2"></div><div class="element fragment" data-fragment-index="3"></div>
-						</div>
-						<div class="element fragment" data-fragment-index="1"></div>
-					</div>
-					<div class="notes">
-						HTML, in English, block level elements. There are 2 places you an put them.
-						Of course, HTML also has inline elements, like images and text. They're placed
-						next to each other, but how they work is kind of complicated, and not that important
-						in this context, so let's ignore them.						
-					</div>
-				</section>
-				<section class="center">
-					<style>
-						.with-css > .element:first-child {
-							border-width: 8px;
-							box-shadow: none;
-							--gradient-start: hsl(191, 20%, 90%);
-							--gradient-end: hsl(229, 3%, 38%);
-						}
-						.with-css .element {
-							border-width: 4px;
-						}
-
-						.with-css .element.fragment {
-							opacity: 1;
-							visibility: visible;
-						}
-						.with-css .element.fragment.visible.margin {
-							margin: 5%;
-						}
-						.with-css .element.fragment.relative {
+						.different-widths .columns{
+							columns: 3 200px;
 							position: relative;
-							transition: all .3s;
-							top: 0;
-							right: 0;
 						}
-						.with-css .element.fragment.visible.relative {
-							top: 40px;
-							right: -100px;
-							transform: rotate(.125turn);
+						.container-width, .column-width {
+							font-family: Kalam;
 						}
-						.with-css .element.fragment.visible.fixed {
-							position: fixed;
-							bottom: 0;
-							right: 0;
+						.container-width {
+							display: flex;
+							gap: 10px;
 						}
-					</style>
-					<div class="with-css">
-						<div class="element">
-							<div class="element fragment margin"></div><div class="element fragment relative"></div>
-						</div>
-						<div class="element fragment fixed"></div>
-					</div>
-
-					<div class="notes">
-						CSS let's us make things prettier, and gives us a little bit of control over layouts
-						- add space around elements via margins
-						- move elements around with position and transform
-						- change the element that the element is positioned relative
-					</div>
-				</section>
-
-				<section class="with-heading">
-					<h2>An element can be positioned</h2>
-					<ul style="margin-left: 3em;">
-						<li class="fragment">relative to its previous sibling</li>
-						<li class="fragment">relative to an ancestor</li>
-					</ul>
-					<div class="notes">
-						can only be positioned relative to ONE element
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.uneven-grid {
-							display: grid;
-							grid-template-columns: repeat(3, 1fr);
-							grid-template-rows: repeat(3, 1fr);
-							align-items: center;
-							justify-items: center;
+						.column-width {
 							width: 100%;
 							height: 100%;
+							position: absolute;
+							top: 0;
+							left: 0;
+							display: flex;
+							justify-content: center;
+							padding-top: 200px;
+							background: hsla(0, 0%, 100%, .6);
+							border-radius: 10px;
+							font-size: 2em;
 						}
-						.uneven-grid .element {
-							width: 100px;
-							height: 100px;
+						.px-580 .column-width {
+							width: 50%;
 						}
-						.uneven-grid .element:nth-child(2n) {
-							height: 140px;
+						.column-width::before, .column-width::after {
+							content: '';
+							width: 150px;
+							margin: auto;
+							position:absolute;
+							--border: 4px solid currentColor;
 						}
-						.uneven-grid .element:nth-child(3n) {
-							width: 140px;
+						.column-width::before {
+							top: 260px;
+							border-bottom: var(--border);
 						}
-						.uneven-grid .element:nth-child(-2n + 3) {
-							height: 60px;
+						.column-width::after {
+							top: 247px;
+							height: 30px;
+							border-left: var(--border);
+							border-right: var(--border);
 						}
-						.uneven-grid .element:nth-child(-5n + 3) {
-							width: 60px;
+						.px-580 .column-width:first-child {
+							padding-left: 5px;
+							border-top-right-radius: 0;
+							border-bottom-right-radius: 0;
 						}
-
+						.px-580 .column-width:not(:first-child) {
+							left: 50%;
+							padding-right: 35px;
+							border-top-left-radius: 0;
+							border-bottom-left-radius: 0;
+						}
+						.px-580 .column-width::before, .px-580 .column-width::after {
+							width: 275px;
+						}
+						svg {
+							stroke: currentColor;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+						}
+						line {
+							stroke-width: 3;
+						}
 					</style>
-					<div class="grid resize resize-both uneven-grid">
-						<div class="element"></div>
-						<div style="height: 40px" class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
+					<div class="px-190">
+						<div class="container-width">
+							<svg viewBox="0 0 50 10">
+								<defs>
+									<marker id="arrow-left" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
+										<path d="M3,1 l-3,2 3,2" />
+									</marker>
+								</defs>
+								<line x1="3" y1="5" x2="47" y2="5" marker-start="url(#arrow-left)" />
+							</svg>
+							190px
+							<svg viewBox="0 0 50 10">
+								<defs>
+									<marker id="arrow-right" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
+										<path d="M-3,1 l3,2 -3,2" />
+									</marker>
+								</defs>
+								<line x1="3" y1="5" x2="47" y2="5" stroke-width="3" marker-end="url(#arrow-right)" />
+							</svg>
+						</div>
+						<div class="columns">
+							<div class="column-width fragment" data-fragment-index="1">~125px</div>
+							<p style="margin-top: 0">Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.</p>
+							<p>Orbiting this at a distance of roughly ninety-two million miles	is an utterly insignificant little blue green planet whose ape-descended life forms are so amazingly primitive that they still	think digital watches are a pretty neat idea.</p>
+							<p>This planet has - or rather had - a problem, which was this: most	of the people living on it were unhappy for pretty much of the time.	Many solutions were suggested for this problem, but most of these	were largely concerned with the movements of small green pieces	of paper, which is odd because on the whole it wasn't the small	green pieces of paper that were unhappy.							</p>
+							<p>And so the problem remained; lots of the people were mean, and	most of them were miserable, even the ones with digital watches.							</p>
+							<p>Many were increasingly of the opinion that they'd all made a big	mistake in coming down from the trees in the first place. And	some suggested that even the trees had been a bad move, and that no	one should ever have left the oceans.							</p>	
+						</div>
 					</div>
-					<div class="notes">
-						makes it difficult to do stuff like this, where we want things to be aligned 
-						horizontally _and_ vertically
+					<div class="px-580 fragment" data-fragment-index="2">
+						<div class="container-width">
+							<svg viewBox="0 0 230 10">
+								<defs>
+									<marker id="arrow-left" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
+										<path d="M3,1 l-3,2 3,2" />
+									</marker>
+								</defs>
+								<line x1="3" y1="5" x2="227" y2="5" marker-start="url(#arrow-left)" />
+							</svg>
+							580px
+							<svg viewBox="0 0 230 10">
+								<defs>
+									<marker id="arrow-right" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
+										<path d="M-3,1 l3,2 -3,2" />
+									</marker>
+								</defs>
+								<line x1="3" y1="5" x2="227" y2="5" stroke-width="3" marker-end="url(#arrow-right)" />
+							</svg>
+						</div>
+						<div class="columns">
+							<div class="column-width fragment" data-fragment-index="3">~250px</div>
+							<div class="column-width fragment" data-fragment-index="3">~250px</div>
+								<p style="margin-top: 0">Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.</p>
+							<p>Orbiting this at a distance of roughly ninety-two million miles	is an utterly insignificant little blue green planet whose ape-descended life forms are so amazingly primitive that they still	think digital watches are a pretty neat idea.</p>
+							<p>This planet has - or rather had - a problem, which was this: most	of the people living on it were unhappy for pretty much of the time.	Many solutions were suggested for this problem, but most of these	were largely concerned with the movements of small green pieces	of paper, which is odd because on the whole it wasn't the small	green pieces of paper that were unhappy.							</p>
+							<p>And so the problem remained; lots of the people were mean, and	most of them were miserable, even the ones with digital watches.							</p>
+							<p>Many were increasingly of the opinion that they'd all made a big	mistake in coming down from the trees in the first place. And	some suggested that even the trees had been a bad move, and that no	one should ever have left the oceans.							</p>	
+						</div>
 					</div>
 				</section>
-
-				<section class="futurama-meme">
-					<div class="futurama-meme">Good news everyone!</div>
-					<img src="images/farnsworth.png" alt="">
-					<div class="notes">grid can do that</div>
+					
+				<section class="with-heading">
+					<h2>Can I use columns?</h2>
+					<div><img src="images/can-i-use-columns.png"></div>
+					<div class="notes">
+						so maybe you're not convinced that you actually need columns 
+						if your are, can i use is a resounding yes 
+						either way, hopefully you get the principle. but we have more examples!
+					</div>
 				</section>
 
 				<section class="inverse">
-					<div>grid</div>
-
+					<h2>growing & shrinking</h2>
 					<div class="notes">
-						grid gives us a way to create flexible layouts in 2 dimensions
-						grid isn't better than flexbox - they're for different things!
+						common pattern - things side-by-side, shrink until 
+						"mobile", then switch to vertical layout
 					</div>
 				</section>
-	
+
+				<section>
+					<style>
+						.responsive-buttons {
+							display: flex;
+							flex-wrap: wrap;
+							justify-content: center;
+							align-content: center;
+							gap: 20px;
+						}
+						.responsive-buttons button, .grid-explanation + button {
+							flex: 1 1;
+							align-self: center;
+							font-size: 25px;
+							padding: .5em;
+							border: 2px solid currentColor;
+							min-height: 100px;
+							min-width: 300px;
+							height: auto;
+							width: auto;
+						}
+						.responsive-buttons button:first-child {
+							--gradient-start: var(--green);
+							--gradient-end: var(--dark-green);
+						}
+						.responsive-buttons button:last-child {
+							--gradient-start: var(--light-red);
+							--gradient-end: var(--red);
+						}
+					</style>
+					<div class="responsive-buttons resize" style="align-self: center; min-width: 340px">
+						<button class="element">No, I'm not carrying any dangerous goods</button>
+						<button class="element">Yes, I am carrying dangerous goods</button>
+					</div>
+					<div class="notes">
+						- the buttons shrink as the container gets smaller 
+						- the buttons switch to vertical layout once the container is too 
+							small to fit the buttons 
+						- the point that it switches depends on the size of the content 
+						- in the vertical layout, the buttons stretch to take up the whole 
+							container 
+						
+						you can achieve some of this with media queries, in some situations
+						to do it all, you need...
+					</div>
+				</section>
+
+				<section>
+					<h2 class="shiny" style="margin: auto; padding: .5ch">flexbox</h2>
+				</section>
+
+				<section>
+					<div class="responsive-buttons resize">
+						<button class="element">No, I'm not carrying any dangerous goods</button>
+						<button class="element">Yes, I am carrying dangerous goods</button>
+					</div>
+
+					<pre class="fragment"><code class="css" data-noescape="">.buttons-container {
+	<span class="fragment highlight">display: flex;</span>
+	<span class="fragment highlight">flex-wrap: wrap;</span>
+	<span class="fragment highlight">gap: 20px;</span>
+}
+.buttons-container button {
+	<span class="fragment highlight">flex: 1 1;</span>
+	<span class="fragment highlight">min-width: 10em;</span>
+}</code></pre>
+					<div class="notes">
+						button will shrink to min-content 
+						we can add a min-width if we prefer
+						can also add a max-width
+
+						gap property is only available on firefox, or behind a flag in Chrome 84-85
+
+						we are defining the boundaries and relationships 
+						the browser is using what it knows about the content 
+						we end up with a much nicer layout
+					</div>
+				</section>
+
+				<section class="centre">
+					<style>
+						.garmin-button-container {
+							display: flex;
+							justify-content: space-between;
+							flex-flow: row wrap;
+							gap: 5px 7px;
+						}
+						.garmin-button {
+							flex: 1 0 24%;
+							border-radius: 2px;
+							background-color: #1976d2;
+							padding: .3em 1em;
+							font-size: 20px;
+							margin: 0;
+							border: none;
+							color: white;
+							cursor: pointer;
+						}
+					</style>
+					<div class="garmin-button-container">
+						<button class="garmin-button">Add Activity</button>
+						<button class="garmin-button">Add Weight</button>
+						<button class="garmin-button">Add Calories</button>
+						<button class="garmin-button">Add Symptoms</button>
+						<button class="garmin-button">Add Period Dates</button>	
+					</div>
+					<pre class="fragment" style="align-self: start"><code class="css" data-noescape="">
+.track-activity-button {
+	flex: 1 0 <span class="fragment highlight">24%</span>;
+}
+					</code></pre>
+					<div class="notes">
+						make sure you set your boundaries right though, 
+						else you end up with something like this, from my activity tracker, 
+						which looks fine on small screens, but seems unusually interested in tracking 
+						my period on larger screens
+						if we take a peek at the code, we see that the flex-basis on the buttons is 
+						set to 24%, which, to me, suggests that perhaps there were 4 buttons when the 
+						code was written, and maybe the 5th button got added without too much thought
+						at any rate, removing the boundary, gives us a better layout
+					</div>
+				</section>
+
+				<section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
+					<a href="responsive-columns.html" target="_blank" style="background: hsla(200, 5%, 95%, .6); color: inherit; padding: 1em">columns + flexbox</a>
+				</section>
+
+				<section class="with-heading">
+					<h2>can i use flexbox?</h2>
+					<div><img src="images/can-i-use-flexbox.png" alt=""></div>
+				</section>
+
+				<section class="inverse">
+					<h2>alignment</h2>
+					<div class="notes">
+						flexbox gives us some fun ways to lay things out, 
+						but it's limited to alignment in a single dimension
+					</div>
+				</section>
+
 				<section>
 					<style>
 						.slurms {
 							display: flex;
 							flex-wrap: wrap;
 							align-content: center;
+							justify-content: center;
 						}
 						.slurms div {
 							--shadow: .5px;
@@ -1259,8 +1008,8 @@ input {
 							margin: 10px;
 							padding: 10px 20px;
 							border-radius: 2500px;
-							background: radial-gradient(circle, #bbd62f, #bbd62f 70px, #341559 70px);
-							color: #f089e0;
+							background: radial-gradient(circle, hsl(61, 67%, 51%), hsl(61, 67%, 51%) 70px, hsl(267, 62%, 32%) 70px);
+							color: hsl(309, 77%, 64%);
 							text-shadow: var(--shadow) var(--shadow) black,
 													 var(--minus) var(--shadow) black,
 													 var(--shadow) var(--minus) black,
@@ -1280,704 +1029,345 @@ input {
 						<div>Slurm Slim</div>	
 					</div>
 					<div class="notes">
-						this kind of layout works really well with flexbox - we've got a bunch of things, we want
-						them to flow onto different rows, and take up all the available space.  we want it to 
-						be kind of organic looking. 
-
-						grid can't really do this.
+						fun, organic layout, everything is aligned horizontally, but 
+						not vertically 
+						sometimes that's what you want 
+						but sometimes you need something a little more orderly
 					</div>
 				</section>
 
 				<section>
 					<style>
-						.fragment.internal-highlighting {
-							visibility: visible;
-							opacity: 1;
+						.slurms.grid {
+							display: grid;
+							grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 						}
+					</style>
+					<div class="slurms grid resize">
+						<div>Slurm</div>
+						<div>Slurmee</div>
+						<div>Royal Slurm</div>
+						<div>SuperSlurm</div>
+						<div>New Slurm</div>
+						<div>Diet Slurm</div>
+						<div>Enslurm</div>
+						<div>Slurm Loco</div>
+						<div style="grid-row: span 2">Slurm Medicinal Tonic</div>
+						<div style="align-self: center">Slurm Slim</div>	
+					</div>
+					<div class="notes">
+						there isn't really a way to get flexbox to do this,
+						especially with the element spanning two rows
+					</div>
+				</section>
 
-						.uneven-grid.internal-highlighting {
-							height: 100%;
-						}
+				<section class="centre">
+					<h2 class="shiny">grid</h2>
+				</section>
 
-						.uneven-grid.uneven-grid.internal-highlighting div {
-							width: 100%;
-							height: 100%;
+				<section>
+					<script>
+						function addElementToGrid() {
+							let grid = document.getElementById('grid-explainer')
+							const div = document.createElement('div')
+							div.classList.add('element')
+							grid.appendChild(div)
 						}
-						.uneven-grid.internal-highlighting.visible div:nth-child(-n + 3), .uneven-grid.internal-highlighting.visible div:nth-child(3n + 2) {
-							background: hsla(220, 50%, 40%, .3);
+					</script>
+					<style>
+						.grid-explanation .grid {
+							display: grid;
+							grid-template-columns: 200px 200px;
+							grid-template-rows: 200px 200px;
 						}
-						.uneven-grid.internal-highlighting.visible div:nth-child(2) {
-							background: hsla(220, 50%, 40%, .6);
-						}
-						.uneven-grid.internal-highlighting .element-child:nth-child(2)::before {
-							height: 40px;
-						}
-
-						.element-child {
+						.grid-explanation {
+							width: 500px;
+							height: 500px;
+							background: white;
+							box-shadow: inset 2px 2px 2px hsl(0 0% 20% / .2);
+							justify-self: center;
 							display: flex;
 							align-items: center;
 							justify-content: center;
+							padding: 40px;
+						}
+						.grid-explanation .element {
+							width: auto;
+							height: auto;
 						}
 
-						.uneven-grid .element-child::before {
-							width: 100px;
-							height: 100px;
+						.grid-explanation + button.element {
+							justify-self: center;
+							min-width: unset;
+							width: max-content;
+							min-height: unset;
+							--gradient-start: var(--light-blue);
+							--gradient-end: var(--dark-blue);
+							cursor: pointer;
+							transition: all .2s;
 						}
-						.uneven-grid .element-child:nth-child(2n)::before {
-							height: 140px;
+						button.element:active {
+							box-shadow: none;
+							border-color: hsl(0, 0%, 95%);
 						}
-						.uneven-grid .element-child:nth-child(3n)::before {
-							width: 140px;
-						}
-						.uneven-grid .element-child:nth-child(-2n + 3)::before {
-							height: 60px;
-						}
-						.uneven-grid .element-child:nth-child(-5n + 3)::before {
-							width: 60px;
-						}
-
 					</style>
-					<div class="grid resize resize-both uneven-grid fragment internal-highlighting">
-						<div class="element-child"></div>
-						<div class="element-child"></div>
-						<div class="element-child"></div>
-						<div class="element-child"></div>
-						<div class="element-child"></div>
-						<div class="element-child"></div>
-						<div class="element-child"></div>
-						<div class="element-child"></div>
-						<div class="element-child"></div>
+					<div style="font-family: Kalam">grid in 2 minutes</div>
+					<div class="grid-explanation">
+						<div id="grid-explainer" class="grid"></div>
 					</div>
-					<div class="notes">
-						by default, a grid container aligns its children with each other, 
-						in both directions
-						not just with the top left of the parent or the immediately previous sibling
-
-						how's that work?
-					</div>
+					<button class="element" onclick="addElementToGrid()">Add element</button>
 				</section>
 
-				<section class="side-by-side">
+				<section>
 					<style>
-						.grid.example {
-							height: 60%;
-							align-self: center;
-							background: white;
-							box-shadow: inset 2px 2px 6px hsla(0, 70%, 0%, .1);
-							border: 1px solid hsla(0, 40%, 0%, .4);
-							padding: 30px;
-							min-width: 420px;
+						.grid.content-size {
+							grid-template-columns: auto auto;
+							grid-template-rows: auto auto;
+							grid-auto-rows: auto;
+							gap: 20px;
+							width: 100%;
+							height: auto;
 						}
-						.grid.example .element {
-							--side: 100px;
-						}
-						.grid.grid-intro {
-							display: grid;
-							grid-template-columns: 150px 150px;
-							grid-template-rows: 150px 150px;
+						.grid.content-size div, .grid.auto-columns div {
+							height: auto;
+							width: 100%;
+							padding: .5em;
 						}
 					</style>
-					<pre><code class="class" style="font-size: .7em">
-.container {
-	display: grid;
-	grid-template-columns: 150px 150px;
-	grid-template-rows: 150px 150px;
-}
-					</code></pre>
-					<div class="example grid grid-intro fragment">
-						<div class="element fragment"></div>
-						<div class="element fragment"></div>
-						<div class="element fragment"></div>
-						<div class="element fragment"></div>
+					<div style="font-family: Kalam">grid in 2 minutes: auto</div>
+					<div class="grid-explanation resize">
+						<div class="grid content-size">
+							<div class="element">Amy</div>
+							<div class="element">Dr Zoidberg</div>
+							<div class="element">Leela</div>
+							<div class="element">Professor Farnsworth</div>
+						</div>
 					</div>
 					<div class="notes">
-						- grid exists without anything in it
-						- we can see it using firefox dev tools 
-						- different ways to define cells
-						- by default, items are placed along rows
-						- can go columns 
-						- can change placement away from top-left
-						- this already gives us some pretty nice options for 
-						  layouts, but web pages aren't usually perfect grids
+						you can make a grid with cells that fit the size of their contents
 					</div>
 				</section>
 
 				<section>
 					<style>
-						.resize-both {
-							resize: both;
+						.grid-explanation.resize {
+							width: auto;
+							height: auto;
+							position: fixed;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
 						}
-						.holy-grail-grid.example.grid {
-							display: grid;
-							grid-template-columns: 25% 1fr 200px;
-							grid-template-rows: 80px 1fr 80px;
-							height: 100%;
-						}
-						.header, .footer {
-							grid-column: span 3;
-						}
-						.holy-grail-grid.example .header {
-							border-bottom: 0;
-						}
-						.holy-grail-grid.example .footer {
-							border-top: 0;
-						}
-						.holy-grail-grid.example div:nth-child(2), .holy-grail-grid.example div:nth-child(3) {
-							border-right: 0;
-						}
-						.holy-grail-grid div {
-							border: 4px solid var(--dark-blue);
-						}
-					</style>
-					<div class="holy-grail-grid resize resize-both example grid">
-						<div class="header"></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div class="footer"></div>
-					</div>
-					<div class="notes">
-						usually, we want to do something, more like this for instance
-						so how can we do that? we need a way to have elements span multiple cells	
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.example.grid.multicell {
-							height: 100%;
-							display: grid;
-							grid-template-rows: repeat(5, 1fr);
-							grid-template-columns: repeat(5, 1fr);
-						}
-						.example.grid.multicell .element {
-							width: 100%;
-							height: 100%;
-						}
-						.element.highlight {
-							--gradient-start: hsl(113, 75%, 84%);
-							--gradient-end: hsl(157, 86%, 48%);
-						}
-					</style>
-					<div class="example grid multicell">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element highlight"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-					</div>
-					<div class="notes">
-						start and end column/row
-						span
-					</div>
-				</section>
-				
-				<section class="side-by-side">
-					<style>
-						.bricks {
-							display: grid;
-							grid-template-columns: repeat(6, 50px);
-							grid-template-rows: repeat(4, 50px);
-							background: white;
-							grid-gap: 10px;
-							width: 390px;
-							height: 60%;
-							align-self: center;
-							padding: 20px;
-						}
-						.brick {
-							grid-column: span 2;
-							background: linear-gradient(170deg, hsl(20, 90%, 60%), hsl(10, 80%, 30%));
-							width: 100%;
-							height: 100%;
-							box-shadow: 
-								inset -1px -1px 3px hsla(0, 0%, 20%, .4),
-								inset 1px 1px 3px hsla(0, 0%, 90%, .2),
-								5px 5px 0 5px hsl(0, 0%, 80%),
-								5px -5px 0 5px hsl(0, 0%, 80%),
-								-5px 5px 0 5px hsl(0, 0%, 80%),
-								-5px -5px 0 5px hsl(0, 0%, 80%);
-						}
-						.brick:nth-child(5n + 1) {
-							grid-column: 2 / span 2;
-						}
-					</style>
-					<pre><code class="css" style="font-size: .7em;">.bricks {
-	display: grid;
-	grid-template-columns: repeat(6, 80px);
-	grid-template-rows: repeat(4, 80px);
-	grid-gap: 10px;
-}
-.brick {
-	grid-column: span 2;
-	width: 100%;
-	height: 100%;
-}
-.brick:nth-child(5n + 1) {
-	grid-column: 2 / span 2;
-}</code></pre>
-					<div class="bricks">
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-						<div class="brick"></div>
-					</div>
-				</section>
-				
-				<section class="side-by-side">
-					<style>
-						.new-grid-concepts .fragment.highlight.visible, .new-grid-concepts .fragment.highlight.visible * {
-							background: var(--light-blue);
-							font-weight: bold;
-							color: var(--dark-blue);
-						}
-					</style>
-					<pre><code class="html" style="font-size: .8em"><header></header>
-<nav></nav>
-<main></main>
-<div class="images"></div>
-<footer></footer></code></pre>
-					<pre style="height: min-content;"><code class="new-grid-concepts" style="height: min-height; max-height: 100%; font-size: .8em" data-noescape="">body {
-	display: grid;
-	grid-template-columns: 
-	    <span class="fragment highlight">minmax</span>(<span class="fragment highlight">auto</span>, 300px) <span class="fragment highlight">1fr</span> 25%;
-	grid-template-rows: 
-	  	min-content 1fr min-content;
-}
-header, footer {
-	grid-column: span 3;
-}</code></pre>
-				<div class="notes">
-					how does this work?
-					need a few new concepts
-				</div>
-				</section>
-
-				<section class="heading-with-example">
-					<style>
-						.heading-with-example {
-							grid-template-rows: min-content auto;
-						}
-						.example.grid.fr {
-							display: grid;
-							height: 100%;
-						}
-						.example.grid.fr .element {
+						.grid.auto-columns {
+							grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+							grid-template-rows: auto;
+							gap: 20px;
 							width: 100%;
 						}
 					</style>
-					<h2>fr</h2>	
-					<div class="example grid fr resize">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
+					<div style="font-family: Kalam">grid in 2 minutes: auto-fit</div>
+					<div class="grid-explanation resize auto-columns" style="margin-top: 40px;">
+						<div class="grid auto-columns">
+							<div class="element">Amy</div>
+							<div class="element">Leela</div>
+							<div class="element">Dr Zoidberg</div>
+							<div class="element">Professor Farnsworth</div>
+						</div>
 					</div>
 					<div class="notes">
-						- fr means fraction of the available space 
-						- it works a lot like flex grow 
-						- have demo with grid with 3 things, add columns of 1fr, 2fr , etc
-					</div>
-				</section>
+						or you can have a grid where the size & number of columns is determined by the size of the container 
+						you can't do both, which is a bit unfortunate 
 
-				<section class="heading-with-example">
-					<h2>auto</h2>
-					<pre class="fragment"><code class="css">
-.item {
-	flex: 1 1 max-content;
-}
-					</code></pre>
-					<div class="notes">
-						it's _kind of_ like flex 0 1 max-content
-					</div>
-				</section>
-
-				<section class="heading-with-example">
-					<style>
-						.example.grid.auto {
-							display: grid;
-							grid-template-columns: 1fr auto 1fr;
-							justify-items: center;
-						}
-						.example.grid.auto > div {
-							width: 100%;
-							height: 100%;
-							min-width: 100px;
-						}
-						.title-card {
-							background: radial-gradient(circle at bottom, var(--dark-blue), var(--light-blue));
-							display: flex;
-							align-items: center;
-							justify-content: flex;
-							color: white;
-							padding: 10px;
-							font-size: .9em;
-							text-shadow: 1px 1px var(--dark-blue);
-							border: 4px solid var(--dark-blue);
-							border-radius: 8px;
-						}
-					</style>
-					<h2>auto</h2>
-					<div class="example grid auto resize">
-						<div class="element"></div>
-						<div class="title-card">As foretold by Nostradamus</div>
-						<div class="element"></div>
-					</div>
-					<div class="notes">
-						- have boxes with text that's wrapped
-						- set the size to max-content 
-						- set the size to min-content 
-						- set the size to auto and resize
-					</div>
-				</section>
-
-				<section class="heading-with-example">
-					<h2>minmax</h2>
-					<pre class="fragment"><code class="css">
-.container {
-	grid-template-columns: 200px minmax(200px, 400px) 200px;
-}
-					</code></pre>
-					<pre class="fragment"><code class="css">
-:nth-child(3n + 2) {
-	flex: 1 1 0;
-	min-width: 200px;
-	max-width: 400px;
-}
-					</code></pre>
-				</section>
-				
-				<section class="heading-with-example">
-					<style>
-						.example.grid.minmax {
-							display: grid;
-							grid-template-columns: 200px minmax(200px, 400px) 200px;
-							height: 100%;
-						}
-						.example.grid.minmax .element {
-							width: 100%;
-							height: 100%;
-						}
-					</style>
-					<h2>minmax</h2>
-					<div class="example grid minmax resize">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-					</div>
-					<pre><code class="css">
-.container {
-	grid-template-columns: 200px minmax(200px, 400px) 200px;
-}
-					</code></pre>
-					<div class="notes">
-						we can also do stuff like set the max to 1fr, so it takes up all the available space
-					</div>
-				</section>
-
-				<section class="side-by-side">
-					<pre><code class="html" style="font-size: .8em"><header></header>
-<nav></nav>
-<main></main>
-<div class="images"></div>
-<footer></footer></code></pre>
-					<pre style="height: min-content;"><code class="new-grid-concepts" style="height: min-height; max-height: 100%; font-size: .8em">body {
-	display: grid;
-	grid-template-columns: 
-	    minmax(auto, 300px) 1fr 25%;
-	grid-template-rows: 
-	  	min-content 1fr min-content;
-}
-header, footer {
-	grid-column: span 3;
-}</code></pre>
-				<div class="notes">
-					how does this work?
-					need a few new concepts
-				</div>
-				</section>
-
-
-				<section class="centre">
-					<a href="holy-grail-grid.html" target="_blank">Holy Grail Attempt 4</a>
-					<div class="notes">
-						more declarative - less code 
-						works like our original flexbox layout 
-						but not as responsive!
-					</div>
-				</section>
-
-				<section>
-					example of something growing and shrinking responsively
-					<div class="notes">
-						grid is responsive in the growing and the shrinking 
-						what made flexbox really responsive was using flex-wrap to let 
-						the layout reflow
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.grid.grid-wrap {
-							height: 100%;
-							display: grid;
-							grid-template-columns: repeat(auto-fit, 100px);
-						}
-					</style>
-					<div class="example grid grid-wrap resize">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-					</div>
-					<pre class="fragment"><code class="css new-grid-concepts" data-noescape="">.container {
-	display: grid;
-	grid-template-columns: repeat(<span class="fragment highlight">auto-fit</span>, 100px);
-}</code></pre>
-				</section>
-
-				<section class="fancy-and centred">
-					<style>
-						.fancy-and {
-							grid-template-rows: 1fr 100px 1fr;
-							font-size: 120px;
-							width: 12em;
-						}
-						.fancy-and :first-of-type {
-							align-self: end;
-							position: relative;
-						}
-						.fancy-and :nth-of-type(2) {
-							align-self: center;
-							font-family: 'Trade Winds';
-							font-size: 324px;
-							padding-top: 62px;
-						  color: hsla(200, 50%, 54%, 0.8);
-						}
-						.fancy-and :nth-of-type(3) {
-							align-self: start;
-						}
-
-					</style>
-					<div>auto-fit&nbsp;&nbsp;&nbsp;&nbsp;</div>
-					<div>&</div>
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;auto-fill</div>
-					<div class="notes">
-						grid has 2 keywords for dynamically deciding how many rows/columns 
-						auto-fit and auto-fill 
-						they both do similar things, and the difference is very subtle 
+						this second type of responsive grid is best suited to situations where you know or can control 
+						the size of the content
 					</div>
 				</section>
 
 				<section class="centre">
-					<a style="font-size: 3rem;" href="https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/">Auto-Sizing Columns in CSS Grid:<br> `auto-fill` vs `auto-fit` | CSS Tricks</a>
-				</section>
-
-				<section class="heading-with-example">
-					<style>
-						.example.grid.simple-auto-fit {
-							display: grid;
-							grid-template-columns: repeat(auto-fit, 150px);
-							height: 100%;
-							justify-self: center;
-						}
-						.example.grid.simple-auto-fit .element {
-							height: 0;
-							width: 100%;
-							padding-top: 100%;
-						}
-					</style>
-					<pre><code class="css">.container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, 150px);
-}</code></pre>
-					<div class="example grid simple-auto-fit resize">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-					</div>
-					<div class="notes">
-						like flex with wrap but no grow
-					</div>
-				</section>
-
-				<section class="heading-with-example">
-					<style>
-						.example.grid.flex-auto-fit {
-							display: grid;
-							grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-							height: 100%;
-							justify-self: center;
-						}
-						.example.grid.flex-auto-fit .element {
-							height: 150px;
-							width: 100%;
-						}
-					</style>
-					<pre><code class="css" style="overflow-x: hidden;">.container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}</code></pre>
-					<div class="example grid flex-auto-fit resize">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.example.grid.compare {
-							height: 90%;
-							align-self: center;
-							justify-self: center;
-						}
-						.example.grid.compare .element {
-							height: 100px;
-						}
-						.flex-responsive {
-							display: flex;
-							flex-wrap: wrap;
-						}
-						.flex-responsive .element {
-							flex: 1 0 100px;
-						}
-					</style>
-					<div class="example grid resize flex-responsive compare">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-					</div>
-					<div class="example grid flex-auto-fit resize compare">
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-						<div class="element"></div>
-					</div>
-
-					<div class="notes">
-						the equivalent flexbox layout is going to be different though
-					</div>
-				</section>
-
-				<section class="min-min">
-					<style>
-						section.min-min {
-							grid-template-rows: min-content min-content;
-						}
-						.futurama.grid {
-							--image-size: 100px;
-							display: grid;
-							grid-template-columns: repeat(auto-fit, minmax(var(--image-size), 1fr));
-							grid-auto-rows: var(--image-size);
-							grid-auto-flow: dense;
-							border-top: 2px solid currentColor;
-							border-left: 2px solid currentColor;
-						}
-						.futurama.grid h2 {
-							grid-column: 1 / -1;
-						}
-						.futurama.grid .character {
-							background-position: center;
-							background-repeat: no-repeat;
-							border-right: 2px solid currentColor;
-							border-bottom: 2px solid currentColor;
-							background-size: auto 90%;
-						}
-						.futurama.grid .tall {
-							grid-row: span 2;
-						}
-						.futurama.grid .wide {
-							grid-column: span 2;
-						}
-						.futurama.grid .x-wide {
-							grid-column: span 3;
-						}
-						.futurama.grid .x-tall {
-							grid-row: span 3;
-						}
-
-					</style>
-					<h2><img style="height: 100px" src="images/futurama-flat-logo.png" alt=""></h2>
-					<div class="futurama grid resize">
-						<div class="character x-wide tall" style="background-image: url(images/ship.png); background-size: 90% auto"></div>
-						<div class="character tall wide" style="background-image: url(images/amy.png)"></div>
-						<div class="character tall wide" style="background-image: url(images/leela.png)"></div>
-						<div class="character x-tall wide" style="background-image: url(images/bender.png)"></div>
-						<div class="character tall" style="background-image: url(images/kif.png)"></div>
-						<div class="character tall wide" style="background-image: url(images/fry.png)"></div>
-						<div class="character x-tall wide" style="background-image: url(images/farnsworth-groening.png)"></div>
-						<div class="character tall wide" style="background-image: url(images/robot-devil.png)"></div>
-						<div class="character tall wide" style="background-image: url(images/mom.png)"></div>
-						<div class="character" style="background-image: url(images/nibbler.png)"></div>
-						<div class="character" style="background-image: url(images/nichelle-nichols.png)"></div>
-						<div class="character" style="background-image: url(images/richard-nixon.png)"></div>
-						<div class="character" style="background-image: url(images/leonard-nimoy.png)"></div>
-						<div class="character" style="background-image: url(images/tinny-tim.png)"></div>
-					</div>
+					<a href="futurama-grid.html" target="_blank">image grid</a>
 				</section>
 
 				<section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
-					<a href="magic.html" target="_blank" style="background: hsla(200, 5%, 95%, .6); color: inherit">flexbox + grid</a>
+					<div style="background: hsla(200, 5%, 95%, .6); color: inherit; padding: 1em">flexbox + grid</div>
 				</section>
 
-				<section class="with-heading">
-					<h2>grid</h2>
-					<ul>
-						<li class="fragment">declarative & responsive</li>
-						<li class="fragment">flexible sizing & positioning</li>
-						<li class="fragment">goes well with flexbox</li>
-					</ul>
-				</section>
+				<section class="outline">
+					<style>
+						.flippy-nav {
+							display: flex;
+							flex-wrap: wrap;
+							min-width: 565px;
+							width: 565px;
+							background: white;
+						}
 
-				<section class="inverse">
-					<ul>
-						<li>multi-column layout</li>
-						<li>flexbox</li>
-						<li>grid</li>
-					</ul>
+						.flippy-nav nav {
+							flex-grow: 1;
+							font-size: 30px;
+						}
+
+						.flippy-nav nav ul {
+							list-style: none;
+							margin: 0;
+							padding: 0;
+							display: grid;
+							grid-template-columns: repeat(auto-fit, minmax(3em, 1fr));
+						}
+						.flippy-nav nav li {
+							min-width: 3em;
+							text-align: center;
+							font-weight: 900;
+							margin: 0;
+						}
+
+						.flippy-nav article {
+							flex-grow: 99999;
+							flex-basis: 450px;
+							display: flex;
+						}
+						.flippy-nav article .content {
+							width: 80%;
+							margin: auto;
+						}
+						.flippy-nav article .content div.heading {
+							width: 60%;
+							height: 40px;
+							margin: 25px auto;
+							margin-top: 40px;
+						}
+						.flippy-nav article .content div {
+							width: 100%;
+							height: 30px;
+							background: hsl(0, 0%, 80%);
+							margin-bottom: 8px;
+						}
+						.flippy-nav article .content div:nth-child(5n) {
+							width: 40%;
+							margin-bottom: 16px;
+						}
+
+					</style>				
+					<div class="flippy-nav resize">
+						<nav>
+							<ul class="menu">
+								<li>Home</li>
+								<li>About</li>
+								<li>Contact</li>
+								<li>Blog</li>
+								</ul>
+						</nav>
+						<article>
+							<div class="content">
+								<div class="heading"></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+
+							</div>
+						</article>
+					</div>
 				</section>
 
 				<section>
-					<h2>Takeaways</h2>
-					<ul>
-						<li class="fragment">Size & position relative to multiple things</li>
-						<li class="fragment">Responsive to container</li>
-						<li class="fragment">Let the browser work it out</li>
-					</ul>
-					<img src="images/pizza.png" style="justify-self: start" alt="">
+					<pre><code class="css" data-noescape="">body {
+	<span class="fragment highlight" data-fragment-index="1">display: flex;</span>
+	<span class="fragment highlight" data-fragment-index="2">flex-wrap: wrap;</span>
+}
+
+nav {
+	<span class="fragment highlight" data-fragment-index="3">flex-grow: 1;</span>
+}
+
+nav ul {
+	<span class="fragment highlight" data-fragment-index="5">display: grid;</span>
+	<span class="fragment highlight" data-fragment-index="6">grid-template-columns: repeat(auto-fit, minmax(3em, 1fr));</span>
+}
+
+article {
+	<span class="fragment highlight" data-fragment-index="4">flex-grow: 99999;</span>
+	flex-basis: 45em;
+}
+					</code></pre>
+				</section>
+
+				<section class="with-heading">
+					<h2>Can i use grid?</h2>
+					<div><img src="images/can-i-use-grid.png" alt=""></div>
+				</section>
+
+				<section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
+					<a href="magic.html" target="_blank" style="background: hsla(200, 5%, 95%, .6); color: inherit; padding: 1em">columns + flexbox + grid</a>
+				</section>
+
+				<section class="with-heading">
+					<style>
+						blockquote {
+							box-shadow: none;
+							font-family: Kalam;
+							text-align: justify;
+							position: relative;
+						}
+						blockquote::before, blockquote::after {
+							content: '"';
+							position: absolute;
+							font-family: 'League Gothic';
+							font-size: 4em;
+							opacity: .5;
+						}
+						blockquote::before {
+							transform: rotate(-.04turn) translate(-50%, -25%);
+						}
+						blockquote::after {
+							transform: rotate(.04turn) translate(-140%, -25%);
+						}
+						cite {
+							font-family: 'League Gothic';
+							justify-self: end;
+							position: relative;
+							display: flex;
+							gap: .25em;
+							align-items: center;
+						}
+						cite::before {
+							content: '';
+							width: .75em;
+							height: 7px;
+							background-color: currentColor;
+							display: block;
+						}
+					</style>
+					<blockquote cite="https://resilientwebdesign.com/">
+						Relinquishing control does not mean relinquishing quality. Quite the opposite. In acknowledging the many unknowns involved in designing for the web, designers can craft in a resilient flexible way that is true to the medium.
+					</blockquote>
+					<cite>
+						Jeremy Keith <em>Resilient Web Design</em>
+					</cite>
+					<div class="notes">
+						accept that we don't have enough information to completely specify 
+						the design at build-time 
+						instead, give the browser some boundaries and guidelines and let 
+						it work it out at run-time
+					</div>
 				</section>
 
 				<section class="thanks">
@@ -1995,11 +1385,9 @@ header, footer {
 			</div>
 		</div>
 
-		<div style="position: fixed; bottom: 40px; right: 40px; font-family: Futurama; font-size: 36px; opacity: .6">
+		<div style="position: fixed; bottom: 40px; right: 40px; font-family: Futurama; font-size: 36px; opacity: .6; z-index: 1">
 			@ErinJZimmer
 		</div>
-
-		<script src="js/reveal.js"></script>
 
 		<script>
 			// More info about config & dependencies:
@@ -2019,6 +1407,7 @@ header, footer {
 					{ src: 'plugin/highlight/highlight.js', async: true }
 				]
 			});
+
 		</script>
 	</body>
 </html>
