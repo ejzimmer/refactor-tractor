@@ -197,6 +197,14 @@
 				background-position: -10% -10%;
 			}
 
+			.resize {
+				outline: 4px dashed currentColor;
+				padding: 20px;
+			}
+			.resize.columns {
+				outline: none;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -243,6 +251,12 @@
 							align-self: center;
 							font-weight: bold;
 						}
+						.intro img {
+							position: fixed;
+							left: 644px;
+							top: 379px;
+							border-radius: 62% 38% 63% 37% / 73% 52% 48% 27%;
+						}
 					</style>
 					<div style="justify-self: left; font-family: Futurama; margin-top: 2em;">@ErinJZimmer</div>
 					<ul>
@@ -251,7 +265,7 @@
 						<li>Google Developer Expert</li>
 					</ul>
 					<a href="https://layouts.ez.codes">https://layouts.ez.codes</a>
-					<img src="images/zoidberg-knitting.gif" alt="" style="position: fixed; left: 644px; top: 379px;">
+					<img src="images/zoidberg-knitting.gif" alt="">
 				</section>
 
 				<section>
@@ -611,7 +625,14 @@ nav ul {
 					</div>
 				</section>
 
-				<section data-background-image="images/Futurama-Head-Museum.jpg" data-background-position="center" data-background-size="auto"></section>
+				<section class="heads">
+					<style>
+						.heads img {
+							border-radius: 62% 38% 63% 37% / 65% 55% 45% 35% 
+						}
+					</style>
+					<img src="images/Futurama-Head-Museum.jpg" alt="">
+				</section>
 
 				<section class="auto-height">
 					<style>
@@ -682,13 +703,13 @@ nav ul {
 					</style>
 					<pre><code class="css" style="font-size: .75em" data-noescape>
 .columns {
-	columns: 3 200px;
+	<span class="fragment highlight" data-fragment-index="1">columns</span>: <span class="fragment highlight" data-fragment-index="2">3</span> <span class="fragment highlight" data-fragment-index="3">200px</span>;
 }
 					</code></pre>
 					<ul style="font-family: Kalam" class="columns-description">
-						<li class="fragment">I'd like a multi-column layout</li>
-						<li class="fragment">No more than 3 columns</li>
-						<li class="fragment">I'd like the columns to be about 200px wide</li>
+						<li class="fragment" data-fragment-index="1">I'd like a multi-column layout</li>
+						<li class="fragment" data-fragment-index="2">No more than 3 columns</li>
+						<li class="fragment" data-fragment-index="3">I'd like the columns to be about 200px wide</li>
 					</ul>
 					<div class="notes">
 						Now, you can do it like this instead
@@ -832,16 +853,6 @@ nav ul {
 					</div>
 				</section>
 					
-				<section class="with-heading">
-					<h2>Can I use columns?</h2>
-					<div><img src="images/can-i-use-columns.png"></div>
-					<div class="notes">
-						so maybe you're not convinced that you actually need columns 
-						if your are, can i use is a resounding yes 
-						either way, hopefully you get the principle. but we have more examples!
-					</div>
-				</section>
-
 				<section class="inverse">
 					<h2>growing & shrinking</h2>
 					<div class="notes">
@@ -957,7 +968,7 @@ nav ul {
 					</div>
 					<pre class="fragment" style="align-self: start"><code class="css" data-noescape="">
 .track-activity-button {
-	flex: 1 0 <span class="fragment highlight">24%</span>;
+	flex: 1 <span class="fragment highlight">0 24%</span>;
 }
 					</code></pre>
 					<div class="notes">
@@ -974,11 +985,6 @@ nav ul {
 
 				<section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
 					<a href="responsive-columns.html" target="_blank" style="background: hsla(200, 5%, 95%, .6); color: inherit; padding: 1em">columns + flexbox</a>
-				</section>
-
-				<section class="with-heading">
-					<h2>can i use flexbox?</h2>
-					<div><img src="images/can-i-use-flexbox.png" alt=""></div>
 				</section>
 
 				<section class="inverse">
@@ -1308,11 +1314,6 @@ article {
 	flex-basis: 45em;
 }
 					</code></pre>
-				</section>
-
-				<section class="with-heading">
-					<h2>Can i use grid?</h2>
-					<div><img src="images/can-i-use-grid.png" alt=""></div>
 				</section>
 
 				<section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
