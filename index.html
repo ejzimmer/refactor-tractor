@@ -431,7 +431,7 @@ nav ul {
 							--item-width: 100px;
 							justify-self: start;
 						}
-						.mobile-phone, .tablet {
+						.mobile-phone, .tablet:not(.browser) {
 							width: var(--width);
 							height: 400px;
 							background-color: hsl(0, 0%, 20%);
@@ -455,18 +455,21 @@ nav ul {
 
 						nav > div {
 							height: 30px;
-							width: 100%;
 							background: hsl(0 0% 70%);
 						}
 
-						.mobile-phone nav, .browser nav {
+						.tablet nav > div {
+							flex: 1 1 0;
+						}
+
+						.mobile-phone nav, .browser:not(.tablet) nav {
 							display: flex;
 							flex-direction: column;
 							width: 100%;
 							gap: 2px;
 						}
 
-						.tablet nav {
+						.tablet nav, .browser.tablet nav {
 							grid-column: 1 / -1;
 							display: flex;
 							justify-content: center;
@@ -480,7 +483,7 @@ nav ul {
 							flex-shrink: 0;
 						}
 
-						.tablet .screen {
+						.tablet .screen, .browser.tablet.screen {
 							display: grid;
 							grid-template-columns: repeat(4, var(--item-width));
 							justify-content: center;
@@ -488,14 +491,18 @@ nav ul {
 						}
 
 						.browser {
-							width: 500px;
+							width: 450px;
 							height: 80%;
 							position: absolute;
 							top: 20%;
-							left: 50%;
-							transform: translate(-50%);
 							padding: 0;
+						}
+						.browser:not(.tablet) {
+							left: 0;
 							--item-width: 80%;
+						}
+						.browser.tablet {
+							right: 0;
 						}
 
 					</style>
@@ -550,6 +557,26 @@ nav ul {
 							<div></div>
 						</div>
 					</div>
+					<div class="browser tablet fragment">
+						<div class="screen">
+							<nav>
+								<div></div>
+								<div></div>
+								<div></div>
+							</nav>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+
 					<div class="notes">
 						as a very basic example, consider these 2 mockups
 						on a phone, you have some nav items stacked at the top, 
@@ -1205,6 +1232,10 @@ nav ul {
 							min-width: 565px;
 							width: 565px;
 							background: white;
+						}
+
+						.flippy-nav.resize {
+							padding: 0;
 						}
 
 						.flippy-nav nav {
