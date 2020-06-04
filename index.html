@@ -1403,17 +1403,109 @@ article {
 					</div>
 				</section>
 
-				<section class="thanks">
+				<section class="end">
 					<style>
-						.thanks {
+						.end {
 							font-family: Futurama;
-							grid-gap: 10px;
+							align-items: center;
+						}
+
+						.end .can-i-use {
+							grid-column: 1 / -1;
+							font-size: .8em;
+							font-family: Raleway;
+						}
+
+						.end .can-i-use th {
+							text-align: right;
+						}
+
+						.end .can-i-use td {
+							padding: 10px;
+							width: 60px;
+							background-size: 70%;
+							background-repeat: no-repeat;
+							position: relative;
+							background-position: center;
+						}
+
+						.end .can-i-use td.ie {
+							background-image: url('images/Internet_Explorer_9_icon.svg');
+						}
+						.end .can-i-use td.chrome {
+							background-image: url('images/chrome-logo.svg');
+							background-size: 65%;
+						}
+						.end .can-i-use td.firefox {
+							background-image: url('images/firefox-logo.svg');
+						}
+						.end .can-i-use td.safari {
+							background-image: url('images/safari-logo.svg');
+							background-size: 65%;
+						}
+						.end .can-i-use td.edge {
+							background-image: url('images/edge-logo.svg');
+							background-size: 65%;
+						}
+
+						.end .can-i-use td::after {
+							color: white;
+							border-radius: 50%;
+							bottom: 9px;
+							right: -2px;
+							width: 20px;
+							height: 20px;
+							font-size: 14px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							padding: 3px;
+							font-weight: bold;
+							position: absolute;
+							filter: drop-shadow(1px 1px 1px hsl(0 0% 0% / .4));
+							opacity: .9;
+							font-weight: bold;
+						}
+
+						.end .can-i-use td.tick::after {
+							content: '✓';
+							background: hsl(141, 96%, 34%);
+						}
+
+						.end .can-i-use td.warning::after {
+							content: '✓';
+							background: hsl(46, 100%, 48%);
+						}
+
+
+						.end .can-i-use td.question::after {
+							content: '?';
+							background: var(--gradient-end);
+						}
+
+						.end .bender {
+							position: fixed;
 						}
 					</style>
-					<div>@ErinJZimmer</div>	
-					<div>https://layouts.ez.codes</div>
-					<div style="margin: 30px;">Thank you!</div>
-					<img class="fragment" src="images/bender-applause.png">
+
+					<div class="fragment"><a href="https://layouts.ez.codes">https://layouts.ez.codes</a></div>	
+
+					<table class=" fragment can-i-use">
+						<tr>
+							<th>Columns</th><td class="ie tick"></td><td class="chrome tick"></td><td class="firefox tick"></td><td class="safari tick"></td><td class="edge tick"></td></tr>
+						<tr>
+							<th>Flexbox</th><td class="ie warning"></td><td class="chrome tick"></td><td class="firefox tick"></td><td class="safari tick"></td><td class="edge tick"></td></tr>
+						<tr>
+							<th>Grid</th><td class="ie question"></td><td class="chrome tick"></td><td class="firefox tick"></td><td class="safari tick"></td><td class="edge tick"></td></tr>
+					</table>
+
+					<div class="fragment">
+						<div>@ErinJZimmer</div>
+						<div>Thank you!</div>
+					</div>
+
+
+					<img src="images/bender-applause.png" alt="bender holding applause sign" class="bender fragment">
 				</section>
 			</div>
 		</div>
