@@ -244,28 +244,37 @@
 				<section class="intro">
 					<style>
 						.intro {
-							grid-template-rows: auto auto 1fr;
+							grid-template-rows: min-content min-content 60%;
+							align-content: center;
 						}
 						.intro a {
 							text-align: left;
 							align-self: center;
 							font-weight: bold;
 						}
-						.intro img {
+						.intro .zoidberg {
 							position: fixed;
 							left: 644px;
 							top: 379px;
 							border-radius: 62% 38% 63% 37% / 73% 52% 48% 27%;
 						}
+
+						.intro .logos {
+							list-style: none;
+							display: grid;
+							grid-template-columns: 1fr 1fr;
+							max-width: 60%;
+							align-items: center;
+						}
 					</style>
-					<div style="justify-self: left; font-family: Futurama; margin-top: 2em;">@ErinJZimmer</div>
-					<ul>
-						<li>Community Engineering Lead at Cogent</li>
-						<li>Mozilla Tech Speaker</li>
-						<li>Google Developer Expert</li>
-					</ul>
+					<div style="justify-self: left; font-family: Futurama;">@ErinJZimmer</div>
 					<a href="https://layouts.ez.codes">https://layouts.ez.codes</a>
-					<img src="images/zoidberg-knitting.gif" alt="">
+					<ul class="logos">
+						<li style="grid-row: span 2; margin-right: 50px;"><img src="images/cogent-logo.svg" alt=""></li>
+						<li><img src="images/mozilla-tech-speakers.png" alt=""></li>
+						<li><img src="images/gde-logo.png"></li>
+					</ul>
+					<img class="zoidberg" src="images/zoidberg-knitting.gif" alt="">
 				</section>
 
 				<section>
