@@ -81,3 +81,11 @@
   src: local('Lato Regular'), local('Lato-Regular'),
       url('./css/lato-v16-latin-regular.woff2') format('woff2');
 }
+
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Regular'), local('Lato-Regular'),
+      url('jura-v15-latin-regular.woff2') format('woff2');
+}
