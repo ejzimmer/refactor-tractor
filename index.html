@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Layouts of the future</title>
+		<title>Getting on the Refactor Tractor</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
@@ -68,11 +68,6 @@
 			h1 {
 				font-size: 60px;
 			}
-			h1 em {
-				font-family: Futurama;
-				font-style: normal;
-				font-size: 80px;
-			}
 
 			ul {
 				list-style-type: '\1f680';
@@ -82,88 +77,12 @@
 				padding-left: .5em;
 			}
 
-			.with-heading {
-				grid-template-rows: min-content min-content;
-				grid-auto-rows: auto;
-				justify-items: center;
-				align-content: center;
-			}
-
 			.shadow {
 				box-shadow: 1px 1px 4px hsla(0, 0%, 70%), 3px 3px 6px hsla(0, 0%, 70%);
 			}
 
-			.element-child::before {
-				content: '';
-			}
-
-			.element, .element-child::before {
-				--side: 250px;
-				width: var(--side);
-				height: var(--side);
-				--gradient-start: hsl(259, 71%, 80%);
-				--gradient-end: hsl(265, 58%, 50%);;
-				box-shadow: var(--box-shadow);
-				border: 4px solid var(--dark-blue);
-				border-radius: 10px;
-				color: white;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-right: 1px;
-				text-shadow: 1px 1px var(--dark-blue);
-				background: linear-gradient(145deg, var(--gradient-start) -90%, var(--gradient-end));
-				box-shadow: inset 2px 2px 2px hsla(0, 100%, 100%, .4), inset -2px -2px 2px var(--shadow), 1px 1px 2px var(--shadow);
-			}
-			section.side-by-side {
-				grid-auto-flow: column;
-			}
-			section.centre {
-				align-items: center;
-				justify-items: center;
-			}
-
-			.inverse ul {
-				font-size: .6em;
-				padding: 1.3em;
-				padding-left: 1.5em;
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				justify-content: space-between;
-			}
-			.inverse ul li {
-				margin: 0;
-			}
-
-			.inverse h2 {
-				margin: 0;
-				font-size: 2em;
-				padding: 0;
-			}
-
 			.reveal .slides > section.auto-height {
 				height: auto;
-			}
-			.columns {
-				column-gap: 2em;
-				column-rule: 2px solid currentColor;
-				font-family: Montaga, Times, serif;
-				font-size: 20px;
-				text-align: left;
-				background: hsla(0, 0%, 100%, .4);
-				padding: 40px;
-				border-radius: 10px;
-				max-width: 100%;
-			}
-
-			p:first-child {
-				margin-top: 0;
-			}
-
-			.resize {
-				overflow: hidden;
-				resize: horizontal;
 			}
 
 			.fragment.transient {
@@ -173,72 +92,14 @@
 				display: block;
 			}
 
-			.shiny {
-				position: relative;
-				font-size: 6em;
-			}
-			.shiny::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: -5%;
-				width: 110%;
-				height: 100%;
-				background-image: linear-gradient(-45deg, transparent 45%, hsla(0, 0%, 100%, .8) 50%, transparent 55%);
-				background-size: 200% 200%;
-				background-position: 110% 110%;
-				background-repeat: no-repeat;
-				transition: background-position;
-				transition-duration: 3s;
-				transition-delay: 1s;
-			}
-
-			.present .shiny::after {
-				background-position: -10% -10%;
-			}
-
-			.resize {
-				outline: 4px dashed currentColor;
-				padding: 20px;
-			}
-			.resize.columns {
-				outline: none;
-			}
-
 		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 
-				<section class="title" data-background-image="images/terry.png" data-background-size="contain" data-background-position="-150px 0">
-					<style>
-						.title {
-							grid-template-columns: 300px 1fr;
-							grid-template-rows: min-content;
-						}	
-						.title h1, .title div {
-							grid-column: 2
-						}
-						.title h1 {
-							margin-top: 100px;
-						}
-						.title h1 em {
-							color: var(--light-red);
-							font-weight: bold;
-							text-shadow: 
-								6px 6px var(--dark-blue), 
-								-2px 2px var(--dark-blue),
-								2px -2px var(--dark-blue),
-								-2px -2px var(--dark-blue);
-						}
-					</style>
-					<h1>
-						Welcome to the<br>
-						<em>layouts</em><br>
-						of<br>
-						<em>tomorrow!</em></h1>
-					<div style="font-size:.8em; font-family: Jura">Responsive design with modern CSS</div>
+				<section class="title"  data-background-size="contain" data-background-position="-150px 0">
+					<h1>Getting on the refactor tractor</h1>
 				</section>
 
 				<section class="intro">
@@ -262,11 +123,11 @@
 						.intro .logos {
 							list-style: none;
 							display: grid;
-							grid-template-columns: 50% 1fr;
+							grid-template-columns: 1fr 1fr;
 							max-width: 60%;
-							align-items: center;
-							grid-gap: 20px 0;
 							margin: 0;
+							grid-gap: 40px;
+							align-items: center;
 						}
 						.intro .logos li {
 							margin: 0;
@@ -275,1146 +136,636 @@
 					<div style="justify-self: left; font-family: Futurama;">@ErinJZimmer</div>
 					<a href="https://layouts.ez.codes">https://layouts.ez.codes</a>
 					<ul class="logos">
-						<li style="grid-row: span 2; margin-right: 50px;"><img src="images/cogent-logo.svg" alt=""></li>
-						<li style="align-self: end"><img src="images/mozilla-tech-speakers.png" alt=""></li>
-						<li style="align-self: start"><img src="images/gde-logo.png"></li>
+						<li><img src="images/cogent-logo.svg" alt=""></li>
+						<li><img src="images/gde-logo.png"></li>
 					</ul>
 					<img class="zoidberg" src="images/zoidberg-knitting.gif" alt="">
 				</section>
 
+				<section>when should I refactor my code?</section>
+
 				<section>
-					<style>
-						.awesome-css {
-							width: 350px;
-							height: 350px;
-							border: 4px solid currentColor;
-							place-self: center;
-							text-align: left;
-							padding: .5ch;
-							font-size: 2em;
-							text-transform: uppercase;
-						}
-					</style>
-					<div class="awesome-css">
-						CSS<br>
-						is<br>
-						awesome<br>
-					</div>
+					<img src="images/refactor-haiku.png" />
+					<a href="https://twitter.com/erinfranmc/status/1182313928539418624">https://twitter.com/erinfranmc/status/1182313928539418624</a>
 					<div class="notes">
-						Today, CSS is actually pretty good at layouts - especially responsive layouts.
-						(and if you're ending up with a result like this, you're probably doing it wrong)
+						no doubt this woman on twitter received a million recommendations of how she should have done better testing or something
+						but refactoring is inherently risky
+						not just that you can break stuff
+						you might inadvertedently change some behaviour (eg it might have been broken and you might accidently fix it)
+						changes can surprise users, might even break workflows
 					</div>
 				</section>
 
-				<section class="frameworks">
-					<style>
-						.frameworks {
-							grid-template-rows: repeat(3, 1fr);
-							grid-template-columns: repeat(3, 1fr);
-							margin: auto;
-						}
-						.frameworks img {
-							height: 100%;
-						}
-					</style>
-					<img src="images/Bootstrap_logo.svg" alt="bootstrap">
-					<img src="images/foundation.svg" alt="foundation">
-					<img src="images/pure-logo.png" alt="pure">
-					<img src="images/bulma-seeklogo.com.svg" alt="bulma">
-					<img src="images/semantic-ui.svg" alt="semantic UI">
-					<img src="images/materialize-seeklogo.com.svg" alt="materialize">
-					<img src="images/spectre-css.jpg" alt="spectre.css">
-					<img src="images/susy.svg" alt="susy">
-					<img src="images/milligram.svg" alt="milligram">
-
+				<section>
+					two situations where i would refactor
+					<ol>
+						<li>there's a bug and i'm trying to fix it</li>
+						<li>i need to add a new feature, and I can't do it without touching this code</li>
+					</ol>
+					which is really just one reason 
+					<div>i need to touch the code for some other reason</div>
 					<div class="notes">
-						for a start, there are a whole heap of frameworks out there to help you
-						you would not believe how many of them have logos that are just the letter S
+						michael feathers: 
+							- redesigning the system (which is really just refactoring at a higher level)
+							- optimisation, which is like fixing a bug (the thing doesn't work how we want)
+						and definitely riff on the 4 reasons to leave home advertising for this one
 					</div>
 				</section>
 
-				<section data-state="menuFlip" class="bootstrap">
-					<script>
-						Reveal.addEventListener('menuFlip', () => {
+				<section>
+					1. do the refactor, ensuring no behaviour changes
+					2. make the change
+				</section>
 
-							const resizeObserver = new ResizeObserver(entries => {
-								for (let entry of entries) {
-									if (entry.borderBoxSize.inlineSize < 640) {
-										menu.style.flexDirection = 'column'
-									} else {
-										menu.style.flexDirection = 'row'
-									}
-								}
-							})
+				<section>
+					how do I ensure I haven't changed anything?
+				</section>
 
-							const menu = document.querySelector('ul.menu-flip');
-							resizeObserver.observe(menu)
-						})
-					</script>
-					<style>
-						.bootstrap {
-							position: relative;
-							grid-template-rows: 100px 1fr;
-						}
-						.bootstrap .resize.grid {
-							width: 300px;
-							position: absolute;
-							left: 50%;
-							transform: translate(-50%);
-						}
-						.menu-flip {
-							list-style-type: none;
-							display: flex;
-							margin-left: 0;
-						}
-						.menu-flip li {
-							flex: 1;
-						}
-						.menu li {
-							text-align: center;
-							color: white;
-							padding: .5em;
-							margin: 0;
-							background: linear-gradient(145deg, var(--gradient-start) -90%, var(--gradient-end));
-							box-shadow: inset 2px 2px 2px hsla(0, 100%, 100%, .4), inset -2px -2px 2px var(--shadow), 1px 1px 2px var(--shadow);
-						}
-					</style>
-					<div class="resize grid">
-						<ul class="menu-flip menu">
-							<li>Home</li>
-							<li>About</li>
-							<li>Blog</li>
-							<li>Contact</li>
-						</ul>
+				<section>
+					characterisation tests
+					<div class="notes">
+						put the shine effect on this for surprise
+						and put a reference in to the book
+						also probably read the book
+						also maybe mention that we're talking about a code base where the test coverage isn't 100%
 					</div>
-					<div></div>
-					<div style="display: flex; flex-direction: column; justify-content: center;">
-						<pre class="fragment transient"><code class="html">
-<nav class="container">
-	<ul class="row">
-		<li class="col-sm">Home</li>
-		<li class="col-sm">About</li>
-		<li class="col-sm">Blog</li>
-		<li class="col-sm">Contact</li>
-	</ul>
-</nav>
-						</code></pre>
+				</section>
 
-						<pre class="fragment transient"><code class="css">
-nav ul {
-	display: flex;
-	flex-direction: column;
+				<section>
+					- assume the code is correct. DON'T CHANGE THE CODE
+					- use tests to determine what the actual behaviour of the code is`
+					- then the tests form documentation of the code yay
+				</section>
 
-	@media (min-width: 576px) {
-		flex-direction: row;
+				<section>
+					<pre><code>
+import format from 'date-fns/format';
+
+export const formatShortDate = (timestamp: number | string = ''): string => {
+	if (!timestamp) {
+		return '';
 	}
-}
+
+	return format(new Date(timestamp), 'yyyy-MM-d');
+};						
+					</code></pre>
+					<div class="notes">
+						we've decided we don't actually like the date-functions library, and we want to swap it for dayjs
+						look at the implementation to work out which paths to test
+						- this function can accept a number, a string, or nothing, so we'll want to test all of those
+						- we're passing the timestamp to new Date(), so what happens if we pass it something that isn't a date, or isn't
+						  a valid date (we could, of course just look up what's supposed to happen, but if we write the test then 
+							we can change the implementation however we like, and still be sure it works. plus the next person doesn't 
+							have to look it up)
+						- we're expecting some formatting to happen to our date, so we should check it works when we pass in a date
+						that's already formatted correctly, that it pads dates out to 2 digits, and that it removes padding from days
+					</div>
+				</section>
+
+				<section>
+					so how do we write these tests?
+					<pre><code>
+describe('formatShortDate', () => {
+	it('does ¯\\_(ツ)_/¯ when passed undefined, () => {
+		expect(formatShortDate()).toBe('¯\\_(ツ)_/¯')
+	})
+	})
+						 
+					</code></pre>
+					<div class="notes">
+						- start at the simplest use case - passing in undefined
+						- write the test, but leave the expectations empty. or use shruggy guy. unless your code might actually return 
+						shruggy guy
+					</div>
+				</section>
+
+				<section>
+					<pre>
+	Error: expect(<span style="color: var(--red)">received</span>).toBe(<span style="color: var(--green)">expected</span>) // Object.is equality
+
+	Expected: "¯\\_(ツ)_/¯"
+	Received: ""
+					</pre>
+					<div class="notes">
+						the test will fail, and tell us what the code actually does, and we can plug that into our expectation
+					</div>
+				</section>
+
+				<section>
+					<pre><code>
+describe('formatShortDate', () => {
+	it('returns an empty string when passed undefined, () => {
+		expect(formatShortDate()).toBe('')
+	})
+	})						 
+					</code></pre>
+					<div class="notes">
+						and we have our first characterisation test complete!
+					</div>
+				</section>
+
+				<section>
+					<pre><code>
+it('does ¯\\_(ツ)_/¯ when passed something that isn\'t a date', () => {
+expect(formatShortDate('abc')).toBe('¯\\_(ツ)_/¯')
+})
+
+it('does ¯\\_(ツ)_/¯ when passed an invalid date', () => {
+expect(formatShortDate('2021-02-31')).toBe('¯\\_(ツ)_/¯')
+})
+
+it('does ¯\\_(ツ)_/¯ when passed a date string with numbers below 10', () => {
+expect(formatShortDate('2021-01-01')).toBe('¯\\_(ツ)_/¯')
+})
+
+it('does ¯\\_(ツ)_/¯ when passed a date with numbers above 10', () => {
+expect(formatShortDate('2021-10-10')).toBe('¯\\_(ツ)_/¯')
+})
+
+it('does ¯\\_(ツ)_/¯ when passed a number', () => {
+expect(formatShortDate(1614636989891)).toBe('¯\\_(ツ)_/¯')
+})
+						 
+					</code></pre>
+					<div class="notes">
+						then we do the same thing for all our other scenarios
+						all of those tests will fail, and tell us what really happens
+						then we can update those tests, and we have a full test suite that describes the
+						current behaviour of the system
+					</div>
+				</section>
+
+				<section>
+					<pre><code>
+	describe('formatShortDate', () => {
+		it('returns nothing when passed nothing', () => {
+			expect(formatShortDate()).toBe('')
+		})
+		
+		it('throws an error when passed something that isn\'t a date', () => {
+			expect(() => formatShortDate('abc')).toThrow(RangeError)
+		})
+		
+		it('converts an invalid date into a valid one', () => {
+			expect(formatShortDate('2021-02-31')).toBe('2021-03-3')
+		})
+		
+		it('pads months to two characters, but not days', () => {
+			expect(formatShortDate('2021-01-01')).toBe('2021-01-1')
+		})
+		
+		it('doesn\'t change a date which is already in the correct format', () => {
+			expect(formatShortDate('2021-10-10')).toBe('2021-10-10')
+		})
+		
+		it('converts a number into the correct format', () => {
+			expect(formatShortDate(1614637515126)).toBe('2021-03-1')
+		})
+	})							 
 						</code></pre>
-					</div>
-					<div class="notes">
-						for example, we can create a responsive menu that flips between 
-						a vertical alignment on mobile and a horizontal alignment on larger screens
-						- using bootstrap, defining columns 
-						- or, if you prefer to write your own, using a very simple media query
-					</div>
 				</section>
 
-				<section data-background-image="images/popplers.png" data-background-size="25%" data-background-position="5% 90%">
-					<h2 style="place-self: center; font-size: 3em">the problem with<br> media queries</h2>
-				</section>
-
-				<section class="devices">
-					<style>
-						.devices {
-							grid-template-columns: auto auto;
-							grid-gap: 5%;
-							align-items: center;
-							justify-items: center;
-						}
-						.devices h2 {
-							grid-column: 1 / -1;
-							margin: 0;
-						}
-						.mobile-phone {
-							--width: 225px;
-							--item-width: 80%;
-							justify-self: end;
-						}
-						.tablet {
-							--width: 550px;
-							--item-width: 100px;
-							justify-self: start;
-						}
-						.mobile-phone, .tablet:not(.browser) {
-							width: var(--width);
-							height: 400px;
-							background-color: hsl(0, 0%, 20%);
-							border-radius: 20px;
-							padding: 15px;
-							padding-top: 20px;
-							padding-bottom: 30px;
-							align-self: start;
-						}
-						.screen {
-							width: 100%;
-							height: 100%;
-							background-color: white;
-							box-shadow: inset 2px 2px 4px hsl(0 0% 20% / .4);
-							display: flex;
-							flex-direction: column;
-							align-items: center;
-							gap: 20px;
-							overflow: hidden;
-						}
-
-						nav > div {
-							height: 30px;
-							background: hsl(0 0% 70%);
-						}
-
-						.tablet nav > div {
-							flex: 1 1 0;
-						}
-
-						.mobile-phone nav, .browser:not(.tablet) nav {
-							display: flex;
-							flex-direction: column;
-							width: 100%;
-							gap: 2px;
-						}
-
-						.tablet nav, .browser.tablet nav {
-							grid-column: 1 / -1;
-							display: flex;
-							justify-content: center;
-							gap: 2px;
-						}
-
-						.devices .screen > div {
-							width: var(--item-width);
-							height: 100px;
-							background-color: hsl(0 0% 70%);
-							flex-shrink: 0;
-						}
-
-						.tablet .screen, .browser.tablet.screen {
-							display: grid;
-							grid-template-columns: repeat(4, var(--item-width));
-							justify-content: center;
-							align-content: start;
-						}
-
-						.browser {
-							width: 450px;
-							height: 80%;
-							position: absolute;
-							top: 20%;
-							padding: 0;
-						}
-						.browser:not(.tablet) {
-							left: 0;
-							--item-width: 80%;
-						}
-						.browser.tablet {
-							right: 0;
-						}
-
-					</style>
-					<h2>the web is continuous</h2>
-					<div class="mobile-phone">
-						<div class="screen">
-							<nav>
-								<div></div>
-								<div></div>
-								<div></div>
-							</nav>
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
-					</div>
-					<div class="tablet">
-						<div class="screen">
-							<nav>
-								<div></div>
-								<div></div>
-								<div></div>
-							</nav>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
-					</div>
-					<div class="browser fragment">
-						<div class="screen">
-							<nav>
-								<div></div>
-								<div></div>
-								<div></div>
-							</nav>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
-					</div>
-					<div class="browser tablet fragment">
-						<div class="screen">
-							<nav>
-								<div></div>
-								<div></div>
-								<div></div>
-							</nav>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
-					</div>
-
-					<div class="notes">
-						as a very basic example, consider these 2 mockups
-						on a phone, you have some nav items stacked at the top, 
-						then a single column of content 
-						on a tablet, you have some nav items spread across the top,
-						and multiple layers of content
-						you could easily build this  using a single media query
-						the thing about the web though, is that it's not discrete like this 
-						yes, those two screen sizes exist, but so does every other size 
-						in between. and these mockups tell us nothing about how our page 
-						should behave in those in-between sizes 
-						obviously, there should be layouts that include 2 or 3 columns 
-						of content, but at what point should the nav switch from vertical 
-						to horizontal?
-						to some extent, we can mitigate this by using breakpoints 
-						specific to our design, rather than creating designs to fit 
-						specific sized screens 
-						however, that still leaves another problem						
-					</div>
-				</section>
-
-				<section class="with-heading">
-					<style>
-						.parabox {
-					  	width: 400px;
-						  height: 320px;
-							background-image: url('images/parabox.png');
-							background-size: cover;
-							background-position: center top;
-  						border-radius: 30% 70% 26% 74% / 44% 34% 66% 56%;
-						}
-					</style>
-					<h2>You don't have all the context</h2>
-					<ul>
-						<li class="fragment">How big is the content?</li>
-						<li class="fragment">How big is the container?</li>
-					</ul>
-					<div class="parabox"></div>
-					<div class="notes">
-						you don't have all the context at build time 
-
-						how much content? how big is it? 
-						have fonts/images loaded? 
-						has the user changed the font?
-
-						you might know the container if you know everything that's on 
-						the viewport, but not always
-					</div>
-				</section>
-
-				<section class="centre">
-					<div style="font-family: Kalam; font-size: 80px;">What can we do instead?</div>
-				</section>
-
-				<section class="centre">
-					<h2 style="font-size: 80px">Let the browser work it out</h2>
-					<div class="notes">
-						remember, the flexibility of the web is a feature, not a bug
-						instead of trying to code around it, we should be using it to our advantage
-						we don't need to code for every possible situation with imperfect information 
-						instead, we can give the browser some boundaries and guidelines and let it work 
-						out the fine detail using the information it has available
-					</div>
-				</section>
-
-				<section class="inverse">
-					<h2>columns</h2>
-					<div class="notes">
-						start by looking at an example using newspaper-style columns
-						not a pattern you see often on the web because infinite scroll 
-						could make sense in the context of a design where you have a container 
-						of limited height
-					</div>
-				</section>
-
-				<section class="heads">
-					<style>
-						.heads img {
-							border-radius: 62% 38% 63% 37% / 65% 55% 45% 35% 
-						}
-					</style>
-					<img src="images/Futurama-Head-Museum.jpg" alt="">
-				</section>
-
-				<section class="auto-height">
-					<style>
-						.columns.responsive-columns {
-							columns: 3 200px;
-						}	
-					</style>
-					<div class="columns responsive-columns resize">
-						<p style="margin-top: 0">Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.</p>
-						<p>Orbiting this at a distance of roughly ninety-two million miles	is an utterly insignificant little blue green planet whose ape-descended life forms are so amazingly primitive that they still	think digital watches are a pretty neat idea.</p>
-						<p>This planet has - or rather had - a problem, which was this: most	of the people living on it were unhappy for pretty much of the time.	Many solutions were suggested for this problem, but most of these	were largely concerned with the movements of small green pieces	of paper, which is odd because on the whole it wasn't the small	green pieces of paper that were unhappy.							</p>
-						<p>And so the problem remained; lots of the people were mean, and	most of them were miserable, even the ones with digital watches.							</p>
-						<p>Many were increasingly of the opinion that they'd all made a big	mistake in coming down from the trees in the first place. And	some suggested that even the trees had been a bad move, and that no	one should ever have left the oceans.							</p>
-				
+				<section>
+					<pre><code>
 						<div class="notes">
-							this used to be quite complicated to do 
-							you don't know how big anything is on the web 
-								you don't know how many columns can fit, or how wide
-								you don't know the font for sure, so you're not sure how much space the text takes up
-							instead, you'd have to do something with javascript to work out the dimensions
-							and which text goes in which column at runtime
-							then use CSS with media queries to set up the columns, something like...
+							once we've got our tests in place, we can perform the actual refactor
+
+							and then we can go and do whatever else it was that we wanted to do with the code
+							
+							you might be thinking, this example is kind of contrived. would we really write so many
+							tests for such a short bit of code?
+							I probably wouldn't. The code isn't doing much beyond what the browser API/library are already doing,
+							and it's very easy to see what's going on. Importantly though, this code isn't mission critical. If
+							the dates ended up formatted with padding zeroes on the days, it would be fine. However, if the 
+							guard was broken, the dates returned would be incorrect, so I'd proabbly write that test.
+
+							The important thing is, as always, you need to think about the context of the code you're writing, 
+							and what risks you're taking on vs how much it costs to write the tests.
+
+							Oh, and the really important thing for this talk is that you get how to write characterisation tests.
+
+							Next up, let's look at a slightly more complicated scenario 	
 						</div>
-				</section>
-
-				<section>
-					<pre><code class="css" style="font-size: .7em; line-height: 1">.column {
-	min-width: 200px;
-	width: 100%;
-	padding: 2em;
-
-	@media (min-width: 400px) {
-		width: 50%;
-	}
-
-	@media (min-width: 600px) {
-		width: 33%;
-	}
-
-	@media (min-width: 800px) {
-		width: 25%;
-	}
-
-	@media (min-width: 1000px) {
-		width: 20%;
-	}
-}
-
-.column:not(:last-child) {
-	border-right: 2px solid black;
-}</code></pre>
-					<div class="notes">
-						this css is complicated and error-prone because it's 
-						using values that rely on each, but not obviously so 
-						(can't use variables in a media queries)
-					</div>
-				</section>
-
-				<section class="centre">
-					<h2 class="shiny">css columns</h2>
-				</section>
-
-				<section>
-					<style>
-						.columns-description li {
-							margin: .2em 0;
-						}
-					</style>
-					<pre><code class="css" style="font-size: .75em" data-noescape>
-.columns {
-	<span class="fragment highlight" data-fragment-index="1">columns</span>: <span class="fragment highlight" data-fragment-index="2">3</span> <span class="fragment highlight" data-fragment-index="3">200px</span>;
-}
 					</code></pre>
-					<ul style="font-family: Kalam" class="columns-description">
-						<li class="fragment" data-fragment-index="1">I'd like a multi-column layout</li>
-						<li class="fragment" data-fragment-index="2">No more than 3 columns</li>
-						<li class="fragment" data-fragment-index="3">I'd like the columns to be about 200px wide</li>
-					</ul>
-					<div class="notes">
-						Now, you can do it like this instead
-						description of code
-						by passing control to the browser, we end up with code that is "more declarative"
-						it's easier to write, easier to read, and guaranteed to work in more situations
-					</div>
-				</section>
-
-				<section class="different-widths">
-					<style>
-						.different-widths {
-							grid-template-columns: 1fr 3fr;
-							grid-gap: 40px;
-						}
-						.different-widths .columns{
-							columns: 3 200px;
-							position: relative;
-						}
-						.container-width, .column-width {
-							font-family: Kalam;
-						}
-						.container-width {
-							display: flex;
-							gap: 10px;
-						}
-						.column-width {
-							width: 100%;
-							height: 100%;
-							position: absolute;
-							top: 0;
-							left: 0;
-							display: flex;
-							justify-content: center;
-							padding-top: 200px;
-							background: hsla(0, 0%, 100%, .6);
-							border-radius: 10px;
-							font-size: 2em;
-						}
-						.px-580 .column-width {
-							width: 50%;
-						}
-						.column-width::before, .column-width::after {
-							content: '';
-							width: 150px;
-							margin: auto;
-							position:absolute;
-							--border: 4px solid currentColor;
-						}
-						.column-width::before {
-							top: 260px;
-							border-bottom: var(--border);
-						}
-						.column-width::after {
-							top: 247px;
-							height: 30px;
-							border-left: var(--border);
-							border-right: var(--border);
-						}
-						.px-580 .column-width:first-child {
-							padding-left: 5px;
-							border-top-right-radius: 0;
-							border-bottom-right-radius: 0;
-						}
-						.px-580 .column-width:not(:first-child) {
-							left: 50%;
-							padding-right: 35px;
-							border-top-left-radius: 0;
-							border-bottom-left-radius: 0;
-						}
-						.px-580 .column-width::before, .px-580 .column-width::after {
-							width: 275px;
-						}
-						svg {
-							stroke: currentColor;
-							stroke-linecap: round;
-							stroke-linejoin: round;
-						}
-						line {
-							stroke-width: 3;
-						}
-					</style>
-					<div class="px-190">
-						<div class="container-width">
-							<svg viewBox="0 0 50 10">
-								<defs>
-									<marker id="arrow-left" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
-										<path d="M3,1 l-3,2 3,2" />
-									</marker>
-								</defs>
-								<line x1="3" y1="5" x2="47" y2="5" marker-start="url(#arrow-left)" />
-							</svg>
-							190px
-							<svg viewBox="0 0 50 10">
-								<defs>
-									<marker id="arrow-right" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
-										<path d="M-3,1 l3,2 -3,2" />
-									</marker>
-								</defs>
-								<line x1="3" y1="5" x2="47" y2="5" stroke-width="3" marker-end="url(#arrow-right)" />
-							</svg>
-						</div>
-						<div class="columns">
-							<div class="column-width fragment" data-fragment-index="1">~125px</div>
-							<p style="margin-top: 0">Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.</p>
-							<p>Orbiting this at a distance of roughly ninety-two million miles	is an utterly insignificant little blue green planet whose ape-descended life forms are so amazingly primitive that they still	think digital watches are a pretty neat idea.</p>
-							<p>This planet has - or rather had - a problem, which was this: most	of the people living on it were unhappy for pretty much of the time.	Many solutions were suggested for this problem, but most of these	were largely concerned with the movements of small green pieces	of paper, which is odd because on the whole it wasn't the small	green pieces of paper that were unhappy.							</p>
-							<p>And so the problem remained; lots of the people were mean, and	most of them were miserable, even the ones with digital watches.							</p>
-							<p>Many were increasingly of the opinion that they'd all made a big	mistake in coming down from the trees in the first place. And	some suggested that even the trees had been a bad move, and that no	one should ever have left the oceans.							</p>	
-						</div>
-					</div>
-					<div class="px-580 fragment" data-fragment-index="2">
-						<div class="container-width">
-							<svg viewBox="0 0 230 10">
-								<defs>
-									<marker id="arrow-left" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
-										<path d="M3,1 l-3,2 3,2" />
-									</marker>
-								</defs>
-								<line x1="3" y1="5" x2="227" y2="5" marker-start="url(#arrow-left)" />
-							</svg>
-							580px
-							<svg viewBox="0 0 230 10">
-								<defs>
-									<marker id="arrow-right" viewBox="-5 0 15 10" markerWidth="15" markerHeight="10" refX="0" refY="3" orient="auto" fill="none">
-										<path d="M-3,1 l3,2 -3,2" />
-									</marker>
-								</defs>
-								<line x1="3" y1="5" x2="227" y2="5" stroke-width="3" marker-end="url(#arrow-right)" />
-							</svg>
-						</div>
-						<div class="columns">
-							<div class="column-width fragment" data-fragment-index="3">~250px</div>
-							<div class="column-width fragment" data-fragment-index="3">~250px</div>
-								<p style="margin-top: 0">Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.</p>
-							<p>Orbiting this at a distance of roughly ninety-two million miles	is an utterly insignificant little blue green planet whose ape-descended life forms are so amazingly primitive that they still	think digital watches are a pretty neat idea.</p>
-							<p>This planet has - or rather had - a problem, which was this: most	of the people living on it were unhappy for pretty much of the time.	Many solutions were suggested for this problem, but most of these	were largely concerned with the movements of small green pieces	of paper, which is odd because on the whole it wasn't the small	green pieces of paper that were unhappy.							</p>
-							<p>And so the problem remained; lots of the people were mean, and	most of them were miserable, even the ones with digital watches.							</p>
-							<p>Many were increasingly of the opinion that they'd all made a big	mistake in coming down from the trees in the first place. And	some suggested that even the trees had been a bad move, and that no	one should ever have left the oceans.							</p>	
-						</div>
-					</div>
-				</section>
-
-				<section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
-					<a href="responsive-columns.html" target="_blank" style="background: hsla(200, 5%, 95%, .6); color: inherit; padding: 1em">columns + flexbox</a>
-				</section>
-
-					
-				<section class="inverse">
-					<h2>growing & shrinking</h2>
-					<div class="notes">
-						common pattern - things side-by-side, shrink until 
-						"mobile", then switch to vertical layout
-					</div>
 				</section>
 
 				<section>
-					<style>
-						.responsive-buttons {
-							display: flex;
-							flex-wrap: wrap;
-							justify-content: center;
-							align-content: center;
-							gap: 20px;
-						}
-						.responsive-buttons button, .grid-explanation + button {
-							flex: 1 1;
-							align-self: center;
-							font-size: 25px;
-							padding: .5em;
-							border: 2px solid currentColor;
-							min-height: 100px;
-							min-width: 300px;
-							height: auto;
-							width: auto;
-						}
-						.responsive-buttons button:first-child {
-							--gradient-start: var(--green);
-							--gradient-end: var(--dark-green);
-						}
-						.responsive-buttons button:last-child {
-							--gradient-start: var(--light-red);
-							--gradient-end: var(--red);
-						}
-					</style>
-					<div class="responsive-buttons resize" style="align-self: center; min-width: 340px">
-						<button class="element">No, I'm not carrying any dangerous goods</button>
-						<button class="element">Yes, I am carrying dangerous goods</button>
-					</div>
-					<div class="notes">
-						- the buttons shrink as the container gets smaller 
-						- the buttons switch to vertical layout once the container is too 
-							small to fit the buttons 
-						- the point that it switches depends on the size of the content 
-						- in the vertical layout, the buttons stretch to take up the whole 
-							container 
-						
-						you can achieve some of this with media queries, in some situations
-						to do it all, you need...
-					</div>
+					characterisation tests in JSX
 				</section>
 
 				<section>
-					<h2 class="shiny" style="margin: auto; padding: .5ch">flexbox</h2>
-				</section>
-
-				<section>
-					<div class="responsive-buttons resize">
-						<button class="element">No, I'm not carrying any dangerous goods</button>
-						<button class="element">Yes, I am carrying dangerous goods</button>
-					</div>
-
-					<pre class="fragment"><code class="css" data-noescape="">.buttons-container {
-	<span class="fragment highlight">display: flex;</span>
-	<span class="fragment highlight">flex-wrap: wrap;</span>
-	<span class="fragment highlight">gap: 20px;</span>
-}
-.buttons-container button {
-	<span class="fragment highlight">flex: 1 1;</span>
-	<span class="fragment highlight">min-width: 10em;</span>
-}</code></pre>
-					<div class="notes">
-						button will shrink to min-content 
-						we can add a min-width if we prefer
-						can also add a max-width
-
-						gap property is only available on firefox, or behind a flag in Chrome 84-85
-
-						we are defining the boundaries and relationships 
-						the browser is using what it knows about the content 
-						we end up with a much nicer layout
-					</div>
-				</section>
-
-				<section class="centre">
-					<style>
-						.garmin-button-container {
-							display: flex;
-							justify-content: space-between;
-							flex-flow: row wrap;
-							gap: 5px 7px;
-						}
-						.garmin-button {
-							flex: 1 0 24%;
-							border-radius: 2px;
-							background-color: #1976d2;
-							padding: .3em 1em;
-							font-size: 20px;
-							margin: 0;
-							border: none;
-							color: white;
-							cursor: pointer;
-						}
-					</style>
-					<div class="garmin-button-container">
-						<button class="garmin-button">Add Activity</button>
-						<button class="garmin-button">Add Weight</button>
-						<button class="garmin-button">Add Calories</button>
-						<button class="garmin-button">Add Symptoms</button>
-						<button class="garmin-button">Add Period Dates</button>	
-					</div>
-					<pre class="fragment" style="align-self: start"><code class="css" data-noescape="">
-.track-activity-button {
-	flex: 1 <span class="fragment highlight">0 24%</span>;
-}
+					<pre><code>
+	const LendingLink = ({ customerToken, routingCategory }: Props) => {
+		if (routingCategory !== '[BORROWING_CASH]' || !customerToken) {
+			return null;
+		}
+		
+		return (
+			<>
+				<StyledDt>Lending Page</StyledDt>
+				<StyledDd>
+					<a
+						href={`/customer/${customerToken}/lending`}
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						[Lending Page]
+					</a>
+				</StyledDd>
+			</>
+		);
+	};
+						 
 					</code></pre>
 					<div class="notes">
-						make sure you set your boundaries right though, 
-						else you end up with something like this, from my activity tracker, 
-						which looks fine on small screens, but seems unusually interested in tracking 
-						my period on larger screens
-						if we take a peek at the code, we see that the flex-basis on the buttons is 
-						set to 24%, which, to me, suggests that perhaps there were 4 buttons when the 
-						code was written, and maybe the 5th button got added without too much thought
-						at any rate, removing the boundary, gives us a better layout
-					</div>
-				</section>
-
-				<section class="inverse">
-					<h2>alignment</h2>
-					<div class="notes">
-						flexbox gives us some fun ways to lay things out, 
-						but it's limited to alignment in a single dimension
+						describe what the code does
 					</div>
 				</section>
 
 				<section>
-					<style>
-						.slurms {
-							display: flex;
-							flex-wrap: wrap;
-							align-content: center;
-							justify-content: center;
-						}
-						.slurms div {
-							--shadow: .5px;
-							--minus: calc(-1 * var(--shadow));
-							font-family: 'Suez One', serif;
-							flex-grow: 1;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							margin: 10px;
-							padding: 10px 20px;
-							border-radius: 2500px;
-							background: radial-gradient(circle, hsl(61, 67%, 51%), hsl(61, 67%, 51%) 70px, hsl(267, 62%, 32%) 70px);
-							color: hsl(309, 77%, 64%);
-							text-shadow: var(--shadow) var(--shadow) black,
-													 var(--minus) var(--shadow) black,
-													 var(--shadow) var(--minus) black,
-													 var(--minus) var(--minus) black;
-						}
-					</style>
-					<div class="slurms resize">
-						<div>Slurm</div>
-						<div>Slurmee</div>
-						<div>Royal Slurm</div>
-						<div>SuperSlurm</div>
-						<div>New Slurm</div>
-						<div>Diet Slurm</div>
-						<div>Enslurm</div>
-						<div>Slurm Loco</div>
-						<div>Slurm Medicinal Tonic</div>
-						<div>Slurm Slim</div>	
-					</div>
-					<div class="notes">
-						fun, organic layout, everything is aligned horizontally, but 
-						not vertically 
-						sometimes that's what you want 
-						but sometimes you need something a little more orderly
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.slurms.grid {
-							display: grid;
-							grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-						}
-					</style>
-					<div class="slurms grid resize">
-						<div>Slurm</div>
-						<div>Slurmee</div>
-						<div>Royal Slurm</div>
-						<div>SuperSlurm</div>
-						<div>New Slurm</div>
-						<div>Diet Slurm</div>
-						<div>Enslurm</div>
-						<div>Slurm Loco</div>
-						<div style="grid-row: span 2">Slurm Medicinal Tonic</div>
-						<div style="align-self: center">Slurm Slim</div>	
-					</div>
-					<div class="notes">
-						there isn't really a way to get flexbox to do this,
-						especially with the element spanning two rows
-					</div>
-				</section>
-
-				<section class="centre">
-					<h2 class="shiny">grid</h2>
-				</section>
-
-				<section>
-					<script>
-						function addElementToGrid() {
-							let grid = document.getElementById('grid-explainer')
-							const div = document.createElement('div')
-							div.classList.add('element')
-							grid.appendChild(div)
-						}
-					</script>
-					<style>
-						.grid-explanation .grid {
-							display: grid;
-							grid-template-columns: 200px 200px;
-							grid-template-rows: 200px 200px;
-						}
-						.grid-explanation {
-							width: 500px;
-							height: 500px;
-							background: white;
-							box-shadow: inset 2px 2px 2px hsl(0 0% 20% / .2);
-							justify-self: center;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							padding: 40px;
-						}
-						.grid-explanation .element {
-							width: auto;
-							height: auto;
-						}
-
-						.grid-explanation + button.element {
-							justify-self: center;
-							min-width: unset;
-							width: max-content;
-							min-height: unset;
-							--gradient-start: var(--light-blue);
-							--gradient-end: var(--dark-blue);
-							cursor: pointer;
-							transition: all .2s;
-						}
-						button.element:active {
-							box-shadow: none;
-							border-color: hsl(0, 0%, 95%);
-						}
-					</style>
-					<div style="font-family: Kalam">grid in 2 minutes</div>
-					<div class="grid-explanation">
-						<div id="grid-explainer" class="grid"></div>
-					</div>
-					<button class="element" onclick="addElementToGrid()">Add element</button>
-				</section>
-
-				<section>
-					<style>
-						.grid.content-size {
-							grid-template-columns: auto auto;
-							grid-template-rows: auto auto;
-							grid-auto-rows: auto;
-							gap: 20px;
-							width: 100%;
-							height: auto;
-						}
-						.grid.content-size div, .grid.auto-columns div {
-							height: auto;
-							width: 100%;
-							padding: .5em;
-						}
-					</style>
-					<div style="font-family: Kalam">grid in 2 minutes: auto</div>
-					<div class="grid-explanation resize">
-						<div class="grid content-size">
-							<div class="element">Amy</div>
-							<div class="element">Dr Zoidberg</div>
-							<div class="element">Leela</div>
-							<div class="element">Professor Farnsworth</div>
-						</div>
-					</div>
-					<div class="notes">
-						you can make a grid with cells that fit the size of their contents
-					</div>
-				</section>
-
-				<section>
-					<style>
-						.grid-explanation.resize {
-							width: auto;
-							height: auto;
-							position: fixed;
-							top: 50%;
-							left: 50%;
-							transform: translate(-50%, -50%);
-						}
-						.grid.auto-columns {
-							grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-							grid-template-rows: auto;
-							gap: 20px;
-							width: 100%;
-						}
-					</style>
-					<div style="font-family: Kalam">grid in 2 minutes: auto-fit</div>
-					<div class="grid-explanation resize auto-columns" style="margin-top: 40px;">
-						<div class="grid auto-columns">
-							<div class="element">Amy</div>
-							<div class="element">Dr Zoidberg</div>
-							<div class="element">Leela</div>
-							<div class="element">Professor Farnsworth</div>
-						</div>
-					</div>
-					<div class="notes">
-						or you can have a grid where the size & number of columns is determined by the size of the container 
-						you can't do both, which is a bit unfortunate 
-
-						this second type of responsive grid is best suited to situations where you know or can control 
-						the size of the content
-					</div>
-				</section>
-
-				<section class="centre">
-					<a href="futurama-grid.html" target="_blank">image grid</a>
-				</section>
-
-				<!-- <section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
-					<div style="background: hsla(200, 5%, 95%, .6); color: inherit; padding: 1em">flexbox + grid</div>
-				</section> -->
-
-				<!-- <section class="outline">
-					<style>
-						.flippy-nav {
-							display: flex;
-							flex-wrap: wrap;
-							min-width: 565px;
-							width: 565px;
-							background: white;
-						}
-
-						.flippy-nav.resize {
-							padding: 0;
-						}
-
-						.flippy-nav nav {
-							flex-grow: 1;
-							font-size: 30px;
-						}
-
-						.flippy-nav nav ul {
-							list-style: none;
-							margin: 0;
-							padding: 0;
-							display: grid;
-							grid-template-columns: repeat(auto-fit, minmax(3em, 1fr));
-						}
-						.flippy-nav nav li {
-							min-width: 3em;
-							text-align: center;
-							font-weight: 900;
-							margin: 0;
-						}
-
-						.flippy-nav article {
-							flex-grow: 99999;
-							flex-basis: 450px;
-							display: flex;
-						}
-						.flippy-nav article .content {
-							width: 80%;
-							margin: auto;
-						}
-						.flippy-nav article .content div.heading {
-							width: 60%;
-							height: 40px;
-							margin: 25px auto;
-							margin-top: 40px;
-						}
-						.flippy-nav article .content div {
-							width: 100%;
-							height: 30px;
-							background: hsl(0, 0%, 80%);
-							margin-bottom: 8px;
-						}
-						.flippy-nav article .content div:nth-child(5n) {
-							width: 40%;
-							margin-bottom: 16px;
-						}
-
-					</style>				
-					<div class="flippy-nav resize">
-						<nav>
-							<ul class="menu">
-								<li>Home</li>
-								<li>About</li>
-								<li>Contact</li>
-								<li>Blog</li>
-								</ul>
-						</nav>
-						<article>
-							<div class="content">
-								<div class="heading"></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-
-							</div>
-						</article>
-					</div>
-				</section> -->
-
-				<!-- <section>
-					<pre><code class="css" data-noescape="">body {
-	<span class="fragment highlight" data-fragment-index="1">display: flex;</span>
-	<span class="fragment highlight" data-fragment-index="2">flex-wrap: wrap;</span>
-}
-
-nav {
-	<span class="fragment highlight" data-fragment-index="3">flex-grow: 1;</span>
-}
-
-nav ul {
-	<span class="fragment highlight" data-fragment-index="5">display: grid;</span>
-	<span class="fragment highlight" data-fragment-index="6">grid-template-columns: repeat(auto-fit, minmax(3em, 1fr));</span>
-}
-
-article {
-	<span class="fragment highlight" data-fragment-index="4">flex-grow: 99999;</span>
-	flex-basis: 45em;
-}
+					<pre><code>
+describe('LendingLink', () => {
+	const getTitle = () => screen.queryByText('Lending Page')
+	
+	const setup = (customerToken: string, routingCategory: string) => 
+		render(
+				<LendingLink customerToken={customerToken} routingCategory={routingCategory} />3
+		)
+	}
+	
+	it('displays ¯\_(ツ)_/¯ if routing category isn\'t BORROWING_CASH', () => {
+		setup('C_12345', 'BAD_ROUTING_CATEGORY')
+		expect(getTitle()).toBe('¯\_(ツ)_/¯')
+	})
+	
+	it('displays ¯\_(ツ)_/¯ if customer token is blank', () => {
+		setup('', 'BORROWING_CASH')
+		expect(getTitle()).toBe('¯\_(ツ)_/¯')
+	})
+	
+	it('displays ¯\_(ツ)_/¯ with a valid routing category and customer token', () => {
+		setup('C_234567', 'BORROWING_CASH')
+		expect(getTitle()).toBe('¯\_(ツ)_/¯')
+	})
+})						 
 					</code></pre>
-				</section> -->
-
-				<section class="centre" data-background-image="images/bender-homer.png" data-background-size="contain">
-					<a href="magic.html" target="_blank" style="background: hsla(200, 5%, 95%, .6); color: inherit; padding: 1em">columns + flexbox + grid</a>
+					should probably show how these fail
+					<div class="notes">
+						we can write tests using queries, just like we would in any other situation
+					</div>
 				</section>
 
-				<section class="with-heading">
-					<style>
-						blockquote {
-							box-shadow: none;
-							font-family: Kalam;
-							text-align: justify;
-							position: relative;
-						}
-						blockquote::before, blockquote::after {
-							content: '"';
-							position: absolute;
-							font-family: 'League Gothic';
-							font-size: 4em;
-							opacity: .5;
-						}
-						blockquote::before {
-							transform: rotate(-.04turn) translate(-50%, -25%);
-						}
-						blockquote::after {
-							transform: rotate(.04turn) translate(-140%, -25%);
-						}
-						cite {
-							font-family: 'League Gothic';
-							justify-self: end;
-							position: relative;
-							display: flex;
-							gap: .25em;
-							align-items: center;
-						}
-						cite::before {
-							content: '';
-							width: .75em;
-							height: 7px;
-							background-color: currentColor;
-							display: block;
-						}
-					</style>
-					<blockquote cite="https://resilientwebdesign.com/">
-						Relinquishing control does not mean relinquishing quality. Quite the opposite. In acknowledging the many unknowns involved in designing for the web, designers can craft in a resilient flexible way that is true to the medium.
-					</blockquote>
-					<cite>
-						Jeremy Keith <em>Resilient Web Design</em>
-					</cite>
+				<section>
+					<pre><code>
+describe('LendingLink', () => {
+	const getTitle = () => screen.queryByText('Lending Page')
+	
+	const setup = (customerToken: string, routingCategory: string) => {
+		render(
+				<LendingLink customerToken={customerToken} routingCategory={routingCategory} />
+		)
+	}
+	
+	it('doesn\'t display if routing category isn\'t BORROWING_CASH', () => {
+		setup('C_12345', 'BAD_ROUTING_CATEGORY')
+		expect(getTitle()).not.toBeInTheDocument()
+	})
+	
+	it('doesn\'t display if customer token is blank', () => {
+		setup('', 'BORROWING_CASH')
+		expect(getTitle()).not.toBeInTheDocument()
+	})
+	
+	it('displays the link', () => {
+		setup('C_234567', 'BORROWING_CASH')
+		expect(getTitle()).toBeInTheDocument()
+	})
+})
+					</code></pre>
 					<div class="notes">
-						accept that we don't have enough information to completely specify 
-						the design at build-time 
-						instead, give the browser some boundaries and guidelines and let 
-						it work it out at run-time
+						then we can figure out our passing tests
 					</div>
+				</section>
+
+				<section>
+					but also snapshot tests are a thing. 
+					what even are snapshot tests.
+				</section>
+
+				<section>
+					<pre><code>
+describe('LendingLink', () => {
+
+	const setup = (customerToken: string, routingCategory: string) => {
+			const { asFragment } = render(
+					<LendingLink customerToken={customerToken} routingCategory={routingCategory} />
+			)
+			return asFragment
+	}
+
+	it('doesn\'t display if routing category isn\'t BORROWING_CASH', () => {
+			const fragment = setup('C_12345', 'BAD_ROUTING_CATEGORY')
+			expect(fragment()).toMatchSnapshot()
+	})
+
+	it('doesn\'t display if customer token is blank', () => {
+			const fragment = setup('', 'BORROWING_CASH')
+			expect(fragment()).toMatchSnapshot()
+	})
+	
+	it('displays the link', () => {
+			const fragment = setup('C_234567', 'BORROWING_CASH')
+			expect(fragment()).toMatchSnapshot()
+	})
+})					 
+					</code></pre>
+					highlight the different setup and stuff
+					<div class="notes">
+						don't even need the whole two-step process. snapshots are just it
+					</div>
+				</section>
+
+				<section>
+					we want to change the styling, but leave the HTML alone,
+					then a snapshot test is going to be nice and quick
+					check whether it changes the class name for the styled components
+				</section>
+
+				<section>
+					we want to change the HTML structure because the page isn't set up as a definition list anymore 
+					snapshot tests are going to be a bit rubbish for that, use queries
+				</section>
+
+				<section>
+					// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpperLimitOverrideConfirmationDialog UpperLimitOverrideConfirmationDialog can render 1`] = `<DocumentFragment />`;
+
+					snapshot tests gotcha: empty snapshot!
+					<div class="notes">
+						Again, this is a pretty simplified example, so next let's have a look at something a bit more complex
+						(not something from the real world because these code samples are from the real world)
+					</div>
+				</section>
+
+				<section>
+					intro to socialite
+				</section>
+
+				<section>
+					new requirements!
+
+					Add stocks to payment type radio buttons
+Change label of amount field to show stocks + stocks limit
+Don’t do currency conversion when stocks amount is updated
+Show stocks limit in maximum amount per payment switch
+Show calendar year amount override switch in USD
+Call new stocks API
+Update amount paid in session to also show stocks
+Don’t show the BTC conversion widget when stocks are selected
+
+<div class="notes">
+	this is a pretty hefty bit of work that we probably don't want to do all in one go 
+	could use a feature flag to hide the new radio button while we develop everything else
+	but this is a 45-minute talk, ain't got no time for feature flags, we're just going to start by
+	building the second thing, and rely on our automated tests to tell us if we've got things right, 
+	rather than testing locally in an actual browser
+</div>
+				</section>
+
+				<section>
+					updated label needs to look like
+					Stocks Amount <amount in input> (min $<stocks min>, max $<stocks max>)
+<div class="notes">
+	we can implement this and be pretty sure that it's going to look ok, without needing to actually look at it
+	but...
+</div>
+				</section>
+
+				<section>
+					...the current code looks like ... 
+					separate labels for each option. actually maybe even separate inputs
+					<div class="notes">
+						it's relying on bits of state from all over the component
+						how are we going to test it without writing the radio button part first?
+					</div>
+				</section>
+
+				<section>
+					Create a new component!
+					<pre><code>
+						export default function AmountLabel({currency, amount, minAmount, maxAmount}: Props) {
+  
+							...
+					 
+						return <label htmlFor="amount">{currency} Amount {amount} (min {minAmount}, max {maxAmount})</label>
+					 
+					 }
+					 
+					</code></pre>
+					<div class="notes">
+						creating a whole new component feels like a risky change though, so how do we do it safely?
+					</div>
+				</section>
+
+				<section>
+					1. write characterisation tests for current behaviour of the label
+					2. refactor into a new label component, and ensure the behaviour is unchanged
+					3. write tests for our new functionality
+					4. write the new functionality
+				</section>
+
+				<section>
+					Step 1. Test the existing functionality
+					<pre><code>
+it('shows ¯\\_(ツ)_/¯ when the currency is USD', ...)
+it('shows ¯\\_(ツ)_/¯ when the currency is Bitcoin', ...)
+it('shows ¯\\_(ツ)_/¯ when the amount changes', ...)
+it('show ¯\\_(ツ)_/¯ when the upper limit changes', ...)
+					</code></pre>
+
+				</section>
+
+				<section>
+					Step 2. Extract the functionality into a component
+					<pre><code>
+						<AmountLabel
+ currency={this.state.currency}
+ amount={this.state.amount}
+ minAmount={LOWER_LIMIT[this.state.currency]}
+ maxAmount={this.state.upperLimit}
+/>
+
+					</code></pre>
+				</section>
+
+				<section>
+					Step 2 (cont). Extract the functionality into a component
+					<pre><code>
+						export default function AmountLabel({currency, amount, lowerLimit, upperLimit}: Props) {
+							const getLabelText = (): string => {
+								switch (currency) {
+									case PayoutCurrency.USD:
+										return `USD Amount ${amount.toLocaleString()} (min $${lowerLimit}, max $${upperLimit})`
+									case PayoutCurrency.BTC:
+										return `Satoshi Amount ${formatNumber(amount)} (min ${formatNumber(
+											lowerLimit
+										)} satoshi, max ${formatNumber(upperLimit)} satoshi)`
+									default:
+										return "Amount"
+								}
+							}
+						 
+							return <label htmlFor="amount">{getLabelText()}</label>
+						 
+						 }
+						 
+					</code></pre>
+				</section>
+
+				<section>
+					Step 3a. Write tests for our new functionality.
+
+					Maybe we want to refactor our existing tests a bit first
+				</section>
+
+				<section>
+					Step 3b. Actually write our tests
+				</section>
+
+				<section>
+					Step 4. Add the new functionality
+				</section>
+
+				<section>
+Add stocks to payment type radio buttons
+<s>Change label of amount field to show stocks + stocks limit</s>
+Don’t do currency conversion when stocks amount is updated
+Show stocks limit in maximum amount per payment switch
+Show calendar year amount override switch in USD
+Call new stocks API
+Update amount paid in session to also show stocks
+Don’t show the BTC conversion widget when stocks are selected
+
+					<div class="notes">
+						sweet, so that's one thing crossed off the list
+						the next thing literally says _don't_ do a thing, so we shouldn't have to do anything, right?
+					</div>
+				</section>
+
+				<section>
+					<pre><code>
+						private convertAmountCents(
+ amountCents: number,
+ sourceCurrency: string,
+ convertedAmountCents: { [customerRegion: string]: number }
+) {
+ // Do not send request when amountCents == 0
+ if (amountCents == 0) {
+   for (const customerRegion in convertedAmountCents) {
+     convertedAmountCents[customerRegion] = 0
+   }
+   this.setState({
+     convertedAmountCents: convertedAmountCents
+   })
+   return
+ }
+
+ // Do not send request when currency == BTC
+ if (sourceCurrency == "BTC") return
+					</code></pre>
+					<div class="notes">
+						the code checks for BTC and returns early, rather than checking for the existence of USD and doing the thing
+					</div>
+				</section>
+
+				<section>
+					<pre><code>if (sourceCurrency == "BTC" || sourceCurrency == "STOCKS") return</code></pre>
+					<div class="notes">
+						we could just add stocks to the btc check and be done with it
+						and, if we were in a hurry, maybe that's what we would do
+						but i like my code tested!
+					</div>
+				</section>
+
+				<section>
+<pre><code>
+	<NumericInput 
+		onValueChange={this.handleAmountChange}
+		min={0}
+		placeholder={"0"}
+		allowNumericCharactersOnly={true}
+		minorStepSize={null}
+		buttonPosition={"none"}
+		fill={true}
+	/>
+	{!this.isAmountValid(this.state.amountCents) && (
+		<label style={{ color: Colors.RED3 }}>Invalid Amount</label>
+	)}
+	{this.state.currency != "BTC" && 
+		this.state.convertedAmountCents.GBP >= 0 && (
+			<label style={{ color: Colors.GREEN3 }}>wavy equals pound sign{this.state.convertedAmountCents.GBP / 100}</label>
+		)
+	{this.state.currency != "BTC" && 
+		this.state.convertedAmountCents.GBP < 0 && (
+			<label style={{ color: Colors.RED3 }}>
+				Failed to convert amount to GBP, will pay UK customers in USD!
+			</label>
+		)}
+	)}
+</code></pre>
+					<div class="notes">
+						and this != BTC check actually happens in quite a few places, so it would be nice to clean it up a bit
+					</div>
+				</section>
+
+				<section>
+					go through same process 
+					characterisation tests, extract to component, refactor tests, add new functionality
+				</section>
+
+				<section>
+					characterisation tests
+				</section>
+
+				<section>
+					extract to component, that will look something like 
+					<pre><code>
+						<AmountInput currency={} minAmount={} maxAmount={} handleAmountUpdate={} />
+					</code></pre>
+					and if we think back to what we just did, we made a component like
+					<pre><code>
+						<AmountLabel
+						currency={this.state.currency}
+						amount={this.state.amount}
+						minAmount={LOWER_LIMIT[this.state.currency]}
+						maxAmount={this.state.upperLimit}
+					 />
+					 
+					</code></pre> 
+					and those are pretty similar
+					something something single responsibility principle
+					yadda yadda one reason to change 
+					these should be the same component
+				</section>
+
+				<section>
+					there's actually a fairly big chunk involved in moving this stuff
+					so should probably go through it step by step
+				</section>
+
+				<section>
+					when refactoring the tests, don't forget that we need to test that 
+					the handler gets called
+				</section>
+
+				<section>
+					What did we learn?
+					- refactor code when we're touching it
+					- use characterisation tests to ensure we don't change functionality
+					- extract functionality into components to isolate and test 
+					- group similar concerns into components
+
 				</section>
 
 				<section class="end">
@@ -1424,94 +775,12 @@ article {
 							align-items: center;
 						}
 
-						.end .can-i-use {
-							grid-column: 1 / -1;
-							font-size: .8em;
-							font-family: Raleway;
-						}
-
-						.end .can-i-use th {
-							text-align: right;
-						}
-
-						.end .can-i-use td {
-							padding: 10px;
-							width: 60px;
-							background-size: 70%;
-							background-repeat: no-repeat;
-							position: relative;
-							background-position: center;
-						}
-
-						.end .can-i-use td.ie {
-							background-image: url('images/Internet_Explorer_9_icon.svg');
-						}
-						.end .can-i-use td.chrome {
-							background-image: url('images/chrome-logo.svg');
-							background-size: 65%;
-						}
-						.end .can-i-use td.firefox {
-							background-image: url('images/firefox-logo.svg');
-						}
-						.end .can-i-use td.safari {
-							background-image: url('images/safari-logo.svg');
-							background-size: 65%;
-						}
-						.end .can-i-use td.edge {
-							background-image: url('images/edge-logo.svg');
-							background-size: 65%;
-						}
-
-						.end .can-i-use td::after {
-							color: white;
-							border-radius: 50%;
-							bottom: 9px;
-							right: -2px;
-							width: 20px;
-							height: 20px;
-							font-size: 14px;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							padding: 3px;
-							font-weight: bold;
-							position: absolute;
-							filter: drop-shadow(1px 1px 1px hsl(0 0% 0% / .4));
-							opacity: .9;
-							font-weight: bold;
-						}
-
-						.end .can-i-use td.tick::after {
-							content: '✓';
-							background: hsl(141, 96%, 34%);
-						}
-
-						.end .can-i-use td.warning::after {
-							content: '✓';
-							background: hsl(46, 100%, 48%);
-						}
-
-
-						.end .can-i-use td.question::after {
-							content: '?';
-							background: var(--gradient-end);
-						}
-
 						.end .bender {
 							position: fixed;
 						}
 					</style>
 
-					<div class="fragment"><a href="https://layouts.ez.codes">https://layouts.ez.codes</a></div>	
-
-					<table class=" fragment can-i-use">
-						<tr>
-							<th>Columns</th><td class="ie tick"></td><td class="chrome tick"></td><td class="firefox tick"></td><td class="safari tick"></td><td class="edge tick"></td></tr>
-						<tr>
-							<th>Flexbox</th><td class="ie warning"></td><td class="chrome tick"></td><td class="firefox tick"></td><td class="safari tick"></td><td class="edge tick"></td></tr>
-						<tr>
-							<th>Grid</th><td class="ie question"></td><td class="chrome tick"></td><td class="firefox tick"></td><td class="safari tick"></td><td class="edge tick"></td></tr>
-					</table>
+					<div class="fragment"><a href="https://refactor.ez.codes">https://refactor-tractor.ez.codes</a></div>	
 
 					<div class="fragment">
 						<div>@ErinJZimmer</div>
