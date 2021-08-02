@@ -210,148 +210,47 @@ export const formatShortDate = (timestamp: number | string = ''): string => {
 };						
 					</code></pre>
 					<div class="notes">
-						we've decided we don't actually like the date-functions library, and we want to swap it for dayjs
-						look at the implementation to work out which paths to test
-						- this function can accept a number, a string, or nothing, so we'll want to test all of those
-						- we're passing the timestamp to new Date(), so what happens if we pass it something that isn't a date, or isn't
-						  a valid date (we could, of course just look up what's supposed to happen, but if we write the test then 
-							we can change the implementation however we like, and still be sure it works. plus the next person doesn't 
-							have to look it up)
-						- we're expecting some formatting to happen to our date, so we should check it works when we pass in a date
-						that's already formatted correctly, that it pads dates out to 2 digits, and that it removes padding from days
+						go to live code example
+
+						but would you really do all this?
+						- it depends
+						- it's a small bit of code, so it might be easier to just think it through
+						- dates are tricky & this was easier than going through the dayjs docs
+						- how much effort are the tests and how big is the risk of changing?
 					</div>
 				</section>
 
 				<section>
-					so how do we write these tests?
-					<pre><code>
-describe('formatShortDate', () => {
-	it('does ¯\\_(ツ)_/¯ when passed undefined, () => {
-		expect(formatShortDate()).toBe('¯\\_(ツ)_/¯')
-	})
-	})
-						 
-					</code></pre>
+					What about JSX?
+				</section>
+
+				<section>
 					<div class="notes">
-						- start at the simplest use case - passing in undefined
-						- write the test, but leave the expectations empty. or use shruggy guy. unless your code might actually return 
-						shruggy guy
+						- imagine we've got the same thing, but in a component 
+						- two options: normal tests or snapshot tests
 					</div>
 				</section>
 
 				<section>
-					<pre>
-	Error: expect(<span style="color: var(--red)">received</span>).toBe(<span style="color: var(--green)">expected</span>) // Object.is equality
-
-	Expected: "¯\\_(ツ)_/¯"
-	Received: ""
-					</pre>
-					<div class="notes">
-						the test will fail, and tell us what the code actually does, and we can plug that into our expectation
-					</div>
+					demo normal tests 
 				</section>
 
 				<section>
-					<pre><code>
-describe('formatShortDate', () => {
-	it('returns an empty string when passed undefined, () => {
-		expect(formatShortDate()).toBe('')
-	})
-	})						 
-					</code></pre>
-					<div class="notes">
-						and we have our first characterisation test complete!
-					</div>
+					describe snapshot tests 
 				</section>
 
 				<section>
-					<pre><code>
-it('does ¯\\_(ツ)_/¯ when passed something that isn\'t a date', () => {
-expect(formatShortDate('abc')).toBe('¯\\_(ツ)_/¯')
-})
-
-it('does ¯\\_(ツ)_/¯ when passed an invalid date', () => {
-expect(formatShortDate('2021-02-31')).toBe('¯\\_(ツ)_/¯')
-})
-
-it('does ¯\\_(ツ)_/¯ when passed a date string with numbers below 10', () => {
-expect(formatShortDate('2021-01-01')).toBe('¯\\_(ツ)_/¯')
-})
-
-it('does ¯\\_(ツ)_/¯ when passed a date with numbers above 10', () => {
-expect(formatShortDate('2021-10-10')).toBe('¯\\_(ツ)_/¯')
-})
-
-it('does ¯\\_(ツ)_/¯ when passed a number', () => {
-expect(formatShortDate(1614636989891)).toBe('¯\\_(ツ)_/¯')
-})
-						 
-					</code></pre>
-					<div class="notes">
-						then we do the same thing for all our other scenarios
-						all of those tests will fail, and tell us what really happens
-						then we can update those tests, and we have a full test suite that describes the
-						current behaviour of the system
-					</div>
+					demo snapshot tests 
 				</section>
 
 				<section>
-					<pre><code>
-	describe('formatShortDate', () => {
-		it('returns nothing when passed nothing', () => {
-			expect(formatShortDate()).toBe('')
-		})
-		
-		it('throws an error when passed something that isn\'t a date', () => {
-			expect(() => formatShortDate('abc')).toThrow(RangeError)
-		})
-		
-		it('converts an invalid date into a valid one', () => {
-			expect(formatShortDate('2021-02-31')).toBe('2021-03-3')
-		})
-		
-		it('pads months to two characters, but not days', () => {
-			expect(formatShortDate('2021-01-01')).toBe('2021-01-1')
-		})
-		
-		it('doesn\'t change a date which is already in the correct format', () => {
-			expect(formatShortDate('2021-10-10')).toBe('2021-10-10')
-		})
-		
-		it('converts a number into the correct format', () => {
-			expect(formatShortDate(1614637515126)).toBe('2021-03-1')
-		})
-	})							 
-						</code></pre>
+					snapshot tests cautionary tale 
 				</section>
 
 				<section>
-					<pre><code>
-						<div class="notes">
-							once we've got our tests in place, we can perform the actual refactor
-
-							and then we can go and do whatever else it was that we wanted to do with the code
-							
-							you might be thinking, this example is kind of contrived. would we really write so many
-							tests for such a short bit of code?
-							I probably wouldn't. The code isn't doing much beyond what the browser API/library are already doing,
-							and it's very easy to see what's going on. Importantly though, this code isn't mission critical. If
-							the dates ended up formatted with padding zeroes on the days, it would be fine. However, if the 
-							guard was broken, the dates returned would be incorrect, so I'd proabbly write that test.
-
-							The important thing is, as always, you need to think about the context of the code you're writing, 
-							and what risks you're taking on vs how much it costs to write the tests.
-
-							Oh, and the really important thing for this talk is that you get how to write characterisation tests.
-
-							Next up, let's look at a slightly more complicated scenario 	
-						</div>
-					</code></pre>
+					when snapshot tests are't going to work
 				</section>
 
-				<section>
-					characterisation tests in JSX
-				</section>
 
 				<section>
 					<pre><code>

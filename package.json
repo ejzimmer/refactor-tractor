@@ -48,17 +48,27 @@
   },
   "jest": {
     "transform": {
-      ".(ts)": "ts-jest"
+      ".(ts|tsx)": "ts-jest"
     },
-    "testRegex": "(/examples/.*|\\.(test|spec))\\.(ts|js)$",
+    "testEnvironment": "jsdom",
+    "testRegex": "example_.*\\.tsx?$",
     "moduleFileExtensions": [
       "ts",
-      "js"
+      "js",
+      "tsx"
     ]
   },
   "license": "MIT",
   "dependencies": {
+    "@babel/preset-env": "^7.14.9",
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "babel-jest": "^27.0.6",
     "date-fns": "^2.23.0",
-    "dayjs": "^1.10.6"
+    "dayjs": "^1.10.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-test-renderer": "^17.0.2"
   }
 }
