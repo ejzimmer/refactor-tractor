@@ -225,6 +225,18 @@ export const formatShortDate = (timestamp: number | string = ''): string => {
 				</section>
 
 				<section>
+					<pre><code>
+function DayOfTheWeekWidget({ date = '' }: { date?: string | number }) {
+	if (!date) {
+		return <div>No date entered</div>
+	}
+
+	const formattedDate = formatShortDate(date)
+	const dayOfTheWeek = format(new Date(date), 'EEEE')
+
+	return <div>{formattedDate} is a {dayOfTheWeek}</div>
+}						
+					</code></pre>
 					<div class="notes">
 						- imagine we've got the same thing, but in a component 
 						- two options: normal tests or snapshot tests
