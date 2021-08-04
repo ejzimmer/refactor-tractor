@@ -240,19 +240,36 @@ function DayOfTheWeekWidget({ date = '' }: { date?: string | number }) {
 					<div class="notes">
 						- imagine we've got the same thing, but in a component 
 						- two options: normal tests or snapshot tests
+
+						- normal tests demo
 					</div>
 				</section>
 
 				<section>
-					demo normal tests 
+					Snapshot Tests 
 				</section>
 
 				<section>
-					describe snapshot tests 
-				</section>
+					<pre><code>
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-				<section>
-					demo snapshot tests 
+exports[`DayOfTheWeekWidget renders ?? when passed an empty string 1`] = `
+<div>
+	<div>
+		No date entered
+	</div>
+</div>
+`;
+</code></pre>
+					<div class="notes">
+						- first run: create snapshot 
+						- subsequent runs, compare to snapshot
+
+						Demo 
+						- write snapshot tests 
+						- show snapshot being written & in folder
+						- refactor to dayjs (new format is 'dddd')
+					</div>
 				</section>
 
 				<section>

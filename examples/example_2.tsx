@@ -1,9 +1,8 @@
 import React from 'react'
 import format from 'date-fns/format'
 import { formatShortDate } from './example_1'
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-
 
 function DayOfTheWeekWidget({ date = '' }: { date?: string | number }) {
   if (!date) {
