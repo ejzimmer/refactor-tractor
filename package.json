@@ -51,7 +51,7 @@
       ".(ts|tsx)": "ts-jest"
     },
     "testEnvironment": "jsdom",
-    "testRegex": "example_.*\\.tsx?$",
+    "testRegex": "examples/.*\\.tsx?$",
     "moduleFileExtensions": [
       "ts",
       "js",
