@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmationModal matches the snapshot 1`] = `
+<div>
+  <div>
+    <p>
+      Can we fix it?
+    </p>
+    <div>
+      <button>
+        Yes, we can!
+      </button>
+      <a
+        href="#"
+      >
+        No, we can't
+      </a>
+    </div>
+  </div>
+</div>
+`;

@@ -1,11 +1,11 @@
-import format from 'date-fns/format';
+import moment from 'moment'
 
 export const formatShortDate = (timestamp: string | number = ''): string => {
 	if (!timestamp) {
 		return '';
 	}
 
-	return format(new Date(timestamp), 'yyyy-MM-d');  
+  return moment(timestamp).format('yyyy-MM-D')
 };
 
 describe('formatShortDate', () => {
@@ -14,11 +14,11 @@ describe('formatShortDate', () => {
   })
 
   it('throws a RangeError when passed a string which isn\'t a date', () => {
-    expect(() => formatShortDate('foo')).toThrow(RangeError)
+    expect(formatShortDate('foo')).toBe('Invalid date')
   })
 
-  it('converts an invalid date into a valid one', () => {
-    expect(formatShortDate('2020-02-31')).toBe('2020-03-2')
+  it('fails when the input date is invalid', () => {
+    expect(formatShortDate('2020-02-31')).toBe('Invalid date')
   })
   
   it('pads months to two digits, but not days', () => {
@@ -29,15 +29,15 @@ describe('formatShortDate', () => {
     expect(formatShortDate('2020-02-3')).toBe('2020-02-3')
   })
 
-  it('does ?? when passed a number', () => {
+  it('creates a formatted date when passed a number', () => {
     expect(formatShortDate(1627716427528)).toBe('2021-07-31')
   })
 
-  it('does ?? when passed a negative number', () => {
+  it('creates a formatted date when passed a negative number', () => {
     expect(formatShortDate(-1627716427528)).toBe('1918-06-4')
   })
 
-  it('does ?? when passed 0', () => {
+  it('returns an empty string when passed 0', () => {
     expect(formatShortDate(0)).toBe('')
   })
 })

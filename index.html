@@ -142,9 +142,29 @@
 					<img class="zoidberg" src="images/zoidberg-knitting.gif" alt="">
 				</section>
 
-				<section>when should I refactor my code?</section>
+				<section>what is refactoring? </section>
 
 				<section>
+					example of IDE refactoring code
+					splitting class or function into smaller pieces 
+					renaming things 
+					moving repeated code into reusable functions 
+					mention the refactoring book and its long index of refactors 
+				</section>
+
+				<section>
+					when to refactor?
+					everything is tradeoffs
+					refactoring is very satisfying and can provide a lot of value
+					- faster development (easier to work in parallel, get people up to speed faster, easier to understand code)
+					- more confidence because it's easier to understand the code, easier to have better test coverage
+					but there are downsides
+
+					put the damn socialite time period picker code
+				</section>
+
+				<section>
+					refactoring is inherently risky - you might break something
 					<img src="images/refactor-haiku.png" />
 					<a href="https://twitter.com/erinfranmc/status/1182313928539418624">https://twitter.com/erinfranmc/status/1182313928539418624</a>
 					<div class="notes">
@@ -157,28 +177,55 @@
 				</section>
 
 				<section>
-					two situations where i would refactor
-					<ol>
-						<li>there's a bug and i'm trying to fix it</li>
-						<li>i need to add a new feature, and I can't do it without touching this code</li>
-					</ol>
-					which is really just one reason 
-					<div>i need to touch the code for some other reason</div>
-					<div class="notes">
-						michael feathers: 
-							- redesigning the system (which is really just refactoring at a higher level)
-							- optimisation, which is like fixing a bug (the thing doesn't work how we want)
-						and definitely riff on the 4 reasons to leave home advertising for this one
-					</div>
+					or you might fix something! 
+					unexpected change can be bad, depending on your product/industry
 				</section>
 
 				<section>
-					1. do the refactor, ensuring no behaviour changes
-					2. make the change
+					refactoring isn't free 
+					is there something more valuable you could be doing with your time? 
+					a day of refactoring is nice for you, but the users don't notice it
 				</section>
 
 				<section>
-					how do I ensure I haven't changed anything?
+					there's no magic answer - you have to weigh up the risks, cost and value yourself
+					as a rule though, i only refactor code that i'm either touching immediately, or that 
+					i know someone is going to touch very soon 
+					ie the value is certain
+					scrolled past the damn socialite code for 2 months without refactoring it because 
+					it worked, and there was no value in changing it
+				</section>
+
+				<section>
+					so you've decided to refactor
+
+					you've spent 3 days fighting bugs because you keep forgetting moment dates are mutable 
+					the library was deprecated x years ago and is probably full of security issues
+					it's time to replace it with dayjs 
+
+					value is high - date stuff is going to be easier in the future + security patches whatever 
+					cost is relatively low because this codebase has wrapper functions around the calls to 
+					format, so we only need to change half a dozen wrapper functions instead of updating every single 
+					date in the app!
+				</section>
+
+				<section>
+					the date function
+
+					so how do we manage the risk?
+				</section>
+
+				<section>
+					1. use testing to determine the current behaviour of the system 
+					2. do the refactor, using the tests to ensure the behaviour doesn't change 
+					3. make changes (in this case nothing - the refactor is the entire point)
+				</section>
+
+				<section>
+					use a special kind of test: characterisation tests. whathisname and his book.
+					even if your codebase already has good test coverage, you might want to consider adding 
+					some characterisation tests
+					if your codebase doesn't have good test coverage, you definitely want some of these.
 				</section>
 
 				<section>
@@ -278,166 +325,21 @@ exports[`DayOfTheWeekWidget renders ?? when passed an empty string 1`] = `
 
 				<section>
 					when snapshot tests aren't going to work
-				</section>
 
-
-				<section>
-					<pre><code>
-	const LendingLink = ({ customerToken, routingCategory }: Props) => {
-		if (routingCategory !== '[BORROWING_CASH]' || !customerToken) {
-			return null;
-		}
-		
-		return (
-			<>
-				<StyledDt>Lending Page</StyledDt>
-				<StyledDd>
-					<a
-						href={`/customer/${customerToken}/lending`}
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						[Lending Page]
-					</a>
-				</StyledDd>
-			</>
-		);
-	};
-						 
-					</code></pre>
-					<div class="notes">
-						describe what the code does
-					</div>
+					embed the example here so i can demo the enter + space
 				</section>
 
 				<section>
-					<pre><code>
-describe('LendingLink', () => {
-	const getTitle = () => screen.queryByText('Lending Page')
-	
-	const setup = (customerToken: string, routingCategory: string) => 
-		render(
-				<LendingLink customerToken={customerToken} routingCategory={routingCategory} />3
-		)
-	}
-	
-	it('displays ¯\_(ツ)_/¯ if routing category isn\'t BORROWING_CASH', () => {
-		setup('C_12345', 'BAD_ROUTING_CATEGORY')
-		expect(getTitle()).toBe('¯\_(ツ)_/¯')
-	})
-	
-	it('displays ¯\_(ツ)_/¯ if customer token is blank', () => {
-		setup('', 'BORROWING_CASH')
-		expect(getTitle()).toBe('¯\_(ツ)_/¯')
-	})
-	
-	it('displays ¯\_(ツ)_/¯ with a valid routing category and customer token', () => {
-		setup('C_234567', 'BORROWING_CASH')
-		expect(getTitle()).toBe('¯\_(ツ)_/¯')
-	})
-})						 
-					</code></pre>
-					should probably show how these fail
-					<div class="notes">
-						we can write tests using queries, just like we would in any other situation
-					</div>
+					Snapshot tests 
+						- when the HTML isn't going to change 
+
+					Query tests 
+						- when the HTML is going to change
+						- when testing behaviour not reflected in HTML
 				</section>
 
 				<section>
-					<pre><code>
-describe('LendingLink', () => {
-	const getTitle = () => screen.queryByText('Lending Page')
-	
-	const setup = (customerToken: string, routingCategory: string) => {
-		render(
-				<LendingLink customerToken={customerToken} routingCategory={routingCategory} />
-		)
-	}
-	
-	it('doesn\'t display if routing category isn\'t BORROWING_CASH', () => {
-		setup('C_12345', 'BAD_ROUTING_CATEGORY')
-		expect(getTitle()).not.toBeInTheDocument()
-	})
-	
-	it('doesn\'t display if customer token is blank', () => {
-		setup('', 'BORROWING_CASH')
-		expect(getTitle()).not.toBeInTheDocument()
-	})
-	
-	it('displays the link', () => {
-		setup('C_234567', 'BORROWING_CASH')
-		expect(getTitle()).toBeInTheDocument()
-	})
-})
-					</code></pre>
-					<div class="notes">
-						then we can figure out our passing tests
-					</div>
-				</section>
-
-				<section>
-					but also snapshot tests are a thing. 
-					what even are snapshot tests.
-				</section>
-
-				<section>
-					<pre><code>
-describe('LendingLink', () => {
-
-	const setup = (customerToken: string, routingCategory: string) => {
-			const { asFragment } = render(
-					<LendingLink customerToken={customerToken} routingCategory={routingCategory} />
-			)
-			return asFragment
-	}
-
-	it('doesn\'t display if routing category isn\'t BORROWING_CASH', () => {
-			const fragment = setup('C_12345', 'BAD_ROUTING_CATEGORY')
-			expect(fragment()).toMatchSnapshot()
-	})
-
-	it('doesn\'t display if customer token is blank', () => {
-			const fragment = setup('', 'BORROWING_CASH')
-			expect(fragment()).toMatchSnapshot()
-	})
-	
-	it('displays the link', () => {
-			const fragment = setup('C_234567', 'BORROWING_CASH')
-			expect(fragment()).toMatchSnapshot()
-	})
-})					 
-					</code></pre>
-					highlight the different setup and stuff
-					<div class="notes">
-						don't even need the whole two-step process. snapshots are just it
-					</div>
-				</section>
-
-				<section>
-					we want to change the styling, but leave the HTML alone,
-					then a snapshot test is going to be nice and quick
-					check whether it changes the class name for the styled components
-				</section>
-
-				<section>
-					we want to change the HTML structure because the page isn't set up as a definition list anymore 
-					snapshot tests are going to be a bit rubbish for that, use queries
-				</section>
-
-				<section>
-					// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`UpperLimitOverrideConfirmationDialog UpperLimitOverrideConfirmationDialog can render 1`] = `<DocumentFragment />`;
-
-					snapshot tests gotcha: empty snapshot!
-					<div class="notes">
-						Again, this is a pretty simplified example, so next let's have a look at something a bit more complex
-						(not something from the real world because these code samples are from the real world)
-					</div>
-				</section>
-
-				<section>
-					intro to socialite
+					intro to big example
 				</section>
 
 				<section>

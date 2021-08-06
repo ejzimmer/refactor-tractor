@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DayOfTheWeekWidget renders ?? when passed a Tuesday 1`] = `
+<div>
+  <div>
+    2021-08-3
+     is a 
+    Tuesday
+  </div>
+</div>
+`;
+
+exports[`DayOfTheWeekWidget renders ?? when passed an empty string 1`] = `
+<div>
+  <div>
+    No date entered
+  </div>
+</div>
+`;
+
+exports[`DayOfTheWeekWidget renders ?? when passed the number 0 1`] = `
+<div>
+  <div>
+    No date entered
+  </div>
+</div>
+`;
