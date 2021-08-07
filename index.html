@@ -267,16 +267,13 @@ function DayOfTheWeekWidget({ date = '' }: { date?: string | number }) {
 	}
 
 	const formattedDate = formatShortDate(date)
-	const dayOfTheWeek = format(new Date(date), 'EEEE')
+	const dayOfTheWeek = format(new Date(date), 'dddd')
 
 	return <div>{formattedDate} is a {dayOfTheWeek}</div>
-}						
-					</code></pre>
+}
+											</code></pre>
 					<div class="notes">
-						- imagine we've got the same thing, but in a component 
-						- two options: normal tests or snapshot tests
-
-						- normal tests demo
+						- continuing with our moment to dayjs refactor, we can take the same approach as before...
 					</div>
 				</section>
 
@@ -318,6 +315,87 @@ exports[`DayOfTheWeekWidget renders ?? when passed an empty string 1`] = `
 				</section>
 
 				<section>
+					<div>
+						<button id="open-modal">Open modal</button>
+						<div id="modal" style="opacity: 0">
+							<p>Can we fix it?</p>
+							<div>
+								<button id="confirm-button" onClick={onConfirm}>Yes, we can!</button>
+								<a id="cancel-button" onClick={handleCancel} onKeyDown={handleSpace} href="#">No, we can't</a>
+							</div>
+						</div>
+						<script>
+							const openModal = document.getElementById('open-modal')
+							const modal = document.getElementById('modal')
+							const confirmButton = document.getElementById('confirm-button')
+							const cancelButton = document.getElementById('cancel-button')
+
+							openModal.addEventListener('click', () => {	
+								modal.style.opacity = 1
+							})
+							confirmButton.addEventListener('click', () => {
+								modal.style.opacity = 0
+							})
+							cancelButton.addEventListener('click', (event) => {
+								modal.style.opacity = 0
+								event.preventDefault()
+							})
+						</script>	
+					</div>
+				</section>
+
+				<section>
+<pre><code class="jsx">
+	export function ConfirmationModal({ onConfirm, onCancel }) {
+	
+		const handleCancel = (event) => {
+			event.preventDefault();
+			onCancel();	
+		}
+	
+		const handleSpace = (event) => {
+			const keyPressed = event.code
+			if (keyPressed === 'Space') {
+				handleCancel(event);
+			}
+		}
+		
+		return (
+			<div>
+				<p>Can we fix it?</p>
+				<div>
+					&lt;button onClick={onConfirm}>Yes, we can!</button>
+					&lt;a
+						onClick={handleCancel} 
+						onKeyDown={handleSpace} 
+						href="#"
+					&gt;No, we can't</a>
+				</div>
+			</div>
+		)
+	}					
+</code></pre>
+				<div class="notes">
+					- look at example with snapshot test 
+					problems
+						- we need to change the HTML, which is going to cause the snapshot test to fail
+						- its only testing the render, not the actual behaviour
+						- can't test the behaviour because it's not causing the render to change 
+					outcome
+						- use query tests to test behaviour 
+						- use correct semantic HTML and throw out a heap of code & tests
+						  (we don't need tests when we use semantic HTML because we meet the standard 
+							by default. if the standard changes, the behaviour of our app will too, which 
+							is what we want. but also, the behaviour will just work in unknown media eg 
+							touch screens, non-standard inputs)
+				</div>				
+				</section>
+
+				<section>
+					the refactored code but we'll need to put in the styling to make it match
+				</section>
+
+				<section>
 					Snapshot tests 
 						- when the HTML isn't going to change 
 
@@ -327,28 +405,29 @@ exports[`DayOfTheWeekWidget renders ?? when passed an empty string 1`] = `
 				</section>
 
 				<section>
-					intro to big example
+					intro to ye olde farm shop
+					but go on, put a thorn in and explain the y thing
 				</section>
 
 				<section>
 					new requirements!
 
-					Add stocks to payment type radio buttons
-Change label of amount field to show stocks + stocks limit
-Don’t do currency conversion when stocks amount is updated
-Show stocks limit in maximum amount per payment switch
-Show calendar year amount override switch in USD
-Call new stocks API
-Update amount paid in session to also show stocks
-Don’t show the BTC conversion widget when stocks are selected
-
+					- Add plant product type to radio buttons
+					- Show plant unit price + total price in label 
+					- Calculate postage for plants
 <div class="notes">
-	this is a pretty hefty bit of work that we probably don't want to do all in one go 
-	could use a feature flag to hide the new radio button while we develop everything else
-	but this is a 45-minute talk, ain't got no time for feature flags, we're just going to start by
-	building the second thing, and rely on our automated tests to tell us if we've got things right, 
-	rather than testing locally in an actual browser
+	- not a huge bit of work, but it's nice to be able to break it down, especially as we'll need to write 
+		some tests to cover the existing behaviour and the PR could get quite big 
+	- instead we'll do each step individually, but not in the order they're given here: the new radio button 
+	  relies on the other two things, so we can't merge it until those are complete, so let's do the other two 
+		first
 </div>
+				</section>
+
+				<section>
+					1. Show plant unit price + total price in label 
+					2. Calculate postage for plants 
+					3. Add new radio button
 				</section>
 
 				<section>
