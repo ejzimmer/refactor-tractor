@@ -1,5 +1,5 @@
 import React from 'react'
-import format from 'date-fns/format'
+import moment from 'moment'
 import { formatShortDate } from './example_1'
 import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
@@ -11,7 +11,7 @@ function DayOfTheWeekWidget({ date = '' }: { date?: string | number }) {
   }
 
   const formattedDate = formatShortDate(date)
-  const dayOfTheWeek = format(new Date(date), 'EEEE')
+  const dayOfTheWeek = moment(date).format('dddd')
 
   return <div>{formattedDate} is a {dayOfTheWeek}</div>
 }

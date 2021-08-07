@@ -1,11 +1,11 @@
-import format from 'date-fns/format';
+import moment from 'moment';
 
 export const formatShortDate = (timestamp: string | number = ''): string => {
 	if (!timestamp) {
 		return '';
 	}
 
-	return format(new Date(timestamp), 'yyyy-MM-d');
+	return moment(timestamp).format('yyyy-MM-D');
 };
 
 describe('formatShortDate', () => {

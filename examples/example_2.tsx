@@ -10,7 +10,7 @@ function DayOfTheWeekWidget({ date = '' }: { date?: string | number }) {
   }
 
   const formattedDate = formatShortDate(date)
-  const dayOfTheWeek = format(new Date(date), 'EEEE')
+  const dayOfTheWeek = format(new Date(date), 'dddd')
 
   return <div>{formattedDate} is a {dayOfTheWeek}</div>
 }

@@ -229,42 +229,30 @@
 				</section>
 
 				<section>
-					characterisation tests
-					<div class="notes">
-						put the shine effect on this for surprise
-						and put a reference in to the book
-						also probably read the book
-						also maybe mention that we're talking about a code base where the test coverage isn't 100%
-					</div>
+					normal test. 
+					invariable behaviour encoded in test 
+					write code until the test passes 
+
+					or, if you don't do TDD
+					write some code 
+					write your test 
+					go back and change your code until the test passes 
+					consider your life choices and how much time you would have saved if you just wrote the test first 
 				</section>
 
 				<section>
-					- assume the code is correct. DON'T CHANGE THE CODE
-					- use tests to determine what the actual behaviour of the code is`
-					- then the tests form documentation of the code yay
-				</section>
+					characterisation test 
+					invariable behaviour encoded in code 
+					change the tests until they pass 
 
-				<section>
-					<pre><code>
-import format from 'date-fns/format';
+					do the live code example 
+					you'll have to decide what to do about the difference in behaviour between the libraries
 
-export const formatShortDate = (timestamp: number | string = ''): string => {
-	if (!timestamp) {
-		return '';
-	}
-
-	return format(new Date(timestamp), 'yyyy-MM-d');
-};						
-					</code></pre>
-					<div class="notes">
-						go to live code example
-
-						but would you really do all this?
-						- it depends
-						- it's a small bit of code, so it might be easier to just think it through
-						- dates are tricky & this was easier than going through the dayjs docs
-						- how much effort are the tests and how big is the risk of changing?
-					</div>
+					but would you really do all this?
+					- it depends
+					- it's a small bit of code, so it might be easier to just think it through
+					- dates are tricky & this was easier than going through the dayjs docs
+					- how much effort are the tests and how big is the risk of changing?
 				</section>
 
 				<section>
