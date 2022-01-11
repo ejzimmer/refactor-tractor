@@ -98,8 +98,8 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<section class="title"  data-background-size="contain" data-background-position="-150px 0">
-					<h1>Getting on the refactor tractor</h1>
+				<section class="title" data-background-image="images/img_hero.jpg">
+					<h1 style="width: 50%;font-size: 3em">Getting on the refactor tractor</h1>
 				</section>
 
 				<section class="intro">
@@ -244,6 +244,8 @@
 					characterisation test 
 					invariable behaviour encoded in code 
 					change the tests until they pass 
+
+					important point in both cases: we change the code OR we change the tests, never both
 
 					do the live code example 
 					you'll have to decide what to do about the difference in behaviour between the libraries
@@ -428,241 +430,106 @@ exports[`DayOfTheWeekWidget renders ?? when passed an empty string 1`] = `
 					1. Show plant unit price + total price in label 
 					2. Calculate postage for plants 
 					3. Add new radio button
-				</section>
 
-				<section>
-					updated label needs to look like
-					Stocks Amount <amount in input> (min $<stocks min>, max $<stocks max>)
-<div class="notes">
-	we can implement this and be pretty sure that it's going to look ok, without needing to actually look at it
-	but...
-</div>
-				</section>
-
-				<section>
-					...the current code looks like ... 
-					separate labels for each option. actually maybe even separate inputs
 					<div class="notes">
-						it's relying on bits of state from all over the component
-						how are we going to test it without writing the radio button part first?
+						update label - do live code 
+						- note the repeated code & logic all over the place
+						- wouldn't it be simpler if it was all encapsulated in a single component?
+						- write tests for seed & seedling that select the product from radio button 
+						- create new component, figure out what the props are, simplify the code 
+						- plug in new component and check the tests still work
+						- copy existing tests over and simplify for new component 
+						- write test for new functionality 
+						- write new functionality 
+						- what do we do with the old test? well, we probably want one that checks that the label is hooked up right 
+						  ie if i click the radio button, the label changes
 					</div>
 				</section>
 
 				<section>
-					Create a new component!
-					<pre><code>
-						export default function AmountLabel({currency, amount, minAmount, maxAmount}: Props) {
-  
-							...
-					 
-						return <label htmlFor="amount">{currency} Amount {amount} (min {minAmount}, max {maxAmount})</label>
-					 
-					 }
-					 
-					</code></pre>
+					What we just did 
+					1. wrote characterisation tests for existing behaviour (so we're confident we know what the code should do)
+					2. refactored into new component (so it's easier to work with)
+					3. tested new component with existing tests (so we're sure our refactor was successful)
+					4. refactored tests (so they're easier to work with)
+					5. wrote tests for new feature (because TDD)
+					6. wrote new feature (yay!)
+				</section>
+
+				<section>
+					<strike>1. Show plant unit price + total price in label</strike>
+					2. Calculate postage for plants 
+					3. Add new radio button
 					<div class="notes">
-						creating a whole new component feels like a risky change though, so how do we do it safely?
+						- write tests for current postage behaviour - it's complicated!
+							- when product type is seed, when it changes to seedling, when count changes & its seed,
+							  when count changes and its seedling
+						- extract JSX to new component & simplify
+						- extract to new hook 
+						- write hook tests 
+						- write tests for new component 
+						- delete the old tests
 					</div>
 				</section>
 
 				<section>
-					1. write characterisation tests for current behaviour of the label
-					2. refactor into a new label component, and ensure the behaviour is unchanged
-					3. write tests for our new functionality
-					4. write the new functionality
-				</section>
-
-				<section>
-					Step 1. Test the existing functionality
-					<pre><code>
-it('shows ¯\\_(ツ)_/¯ when the currency is USD', ...)
-it('shows ¯\\_(ツ)_/¯ when the currency is Bitcoin', ...)
-it('shows ¯\\_(ツ)_/¯ when the amount changes', ...)
-it('show ¯\\_(ツ)_/¯ when the upper limit changes', ...)
-					</code></pre>
-
-				</section>
-
-				<section>
-					Step 2. Extract the functionality into a component
-					<pre><code>
-						<AmountLabel
- currency={this.state.currency}
- amount={this.state.amount}
- minAmount={LOWER_LIMIT[this.state.currency]}
- maxAmount={this.state.upperLimit}
-/>
-
-					</code></pre>
-				</section>
-
-				<section>
-					Step 2 (cont). Extract the functionality into a component
-					<pre><code>
-						export default function AmountLabel({currency, amount, lowerLimit, upperLimit}: Props) {
-							const getLabelText = (): string => {
-								switch (currency) {
-									case PayoutCurrency.USD:
-										return `USD Amount ${amount.toLocaleString()} (min $${lowerLimit}, max $${upperLimit})`
-									case PayoutCurrency.BTC:
-										return `Satoshi Amount ${formatNumber(amount)} (min ${formatNumber(
-											lowerLimit
-										)} satoshi, max ${formatNumber(upperLimit)} satoshi)`
-									default:
-										return "Amount"
-								}
-							}
-						 
-							return <label htmlFor="amount">{getLabelText()}</label>
-						 
-						 }
-						 
-					</code></pre>
-				</section>
-
-				<section>
-					Step 3a. Write tests for our new functionality.
-
-					Maybe we want to refactor our existing tests a bit first
-				</section>
-
-				<section>
-					Step 3b. Actually write our tests
-				</section>
-
-				<section>
-					Step 4. Add the new functionality
-				</section>
-
-				<section>
-Add stocks to payment type radio buttons
-<s>Change label of amount field to show stocks + stocks limit</s>
-Don’t do currency conversion when stocks amount is updated
-Show stocks limit in maximum amount per payment switch
-Show calendar year amount override switch in USD
-Call new stocks API
-Update amount paid in session to also show stocks
-Don’t show the BTC conversion widget when stocks are selected
-
+					<strike>1. Show plant unit price + total price in label</strike>
+					<strike>2. Calculate postage for plants</strike>
+					3. Add new radio button
 					<div class="notes">
-						sweet, so that's one thing crossed off the list
-						the next thing literally says _don't_ do a thing, so we shouldn't have to do anything, right?
+						- one other small refactor before moving on
 					</div>
 				</section>
 
 				<section>
-					<pre><code>
-						private convertAmountCents(
- amountCents: number,
- sourceCurrency: string,
- convertedAmountCents: { [customerRegion: string]: number }
-) {
- // Do not send request when amountCents == 0
- if (amountCents == 0) {
-   for (const customerRegion in convertedAmountCents) {
-     convertedAmountCents[customerRegion] = 0
-   }
-   this.setState({
-     convertedAmountCents: convertedAmountCents
-   })
-   return
- }
+					CountLabel and the input are closely related implicitly 
+					CountLabel explicitly depends on count, but implicitly depends on the id of the input 
+					also, different levels of abstraction 
+					I would put them into a component together
+				</section>
 
- // Do not send request when currency == BTC
- if (sourceCurrency == "BTC") return
-					</code></pre>
+				<section>
+					<strike>1. Show plant unit price + total price in label</strike>
+					<strike>2. Calculate postage for plants</strike>
+					3. Add new radio button
 					<div class="notes">
-						the code checks for BTC and returns early, rather than checking for the existence of USD and doing the thing
+						which just leaves one last thing
+						radio button is already its own component, which is nice 
+						we're changing the code, so let's write some tests 
+						- each possible scenario because each thing is its own bit of code
+						- once we have the tests we can refactor it so there's just one bit of code no matter the product 
+						- then we don't need all those tests, because the same bit of code is executing no matter than config
+						finally, we can add our new product type
+						- we could write tests, but we're not really testing anything other than what's already there - test 
+						wouldn't really be adding value
 					</div>
 				</section>
 
 				<section>
-					<pre><code>if (sourceCurrency == "BTC" || sourceCurrency == "STOCKS") return</code></pre>
-					<div class="notes">
-						we could just add stocks to the btc check and be done with it
-						and, if we were in a hurry, maybe that's what we would do
-						but i like my code tested!
-					</div>
+					finished product
 				</section>
 
 				<section>
-<pre><code>
-	<NumericInput 
-		onValueChange={this.handleAmountChange}
-		min={0}
-		placeholder={"0"}
-		allowNumericCharactersOnly={true}
-		minorStepSize={null}
-		buttonPosition={"none"}
-		fill={true}
-	/>
-	{!this.isAmountValid(this.state.amountCents) && (
-		<label style={{ color: Colors.RED3 }}>Invalid Amount</label>
-	)}
-	{this.state.currency != "BTC" && 
-		this.state.convertedAmountCents.GBP >= 0 && (
-			<label style={{ color: Colors.GREEN3 }}>wavy equals pound sign{this.state.convertedAmountCents.GBP / 100}</label>
-		)
-	{this.state.currency != "BTC" && 
-		this.state.convertedAmountCents.GBP < 0 && (
-			<label style={{ color: Colors.RED3 }}>
-				Failed to convert amount to GBP, will pay UK customers in USD!
-			</label>
-		)}
-	)}
-</code></pre>
-					<div class="notes">
-						and this != BTC check actually happens in quite a few places, so it would be nice to clean it up a bit
-					</div>
-				</section>
+					what we did 
+					- wrote characterisation tests for existing functionality 
+					- broke existing features out into independent, testable components 
+					- refactored tests to specific components: leads to more valuable tests 
+					because they pinpoint the problem efficiently, but also keep some of the top 
+					level tests for testing integration between ProductTypeSelector and ProductCount 
+					(should probably improve the postage integration test)
+					- TDDed our new features easily, because components, existing tests etc 
+					- Merged components together that shared common concerns
 
-				<section>
-					go through same process 
-					characterisation tests, extract to component, refactor tests, add new functionality
-				</section>
-
-				<section>
-					characterisation tests
-				</section>
-
-				<section>
-					extract to component, that will look something like 
-					<pre><code>
-						<AmountInput currency={} minAmount={} maxAmount={} handleAmountUpdate={} />
-					</code></pre>
-					and if we think back to what we just did, we made a component like
-					<pre><code>
-						<AmountLabel
-						currency={this.state.currency}
-						amount={this.state.amount}
-						minAmount={LOWER_LIMIT[this.state.currency]}
-						maxAmount={this.state.upperLimit}
-					 />
-					 
-					</code></pre> 
-					and those are pretty similar
-					something something single responsibility principle
-					yadda yadda one reason to change 
-					these should be the same component
-				</section>
-
-				<section>
-					there's actually a fairly big chunk involved in moving this stuff
-					so should probably go through it step by step
-				</section>
-
-				<section>
-					when refactoring the tests, don't forget that we need to test that 
-					the handler gets called
+					- left with a nice modular app with tests that explain what each part does,
+					and each part only doing one thing
 				</section>
 
 				<section>
 					What did we learn?
-					- refactor code when we're touching it
-					- use characterisation tests to ensure we don't change functionality
-					- extract functionality into components to isolate and test 
-					- group similar concerns into components
-
+					- balance the cost, risk and value of refactoring before starting
+					- use characterisation tests to ensure we don't change functionality: change the test or the code, not both
+					- if a thing needs to be tested in isolation, it should be its own component/function 
+					- if things have implicit connections, they should be in the same component
 				</section>
 
 				<section class="end">
@@ -678,6 +545,7 @@ Don’t show the BTC conversion widget when stocks are selected
 					</style>
 
 					<div class="fragment"><a href="https://refactor.ez.codes">https://refactor-tractor.ez.codes</a></div>	
+					code example also
 
 					<div class="fragment">
 						<div>@ErinJZimmer</div>
