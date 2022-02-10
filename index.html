@@ -1,586 +1,820 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>Getting on the Refactor Tractor</title>
+    <title>Getting on the Refactor Tractor</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/moon.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/moon.css" />
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
-		<link rel="stylesheet" href="css/fonts.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap"
+      rel="stylesheet"
+    />
 
-		<script src="js/reveal.js"></script>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link")
+      link.rel = "stylesheet"
+      link.type = "text/css"
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css"
+      document.getElementsByTagName("head")[0].appendChild(link)
+    </script>
 
-		<style>
-			* {
-				box-sizing: border-box;
-			}
+    <script src="js/reveal.js"></script>
 
-			body {
-				--dark-blue: hsl(202, 69%, 15%);
-				--light-blue: #15A9DD;
-				--light-orange: hsl(19, 87%, 62%);
-				--dark-orange: hsl(24, 100%, 38%);
-				--light-red: hsl(0, 94%, 41%);
-				--red: #7B0001;
-				--shadow: hsl(202, 69%, 15%, .4);
-				--green: hsl(125, 94%, 41%);
-				--dark-green: hsl(125 94% 20%);
-				--gradient-start: hsl(259, 71%, 80%);
-				--gradient-end: hsl(265, 58%, 50%);
-				--yellow: #F2E34B;
-			}
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-			.notes {
-				display: none;
-			}
-			pre, .browser {
-				-moz-tab-size: 2;
-				border: 4px solid hsl(200, 10%, 55%);
-				border-top-width: 32px;
-				border-radius: 10px;
-				padding: .5em;
-				background: #272822;
-				box-shadow:
-					inset 2px 2px 1px black,
-					4px 4px 8px hsla(0, 0%, 20%, .3);
-				align-self: center;
-			}
-			pre code {
-				border-radius: 10px;
-				height: 100%;
-			}
+      body {
+        --dark-blue: hsl(202, 69%, 15%);
+        --light-blue: #15a9dd;
+        --light-orange: hsl(19, 87%, 62%);
+        --dark-orange: hsl(24, 100%, 38%);
+        --light-red: hsl(0, 94%, 41%);
+        --red: #7b0001;
+        --shadow: hsl(202, 69%, 15%, 0.4);
+        --green: hsl(125, 94%, 41%);
+        --dark-green: hsl(125 94% 20%);
+        --gradient-start: hsl(259, 71%, 80%);
+        --gradient-end: hsl(265, 58%, 50%);
+        --yellow: #f2e34b;
+      }
 
-			h1 {
-				font-size: 60px;
-			}
+      .notes {
+        display: none;
+      }
+      pre,
+      .browser {
+        -moz-tab-size: 2;
+        tab-size: 2;
+        border: 4px solid hsl(200, 10%, 55%);
+        border-top-width: 32px;
+        border-radius: 10px;
+        padding: 0.5em;
+        background: #272822;
+        box-shadow: inset 2px 2px 1px black, 4px 4px 8px hsla(0, 0%, 20%, 0.3);
+        align-self: center;
+      }
+      pre code {
+        border-radius: 10px;
+        height: 100%;
+      }
 
-			ul {
-				list-style-type: '\1f680';
-			}
-			li {
-				margin: .75em 0;
-				padding-left: .5em;
-			}
+      h1 {
+        font-size: 60px;
+      }
 
-			.shadow {
-				box-shadow: 1px 1px 4px hsla(0, 0%, 70%), 3px 3px 6px hsla(0, 0%, 70%);
-			}
+      ul {
+        list-style-type: "\1F69C";
+      }
+      li {
+        margin: 0.75em 0;
+        padding-left: 0.5em;
+      }
 
-			.reveal .slides > section.auto-height {
-				height: auto;
-			}
+      .shadow {
+        box-shadow: 1px 1px 4px hsla(0, 0%, 70%), 3px 3px 6px hsla(0, 0%, 70%);
+      }
 
-			.fragment.transient {
-				display: none;
-			}
-			.fragment.transient.current-fragment {
-				display: block;
-			}
+      .reveal .slides > section.auto-height {
+        height: auto;
+      }
 
-		</style>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
+      .fragment.transient {
+        display: none;
+      }
+      .fragment.transient.current-fragment {
+        display: block;
+      }
 
-				<section class="title" data-background-image="images/img_hero.jpg">
-					<h1 style="width: 50%;font-size: 3em">Getting on the refactor tractor</h1>
-				</section>
+      section.with-heading {
+        grid-template-rows: min-content;
+        align-content: center;
+        justify-content: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="title" data-background-image="images/img_hero.jpg">
+          <h1 style="width: 50%; font-size: 3em; margin: 0; text-align: left">
+            Getting on the refactor tractor
+          </h1>
+        </section>
 
-				<section class="intro">
-					<style>
-						.intro {
-							grid-template-rows: min-content min-content 60%;
-							align-content: center;
-						}
-						.intro a {
-							text-align: left;
-							align-self: center;
-							font-weight: bold;
-						}
-						.intro .zoidberg {
-							position: fixed;
-							left: 644px;
-							top: 379px;
-							border-radius: 62% 38% 63% 37% / 73% 52% 48% 27%;
-						}
+        <section>
+          <style>
+            .intro {
+              display: grid;
+              grid-template-columns: 1fr 1fr 2fr;
+              grid-template-rows: min-content 40% min-content;
+              text-align: left;
+              margin: auto;
+            }
+            .intro a {
+              font-weight: bold;
+              grid-column: 1 / -1;
+              margin-top: 50px;
+            }
+            .intro .zoidberg {
+              grid-row: 1 / 3;
+              grid-column: 3;
+              border-radius: 62% 38% 63% 37% / 73% 52% 48% 27%;
+            }
 
-						.intro .logos {
-							list-style: none;
-							display: grid;
-							grid-template-columns: 1fr 1fr;
-							max-width: 60%;
-							margin: 0;
-							grid-gap: 40px;
-							align-items: center;
-						}
-						.intro .logos li {
-							margin: 0;
-						}
-					</style>
-					<div style="justify-self: left; font-family: Futurama;">@ErinJZimmer</div>
-					<a href="https://layouts.ez.codes">https://layouts.ez.codes</a>
-					<ul class="logos">
-						<li><img src="images/cogent-logo.svg" alt=""></li>
-						<li><img src="images/gde-logo.png"></li>
-					</ul>
-					<img class="zoidberg" src="images/zoidberg-knitting.gif" alt="">
-				</section>
+            .intro .logos {
+              list-style: none;
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+              max-width: 60%;
+              margin: 0;
+              grid-gap: 40px;
+              align-items: center;
+              margin-top: 50px;
+            }
+            .intro .logos li {
+              margin: 0;
+            }
+          </style>
+          <div class="intro">
+            <div style="font-family: Futurama; grid-column: span 2">
+              @ErinJZimmer
+            </div>
+            <img class="zoidberg" src="images/zoidberg-knitting.gif" alt="" />
+            <img src="images/cogent-logo.svg" alt="" />
+            <img src="images/gde-logo.png" />
+            <a href="https://refactor-tractor.ez.codes"
+              >https://refactor-tractor.ez.codes</a
+            >
+          </div>
+        </section>
 
-				<section>what is refactoring? </section>
+        <section>
+          <ul style="margin: auto; margin-left: 0">
+            <li class="fragment">Refactoring: what & when?</li>
+            <li class="fragment">Refactoring OH&S tools</li>
+            <li class="fragment">What about JSX?</li>
+            <li class="fragment">Examples!</li>
+          </ul>
+          <img
+            src="images/Lakitu_750px.png"
+            style="position: fixed; width: 300px; top: 0; right: 0"
+          />
+        </section>
 
-				<section>
-					example of IDE refactoring code
-					splitting class or function into smaller pieces 
-					renaming things 
-					moving repeated code into reusable functions 
-					mention the refactoring book and its long index of refactors 
-				</section>
+        <section>
+          <style>
+            dl {
+              margin: auto;
+            }
 
-				<section>
-					when to refactor?
-					everything is tradeoffs
-					refactoring is very satisfying and can provide a lot of value
-					- faster development (easier to work in parallel, get people up to speed faster, easier to understand code)
-					- more confidence because it's easier to understand the code, easier to have better test coverage
-					but there are downsides
+            dt {
+              margin: 0 0 20px 0;
+              color: #002b36;
+              font-family: "League Gothic", Impact, sans-serif;
+              font-weight: normal;
+              line-height: 1.2;
+              font-size: 2em;
+              letter-spacing: normal;
+              text-transform: uppercase;
+              text-shadow: none;
+              word-wrap: break-word;
+            }
+          </style>
+          <dl>
+            <dt>What is refactoring?</dt>
+            <dd class="fragment">
+              Changing implementation without changing functionality
+            </dd>
+          </dl>
+          <img
+          src="images/1200px-Question_Block_Artwork_-_Super_Mario_3D_World.webp"
+        </section>
 
-					put the damn socialite time period picker code
-				</section>
+        <section>
+          <ul style="margin: auto">
+            <li class="fragment">renaming variables</li>
+            <li class="fragment">splitting up a long function</li>
+            <li class="fragment">factoring out repeated code</li>
+          </ul>
+        </section>
 
-				<section>
-					refactoring is inherently risky - you might break something
-					<img src="images/refactor-haiku.png" />
-					<a href="https://twitter.com/erinfranmc/status/1182313928539418624">https://twitter.com/erinfranmc/status/1182313928539418624</a>
-					<div class="notes">
-						no doubt this woman on twitter received a million recommendations of how she should have done better testing or something
-						but refactoring is inherently risky
-						not just that you can break stuff
-						you might inadvertedently change some behaviour (eg it might have been broken and you might accidently fix it)
-						changes can surprise users, might even break workflows
-					</div>
-				</section>
+        <section>
+          <img src="images/refactoring-book.jpg" />
+          <div class="notes">
+            the book on refactoring includes a list of "refactoring moves" -
+            language to talk about refactoring previous examples: - split phase
+            maybe - rename variable - extract function recommend reading the
+            book, latest edition is in JavaScript, so it's kind of relevant but
+            today we're going to look at the actual practicalities of applying
+            this stuff in a component-based environment (specifically react)
+          </div>
+        </section>
 
-				<section>
-					or you might fix something! 
-					unexpected change can be bad, depending on your product/industry
-				</section>
+        <section>
+          <dl style="margin: auto">
+            <dt>When should we refactor?</dt>
+            <dd class="fragment">When the benefits outweigh the cost</dd>
+          </dl>
+        </section>
 
-				<section>
-					refactoring isn't free 
-					is there something more valuable you could be doing with your time? 
-					a day of refactoring is nice for you, but the users don't notice it
-				</section>
+        <section>
+          <div style="margin: auto">
+            <h2>Benefits of refactoring</h2>
+            <ul>
+              <li class="fragment">Faster future development</li>
+              <li class="fragment">Less bugs</li>
+              <li class="fragment">FUN! 😍</li>
+            </ul>
+            <div class="notes">
+              the first one is the main one but refactoring also has some down
+              sides
+            </div>
+          </div>
+        </section>
 
-				<section>
-					there's no magic answer - you have to weigh up the risks, cost and value yourself
-					as a rule though, i only refactor code that i'm either touching immediately, or that 
-					i know someone is going to touch very soon 
-					ie the value is certain
-					scrolled past the damn socialite code for 2 months without refactoring it because 
-					it worked, and there was no value in changing it
-				</section>
+        <section>
+          <style>
+            .emoji-image {
+              margin: auto;
+              font-size: 6em;
+            }
+          </style>
+          <div class="emoji-image">🕰️</div>
+          <div class="notes">
+            refactoring takes time - is the time you spend refactoring going to
+            make up for the time you lose when you could be building new
+            features?
+          </div>
+        </section>
 
-				<section>
-					so you've decided to refactor
+        <section>
+          <div style="display: grid; align-content: center">
+            <img src="images/refactor-haiku.png" />
+            <a
+              style="font-size: 0.7em"
+              href="https://twitter.com/erinfranmc/status/1182313928539418624"
+              >https://twitter.com/erinfranmc/status/1182313928539418624</a
+            >
+          </div>
+          <div class="notes">
+            refactoring is inherently risky there are strategies to mitigate
+            this, which we're going to talk about today and i'm sure this woman
+            received advice from a thousand dude-bros about how she should have
+            just written tests but software systems are complicated, and if the
+            code was easy to understand, you probably wouldn't be considering
+            refactoring it and you don't just have to worry about creating new
+            bugs - you can also worry about removing existing ones
+          </div>
+        </section>
 
-					you've spent 3 days fighting bugs because you keep forgetting moment dates are mutable 
-					the library was deprecated x years ago and is probably full of security issues
-					it's time to replace it with dayjs 
+        <section>
+          <pre><code class="js" style="font-size: .7em; line-height: 1.4;">const handleTimePeriodChange = (event) => {
+  const today = new Date()
+  const days = event.currentTarget.value
+  switch (days) {
+    case 30:
+      return new Date().setDate(today.getDate() - 30)
+    case 60:
+      return new Date().setDate(today.getDate() - 60)
+    case 90:
+      return new Date().setDate(today.getDate() - 90)
+    case 180:
+      return new Date().setDate(today.getDate() - 180)
+    case 365:
+      return new Date().setDate(today.getDate() - 365)
+  }
+}</code></pre>
+          <div class="notes">
+            one of those monster components with like 1000 lines in it, had a
+            function like this bothers me, a lot but - it works - i wasn't
+            touching that part of the code, so there was no value in changing it
+            - time spent on that was time i could have spent elsewhere (maybe it
+            wouldn't have taken long to change, but it's quick things like this
+            that i tend to rush and overlook something and then end up breaking
+            things)
+          </div>
+        </section>
 
-					value is high - date stuff is going to be easier in the future + security patches whatever 
-					cost is relatively low because this codebase has wrapper functions around the calls to 
-					format, so we only need to change half a dozen wrapper functions instead of updating every single 
-					date in the app!
-				</section>
+        <section>
+          <img
+            style="position: fixed; width: 300px; bottom: 0; right: 0"
+            src="images/magic-bullet.png"
+          />
+          <div style="margin: auto">
+            <h2>I only refactor code if</h2>
+            <ul>
+              <li class="fragment">
+                I'm doing some other change at the same time
+              </li>
+              <li class="fragment">I know someone is about to make a change</li>
+            </ul>
+          </div>
+          <div class="notes">
+            i know the value is high, and the risk is lower because the code
+            isn't going to be changed and then forgotten about scrolled past
+            that nasty code for 2 months without changing it
+          </div>
+        </section>
 
-				<section>
-					the date function
+        <section>
+          <div class="inverse">
+            <h4>so you've decided to refactor...</h4>
+          </div>
+        </section>
 
-					so how do we manage the risk?
-				</section>
+        <section>
+          <div style="margin: auto">
+            <img
+              src="images/momentjs-logo-png-transparent.png"
+              style="width: 200px"
+            />
+            <div>Moment.js</div>
+          </div>
+          <div class="notes">
+            you're using moment and well, it's deprecated ok, it's not
+            deprecated exactly, but its use is discouraged for several reasons
+            in our case, we've just wasted 3 days fixing bugs due to mutable
+            dates also, we're not using moment directly in our code, so we only
+            need to make the change in one place
+          </div>
+        </section>
 
-				<section>
-					1. use testing to determine the current behaviour of the system 
-					2. do the refactor, using the tests to ensure the behaviour doesn't change 
-					3. make changes (in this case nothing - the refactor is the entire point)
-				</section>
+        <section>
+          <pre><code>
+function formatDate(date) {
+  if (!date) return ""
 
-				<section>
-					use a special kind of test: characterisation tests. whathisname and his book.
-					even if your codebase already has good test coverage, you might want to consider adding 
-					some characterisation tests
-					if your codebase doesn't have good test coverage, you definitely want some of these.
-				</section>
-
-				<section>
-					normal test. 
-					invariable behaviour encoded in test 
-					write code until the test passes 
-
-					or, if you don't do TDD
-					write some code 
-					write your test 
-					go back and change your code until the test passes 
-					consider your life choices and how much time you would have saved if you just wrote the test first 
-				</section>
-
-				<section>
-					characterisation test 
-					invariable behaviour encoded in code 
-					change the tests until they pass 
-
-					important point in both cases: we change the code OR we change the tests, never both
-
-					do the live code example 
-					you'll have to decide what to do about the difference in behaviour between the libraries
-
-					but would you really do all this?
-					- it depends
-					- it's a small bit of code, so it might be easier to just think it through
-					- dates are tricky & this was easier than going through the dayjs docs
-					- how much effort are the tests and how big is the risk of changing?
-				</section>
-
-				<section>
-					What about JSX?
-				</section>
-
-				<section>
-					<pre><code>
-function DayOfTheWeekWidget({ date = '' }: { date?: string | number }) {
-	if (!date) {
-		return <div>No date entered</div>
-	}
-
-	const formattedDate = formatShortDate(date)
-	const dayOfTheWeek = format(new Date(date), 'dddd')
-
-	return <div>{formattedDate} is a {dayOfTheWeek}</div>
+  return moment(new Date(date)).format("yyyy-MM-D")
 }
-											</code></pre>
-					<div class="notes">
-						- continuing with our moment to dayjs refactor, we can take the same approach as before...
-					</div>
-				</section>
+          </code></pre>
+          <div class="notes">
+            1 for 1 replacement maintain all existing behaviour some risk - can
+            take a few different kinds of input also, there's a bug in the code
+            that we want to preserve
+          </div>
+        </section>
 
-				<section>
-					Snapshot Tests 
-				</section>
+        <section>
+          <div class="inverse" style="width: fit-content; margin: auto">
+            <h4 style="font-size: 1em">So what <br />should we do?</h4>
+          </div>
+        </section>
 
-				<section>
-					<pre><code>
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+        <section>
+          <ol style="margin: auto">
+            <li>Use tests to determine the current behaviour</li>
+            <li>Refactor the code</li>
+            <li>Build new feature or whatever</li>
+          </ol>
+        </section>
 
-exports[`DayOfTheWeekWidget renders ?? when passed an empty string 1`] = `
-<div>
-	<div>
-		No date entered
-	</div>
-</div>
+        <section>
+          <div class="inverse" style="display: flex">
+            <h4 style="margin: auto">Characterisation tests</h4>
+          </div>
+          <div class="notes">
+            testing what the behaviour of the system _is_, not whether it's
+            correct even if you've already got good test coverage, you might
+            want to consider adding some because tests usually only cover
+            _intended_ behaviour
+          </div>
+        </section>
+
+        <section>
+          <img
+            src="images/legacy-code-book.jpg"
+            alt="Working effectively with legacy code, by Michael Feathers"
+            style="height: 500px"
+          />
+        </section>
+
+        <section>
+          <style>
+            .test-types thead {
+              border-bottom: 2px solid;
+            }
+            .test-types tbody td {
+              border-bottom: 1px solid;
+            }
+            .test-types tr td:first-child,
+            .test-types tr th:first-child {
+              border-right: 1px solid;
+            }
+            .test-types tfoot {
+              border-top: 2px solid;
+              font-style: italic;
+            }
+          </style>
+          <table class="test-types">
+            <thead>
+              <tr>
+                <th>Feature test</th>
+                <th>Characterisation test</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fragment" data-fragment-index="1">
+                  <ol>
+                    <li>Write test with expectations</li>
+                  </ol>
+                </td>
+                <td class="fragment" data-fragment-index="3">
+                  <ol>
+                    <li>Write test with no expectations</li>
+                  </ol>
+                </td>
+              </tr>
+              <tr>
+                <td class="fragment" data-fragment-index="2">
+                  <ol start="2">
+                    <li>Write code to make test pass</li>
+                  </ol>
+                </td>
+                <td class="fragment" data-fragment-index="4">
+                  <ol start="2">
+                    <li>Change expectations until test passes</li>
+                  </ol>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td class="fragment" data-fragment-index="5">
+                  Code changes, test stays the same
+                </td>
+                <td class="fragment" data-fragment-index="5">
+                  Test changes, code stays the same
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="notes">
+            Of, if you're not into TDD, write code, write tests, go back and
+            change code until tests pass, consider your life choices and how
+            much time you would have saved if you'd skipped the first step
+          </div>
+        </section>
+
+        <section>
+          <div class="emoji-image">👩🏽‍💻</div>
+          <div class="notes">
+            start with momentjs format function tests - undefined - a date - a
+            number - a string - a string that isn't a date - a string that's an
+            invalid date - the number zero there are other test cases we could
+            write (eg passing in a a boolean, cos that's going to behave
+            weirdly, but if you're passing booleans into a date formatting
+            function something else has gone terribly wrong. also, use
+            typescript) switch the library are there any differences? how will
+            we deal with them? would i really write all these tests for such a
+            small function? - if it was only used once, no, i'd just write the
+            likely cases - if it was used everywhere, then, yes
+          </div>
+        </section>
+
+        <section>
+          <div class="inverse">
+            <h4 style="font-size: 2em; padding: 0">JSX</h4>
+          </div>
+        </section>
+
+        <section>
+          <pre><code class="jsx">function UserInfo({ user }) {
+	const date = formatDate(user.birthday)
+	const day = moment(user.birthday).format("dddd")
+
+	return (
+		<div>
+			{user.name} was born on {date} ({day})
+		</div>
+	)
+}
+</code></pre>
+          <div class="notes">
+            - continuing with our moment to dayjs refactor, we can take the same
+            approach as before...
+          </div>
+        </section>
+
+        <section>
+          <div class="emoji-image">👩🏽‍💻</div>
+          <div class="notes">
+            write some tests (use "container") do the refactor but also, when
+            we're rendering components we have some other tools available to us
+          </div>
+        </section>
+
+        <section>
+          <div class="inverse">
+            <h4>Snapshot Tests</h4>
+          </div>
+        </section>
+
+        <section>
+          <ol style="margin: auto">
+            <li class="fragment">Generate a snapshot</li>
+            <li class="fragment">Make changes</li>
+            <li class="fragment">Check against the snapshot</li>
+          </ol>
+          <div class="notes">
+            snapshot = text rendering of component step 3 = generate a new
+            snapshot & do a diff
+          </div>
+        </section>
+
+        <section>
+          <div class="emoji-image">👩🏽‍💻</div>
+          <div class="notes">
+            easier just to show - write snapshot test of UserInfo - run test to
+            generate snapshot - show where snapshot is created and what it looks
+            like - change something in the test show what happens when the
+            snapshot fails & how to update it
+          </div>
+          <div class="notes">
+            more complicated example - clicking on a button the increments a
+            count
+          </div>
+        </section>
+
+        <section>
+          <div class="inverse">
+            <h4>limitations of snapshot tests</h4>
+          </div>
+        </section>
+
+        <section>
+          <div style="margin: auto">
+            <h2>clarity</h2>
+            <div style="display: flex; gap: 1rem; font-size: 0.9em">
+              <pre style="align-self: stretch"><code class="jsx" data-noescape>
+it("increments the number", () => {
+  const { container } = 
+     render(
+       &lt;Increment initialNumber={4} />
+      )
+  <span class="fragment highlight" data-fragment-index="0">
+  expect(container)
+    .toMatchSnapshot()</span>
+
+  clickButton()
+  <span class="fragment highlight" data-fragment-index="0">
+  expect(container).toMatchSnapshot()</span>
+})  
+          </code></pre>
+
+              <pre><code class="jsx" data-noescape>
+it("increments the number", () => {
+  render(
+    &lt;Increment initialNumber={4} />
+  )
+  <span class="fragment highlight" data-fragment-index="1">
+  expect(screen.getByText("4"))
+    .toBeInTheDocument()</span>
+
+  clickButton()
+
+  <span class="fragment highlight" data-fragment-index="1">
+  expect(screen.getByText("5"))
+    .toBeInTheDocument()</span>
+})  
+          </code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div style="margin: auto; width: 100%">
+            <h2>No attributes</h2>
+            <pre
+              style="font-size: 0.4em"
+            ><code class="jsx" data-noescape>function Clickymajig() {
+  const [checked, setChecked] = useState(false)
+
+  useEffect(() => {
+    if (checked) {
+      setTimeout(() => setChecked(false), 2000)
+    }
+  })
+
+  return (
+    &lt;input
+      type="checkbox"
+      checked={checked}
+      onChange={() <span class="hljs-string">=> setChecked(true)}</span>
+    /&gt;
+  )
+}</code></pre>
+          </div>
+          <div class="notes">imagine this incredibly annoying component</div>
+        </section>
+
+        <section>
+          <pre
+            style="font-size: 0.4em"
+          ><code class="jsx">describe("Clickymajig", () => {
+  it("unchecks the checkbox after 2 seconds", () => {
+    jest.useFakeTimers()
+    const { container } = render(&lt;Clickymajig />)
+
+    const checkbox = screen.getByRole("checkbox")
+    userEvent.click(checkbox)
+
+    expect(container).toMatchSnapshot()
+
+    act(() => jest.advanceTimersByTime(2000))
+    expect(container).toMatchSnapshot()
+
+    jest.useRealTimers()
+  })
+})</code></pre>
+          <div class="notes">
+            we might be tempted to write this test, thinking thinking the
+            checkbox would be checked in the first snapshot and not checked in
+            the second one
+          </div>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.5em"><code class="text" style="color: white">
+exports[`Clickymajig unchecks the checkbox after 2 seconds 1`] = `
+&lt;div>
+  &lt;input
+    type="checkbox"
+  />
+  &lt;/div>
 `;
-</code></pre>
-					<div class="notes">
-						- first run: create snapshot 
-						- subsequent runs, compare to snapshot
+          </code></pre>
+          <div class="notes">
+            but in both cases the generated snapshot looks like this, which says
+            nothing about the state of the checkbox
+          </div>
+        </section>
 
-						Demo 
-						- write snapshot tests 
-						- show snapshot being written & in folder
-						- refactor to dayjs (new format is 'dddd')
-					</div>
-				</section>
+        <section>
+          <h1 style="font-size: 4em; margin: auto">no TDD 😞</h1>
+          <div class="notes">
+            not really a problem for the actual refactoring, but presumably
+            you're making some other change to the code after the refactor and
+            you're not really set-up well to use TDD on the new bit
+          </div>
+        </section>
 
-				<section>
-					snapshot tests cautionary tale 
-				</section>
+        <section>
+          <div style="margin: auto">
+            <h2>Snapshot tests 👍</h2>
+            <ul style="list-style-type: '\2705">
+              <li class="fragment">components that are too big</li>
+              <li class="fragment">lots of presentation logic</li>
+            </ul>
+          </div>
+          <div class="notes">
+            like 1000 line components that you want to break into smaller
+            pieces, or stuff like tables
+          </div>
+        </section>
 
-				<section>
-					when snapshot tests aren't going to work
+        <section>
+          <div class="inverse">
+            <h4 style="font-family: 'Eagle Lake'">ye olde farme shoppe</h4>
+          </div>
+          <div class="notes">
+            based on real patterns i've seen in production
+          </div>
+        </section>
 
-					embed the example here so i can demo the enter + space
-				</section>
+        <section>
+          <div class="emoji-image">🌽</div>
+        </section>
 
-				<section>
-					<div>
-						<button id="open-modal">Open modal</button>
-						<div id="modal" style="opacity: 0">
-							<p>Can we fix it?</p>
-							<div>
-								<button id="confirm-button" onClick={onConfirm}>Yes, we can!</button>
-								<a id="cancel-button" onClick={handleCancel} onKeyDown={handleSpace} href="#">No, we can't</a>
-							</div>
-						</div>
-						<script>
-							const openModal = document.getElementById('open-modal')
-							const modal = document.getElementById('modal')
-							const confirmButton = document.getElementById('confirm-button')
-							const cancelButton = document.getElementById('cancel-button')
+        <section>
+          <div style="margin: auto">
+            <h2>New requirements!</h2>
+            <ul>
+              <li class="fragment">New product type radio button: plant</li>
+              <li class="fragment">
+                Show unit + total price for plant in label ($15)
+              </li>
+              <li class="fragment">Calculate postage for plants</li>
+            </ul>
+          </div>
+          <div class="notes">
+            have a look at the code and why we might want to refactor it
+          </div>
+        </section>
 
-							openModal.addEventListener('click', () => {	
-								modal.style.opacity = 1
-							})
-							confirmButton.addEventListener('click', () => {
-								modal.style.opacity = 0
-							})
-							cancelButton.addEventListener('click', (event) => {
-								modal.style.opacity = 0
-								event.preventDefault()
-							})
-						</script>	
-					</div>
-				</section>
+        <section>
+          <img src="images/updated-reqs.png" />
+        </section>
 
-				<section>
-<pre><code class="jsx">
-	export function ConfirmationModal({ onConfirm, onCancel }) {
-	
-		const handleCancel = (event) => {
-			event.preventDefault();
-			onCancel();	
-		}
-	
-		const handleSpace = (event) => {
-			const keyPressed = event.code
-			if (keyPressed === 'Space') {
-				handleCancel(event);
-			}
-		}
-		
-		return (
-			<div>
-				<p>Can we fix it?</p>
-				<div>
-					&lt;button onClick={onConfirm}>Yes, we can!</button>
-					&lt;a
-						onClick={handleCancel} 
-						onKeyDown={handleSpace} 
-						href="#"
-					&gt;No, we can't</a>
-				</div>
-			</div>
-		)
-	}					
-</code></pre>
-				<div class="notes">
-					- look at example with snapshot test 
-					problems
-						- we need to change the HTML, which is going to cause the snapshot test to fail
-						- its only testing the render, not the actual behaviour
-						- can't test the behaviour because it's not causing the render to change 
-					outcome
-						- use query tests to test behaviour 
-						- use correct semantic HTML and throw out a heap of code & tests
-						  (we don't need tests when we use semantic HTML because we meet the standard 
-							by default. if the standard changes, the behaviour of our app will too, which 
-							is what we want. but also, the behaviour will just work in unknown media eg 
-							touch screens, non-standard inputs)
-				</div>				
-				</section>
+        <section>
+          <div class="emoji-image">👩🏽‍💻</div>
+          <div class="notes">
+            - snapshot tests of whole component (inc seeds/seedlings, no amount,
+            amount) - refactor to CountInput - code new plants option
+          </div>
+        </section>
 
-				<section>
-					the refactored code but we'll need to put in the styling to make it match
-				</section>
+        <section>
+          <div style="margin: auto">
+            <h2>What did we learn?</h2>
+            <ul>
+              <li class="fragment">Should we refactor?</li>
+              <li class="fragment">Characterisation tests</li>
+              <li class="fragment">Snapshot tests</li>
+              <li class="fragment">"ye" == "þe"</li>
+            </ul>
+          </div>
+        </section>
 
-				<section>
-					Snapshot tests 
-						- when the HTML isn't going to change 
+        <section class="end">
+          <style>
+            .end {
+              font-family: Futurama;
+              align-items: center;
+            }
 
-					Query tests 
-						- when the HTML is going to change
-						- when testing behaviour not reflected in HTML
-				</section>
+            .end .bender {
+              position: fixed;
+            }
+          </style>
 
-				<section>
-					intro to ye olde farm shop
-					but go on, put a thorn in and explain the y thing
-				</section>
+          <div class="fragment">
+            <a href="https://refactor-tractor.ez.codes"
+              >https://refactor-tractor.ez.codes</a
+            >
+          </div>
+          <div class="fragment">
+            <a href="https://github.com/ejzimmer/refactor-example"
+              >https://github.com/ejzimmer/refactor-example</a
+            >
+          </div>
 
-				<section>
-					new requirements!
+          <div class="fragment">
+            <div>@ErinJZimmer</div>
+            <div>Thank you!</div>
+          </div>
 
-					- Add plant product type to radio buttons
-					- Show plant unit price + total price in label 
-					- Calculate postage for plants
-<div class="notes">
-	- not a huge bit of work, but it's nice to be able to break it down, especially as we'll need to write 
-		some tests to cover the existing behaviour and the PR could get quite big 
-	- instead we'll do each step individually, but not in the order they're given here: the new radio button 
-	  relies on the other two things, so we can't merge it until those are complete, so let's do the other two 
-		first
-</div>
-				</section>
+          <img
+            src="images/bender-applause.png"
+            alt="bender holding applause sign"
+            class="bender fragment"
+          />
+        </section>
+      </div>
+    </div>
 
-				<section>
-					1. Show plant unit price + total price in label 
-					2. Calculate postage for plants 
-					3. Add new radio button
+    <div
+      style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        font-family: Futurama;
+        font-size: 36px;
+        opacity: 0.6;
+        z-index: 1;
+      "
+    >
+      @ErinJZimmer
+    </div>
 
-					<div class="notes">
-						update label - do live code 
-						- note the repeated code & logic all over the place
-						- wouldn't it be simpler if it was all encapsulated in a single component?
-						- write tests for seed & seedling that select the product from radio button 
-						- create new component, figure out what the props are, simplify the code 
-						- plug in new component and check the tests still work
-						- copy existing tests over and simplify for new component 
-						- write test for new functionality 
-						- write new functionality 
-						- what do we do with the old test? well, we probably want one that checks that the label is hooked up right 
-						  ie if i click the radio button, the label changes
-					</div>
-				</section>
-
-				<section>
-					What we just did 
-					1. wrote characterisation tests for existing behaviour (so we're confident we know what the code should do)
-					2. refactored into new component (so it's easier to work with)
-					3. tested new component with existing tests (so we're sure our refactor was successful)
-					4. refactored tests (so they're easier to work with)
-					5. wrote tests for new feature (because TDD)
-					6. wrote new feature (yay!)
-				</section>
-
-				<section>
-					<strike>1. Show plant unit price + total price in label</strike>
-					2. Calculate postage for plants 
-					3. Add new radio button
-					<div class="notes">
-						- write tests for current postage behaviour - it's complicated!
-							- when product type is seed, when it changes to seedling, when count changes & its seed,
-							  when count changes and its seedling
-						- extract JSX to new component & simplify
-						- extract to new hook 
-						- write hook tests 
-						- write tests for new component 
-						- delete the old tests
-					</div>
-				</section>
-
-				<section>
-					<strike>1. Show plant unit price + total price in label</strike>
-					<strike>2. Calculate postage for plants</strike>
-					3. Add new radio button
-					<div class="notes">
-						- one other small refactor before moving on
-					</div>
-				</section>
-
-				<section>
-					CountLabel and the input are closely related implicitly 
-					CountLabel explicitly depends on count, but implicitly depends on the id of the input 
-					also, different levels of abstraction 
-					I would put them into a component together
-				</section>
-
-				<section>
-					<strike>1. Show plant unit price + total price in label</strike>
-					<strike>2. Calculate postage for plants</strike>
-					3. Add new radio button
-					<div class="notes">
-						which just leaves one last thing
-						radio button is already its own component, which is nice 
-						we're changing the code, so let's write some tests 
-						- each possible scenario because each thing is its own bit of code
-						- once we have the tests we can refactor it so there's just one bit of code no matter the product 
-						- then we don't need all those tests, because the same bit of code is executing no matter than config
-						finally, we can add our new product type
-						- we could write tests, but we're not really testing anything other than what's already there - test 
-						wouldn't really be adding value
-					</div>
-				</section>
-
-				<section>
-					finished product
-				</section>
-
-				<section>
-					what we did 
-					- wrote characterisation tests for existing functionality 
-					- broke existing features out into independent, testable components 
-					- refactored tests to specific components: leads to more valuable tests 
-					because they pinpoint the problem efficiently, but also keep some of the top 
-					level tests for testing integration between ProductTypeSelector and ProductCount 
-					(should probably improve the postage integration test)
-					- TDDed our new features easily, because components, existing tests etc 
-					- Merged components together that shared common concerns
-
-					- left with a nice modular app with tests that explain what each part does,
-					and each part only doing one thing
-				</section>
-
-				<section>
-					What did we learn?
-					- balance the cost, risk and value of refactoring before starting
-					- use characterisation tests to ensure we don't change functionality: change the test or the code, not both
-					- if a thing needs to be tested in isolation, it should be its own component/function 
-					- if things have implicit connections, they should be in the same component
-				</section>
-
-				<section class="end">
-					<style>
-						.end {
-							font-family: Futurama;
-							align-items: center;
-						}
-
-						.end .bender {
-							position: fixed;
-						}
-					</style>
-
-					<div class="fragment"><a href="https://refactor.ez.codes">https://refactor-tractor.ez.codes</a></div>	
-					code example also
-
-					<div class="fragment">
-						<div>@ErinJZimmer</div>
-						<div>Thank you!</div>
-					</div>
-
-
-					<img src="images/bender-applause.png" alt="bender holding applause sign" class="bender fragment">
-				</section>
-			</div>
-		</div>
-
-		<div style="position: fixed; bottom: 30px; right: 30px; font-family: Futurama; font-size: 36px; opacity: .6; z-index: 1">
-			@ErinJZimmer
-		</div>
-
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				controls: false,
-				history: true,
-				display: 'grid',
-				progress: false,
-				transition: 'fade',
-				center: false,
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-
-		</script>
-	</body>
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        controls: false,
+        history: true,
+        display: "grid",
+        progress: false,
+        transition: "fade",
+        center: false,
+        dependencies: [
+          { src: "plugin/markdown/marked.js" },
+          { src: "plugin/markdown/markdown.js" },
+          { src: "plugin/notes/notes.js", async: true },
+          { src: "plugin/highlight/highlight.js", async: true },
+        ],
+      })
+    </script>
+  </body>
 </html>
