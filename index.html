@@ -183,10 +183,6 @@
 
         <section>
           <style>
-            dl {
-              margin: auto;
-            }
-
             dt {
               margin: 0 0 20px 0;
               color: #002b36;
@@ -200,14 +196,18 @@
               word-wrap: break-word;
             }
           </style>
-          <dl>
-            <dt>What is refactoring?</dt>
-            <dd class="fragment">
-              Changing implementation without changing functionality
-            </dd>
-          </dl>
-          <img
-          src="images/1200px-Question_Block_Artwork_-_Super_Mario_3D_World.webp"
+          <div style="margin: auto">
+            <dl>
+              <dt>What is refactoring?</dt>
+              <dd class="fragment">
+                Changing implementation without changing functionality
+              </dd>
+            </dl>
+            <img
+              src="images/1200px-Question_Block_Artwork_-_Super_Mario_3D_World.webp"
+              style="width: 200px; margin-top: 50px"
+            />
+          </div>
         </section>
 
         <section>
@@ -231,10 +231,16 @@
         </section>
 
         <section>
-          <dl style="margin: auto">
-            <dt>When should we refactor?</dt>
-            <dd class="fragment">When the benefits outweigh the cost</dd>
-          </dl>
+          <div style="margin: auto">
+            <dl style="margin-right: 100px">
+              <dt>When should we refactor?</dt>
+              <dd class="fragment">When the benefits outweigh the cost</dd>
+            </dl>
+            <img
+              src="images/1200px-Question_Block_Artwork_-_Super_Mario_3D_World.webp"
+              style="width: 200px; margin-top: 50px"
+            />
+          </div>
         </section>
 
         <section>
@@ -259,7 +265,7 @@
               font-size: 6em;
             }
           </style>
-          <div class="emoji-image">🕰️</div>
+          <img src="images/clock.png" style="height: 80%" />
           <div class="notes">
             refactoring takes time - is the time you spend refactoring going to
             make up for the time you lose when you could be building new
@@ -381,11 +387,20 @@ function formatDate(date) {
         </section>
 
         <section>
-          <ol style="margin: auto">
-            <li>Use tests to determine the current behaviour</li>
-            <li>Refactor the code</li>
-            <li>Build new feature or whatever</li>
-          </ol>
+          <div style="display: flex">
+            <img
+              src="images/Golden_Mushroom_-_Mario_Kart_Wii.webp"
+              style="width: 200px; margin-right: 75px"
+            />
+            <ol style="margin: auto">
+              <li>
+                Use tests to determine the<br />
+                current behaviour
+              </li>
+              <li>Refactor the code</li>
+              <li>Build new feature or whatever</li>
+            </ol>
+          </div>
         </section>
 
         <section>
@@ -531,11 +546,14 @@ function formatDate(date) {
         </section>
 
         <section>
-          <ol style="margin: auto">
-            <li class="fragment">Generate a snapshot</li>
-            <li class="fragment">Make changes</li>
-            <li class="fragment">Check against the snapshot</li>
-          </ol>
+          <div style="display: flex">
+            <img src="images/TWW_Picto_Box_Sprite.webp" style="width: 200px" />
+            <ol style="margin: auto">
+              <li class="fragment">Generate a snapshot</li>
+              <li class="fragment">Make changes</li>
+              <li class="fragment">Check against the snapshot</li>
+            </ol>
+          </div>
           <div class="notes">
             snapshot = text rendering of component step 3 = generate a new
             snapshot & do a diff
