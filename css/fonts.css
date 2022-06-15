@@ -89,3 +89,16 @@
   src: local('Lato Regular'), local('Lato-Regular'),
       url('jura-v15-latin-regular.woff2') format('woff2');
 }
+
+@font-face {
+  font-family: 'Cash Market';
+  font-style: normal;
+  src: url('https://cash-f.squarecdn.com/static/fonts/cash-market/v2/CashMarket-RegularRounded.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'Agrandir';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://cash-f.squarecdn.com/static/fonts/agrandir/Agrandir-GrandHeavy.woff') format('woff')
+}
