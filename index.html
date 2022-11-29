@@ -114,6 +114,12 @@
         justify-content: center;
         height: 100vh;
       }
+
+      .emoji-image {
+        font-size: 10rem;
+        align-self: center;
+        justify-self: center;
+      }
     </style>
   </head>
 
@@ -163,217 +169,19 @@
         </section>
 
         <section>
-          <ul style="margin: auto">
-            <li class="fragment">Refactoring: what & when?</li>
-            <li class="fragment">Refactoring OH&S tools</li>
-            <li class="fragment">What about JSX?</li>
-            <li class="fragment">Examples!</li>
-          </ul>
-        </section>
-
-        <section>
-          <style>
-            dt {
-              margin: 0 0 20px 0;
-              color: #002b36;
-              font-family: "League Gothic", Impact, sans-serif;
-              font-weight: normal;
-              line-height: 1.2;
-              font-size: 2em;
-              letter-spacing: normal;
-              text-transform: uppercase;
-              text-shadow: none;
-              word-wrap: break-word;
-            }
-          </style>
-          <div style="margin: auto">
-            <dl>
-              <dt>What is refactoring?</dt>
-              <dd class="fragment">
-                Changing implementation without changing functionality
-              </dd>
-            </dl>
+          <div class="inverse" style="display: flex">
+            <h4 style="margin: auto">Change implementation, not behaviour</h4>
           </div>
         </section>
 
-        <section>
-          <ul style="margin: auto">
-            <li class="fragment">renaming variables</li>
-            <li class="fragment">splitting up a long function</li>
-            <li class="fragment">factoring out repeated code</li>
-          </ul>
-        </section>
 
         <section>
-          <img src="images/refactoring-book.jpg" />
-          <div class="notes">
-            the book on refactoring includes a list of "refactoring moves" -
-            language to talk about refactoring previous examples: - split phase
-            maybe - rename variable - extract function recommend reading the
-            book, latest edition is in JavaScript, so it's kind of relevant but
-            today we're going to look at the actual practicalities of applying
-            this stuff in a component-based environment (specifically react)
-          </div>
-        </section>
-
-        <section>
-          <div style="margin: auto">
-            <dl style="margin-right: 100px">
-              <dt>When should we refactor?</dt>
-              <dd class="fragment">When the benefits outweigh the cost</dd>
-            </dl>
-          </div>
-        </section>
-
-        <section>
-          <div style="margin: auto">
-            <h2>Benefits of refactoring</h2>
+          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h2>Safer refactoring</h2>
             <ul>
-              <li class="fragment">Faster future development</li>
-              <li class="fragment">Less bugs</li>
-              <li class="fragment">FUN! 😍</li>
+              <li class="fragment">Characterisation tests</li>
+              <li class="fragment">Snapshot tests</li>
             </ul>
-            <div class="notes">
-              the first one is the main one but refactoring also has some down
-              sides
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <style>
-            .emoji-image {
-              margin: auto;
-              font-size: 6em;
-            }
-          </style>
-          <div class="emoji-image">⏰</div>
-          <div class="notes">
-            refactoring takes time - is the time you spend refactoring going to
-            make up for the time you lose when you could be building new
-            features?
-          </div>
-        </section>
-
-        <section>
-          <div style="display: grid; align-content: center">
-            <img src="images/refactor-haiku.png" />
-            <a
-              style="font-size: 0.7em"
-              href="https://twitter.com/erinfranmc/status/1182313928539418624"
-              >https://twitter.com/erinfranmc/status/1182313928539418624</a
-            >
-          </div>
-          <div class="notes">
-            refactoring is inherently risky there are strategies to mitigate
-            this, which we're going to talk about today and i'm sure this woman
-            received advice from a thousand dude-bros about how she should have
-            just written tests but software systems are complicated, and if the
-            code was easy to understand, you probably wouldn't be considering
-            refactoring it and you don't just have to worry about creating new
-            bugs - you can also worry about removing existing ones
-          </div>
-        </section>
-
-        <section>
-          <pre><code class="js" style="font-size: .7em; line-height: 1.4;">const handleTimePeriodChange = (event) => {
-  const today = new Date()
-  const days = event.currentTarget.value
-  switch (days) {
-    case 30:
-      return new Date().setDate(today.getDate() - 30)
-    case 60:
-      return new Date().setDate(today.getDate() - 60)
-    case 90:
-      return new Date().setDate(today.getDate() - 90)
-    case 180:
-      return new Date().setDate(today.getDate() - 180)
-    case 365:
-      return new Date().setDate(today.getDate() - 365)
-  }
-}</code></pre>
-          <div class="notes">
-            one of those monster components with like 1000 lines in it, had a
-            function like this bothers me, a lot but - it works - i wasn't
-            touching that part of the code, so there was no value in changing it
-            - time spent on that was time i could have spent elsewhere (maybe it
-            wouldn't have taken long to change, but it's quick things like this
-            that i tend to rush and overlook something and then end up breaking
-            things)
-          </div>
-        </section>
-
-        <section>
-          <div style="margin: auto">
-            <h2>I only refactor code if</h2>
-            <ul>
-              <li class="fragment">
-                I'm doing some other change at the same time
-              </li>
-              <li class="fragment">I know someone is about to make a change</li>
-            </ul>
-          </div>
-          <div class="notes">
-            i know the value is high, and the risk is lower because the code
-            isn't going to be changed and then forgotten about scrolled past
-            that nasty code for 2 months without changing it
-          </div>
-        </section>
-
-        <section>
-          <div class="inverse">
-            <h4>so you've decided to refactor...</h4>
-          </div>
-        </section>
-
-        <section>
-          <div style="margin: auto">
-            <img
-              src="images/momentjs-logo-png-transparent.png"
-              style="width: 200px"
-            />
-            <div>Moment.js</div>
-          </div>
-          <div class="notes">
-            you're using moment and well, it's deprecated ok, it's not
-            deprecated exactly, but its use is discouraged for several reasons
-            in our case, we've just wasted 3 days fixing bugs due to mutable
-            dates also, we're not using moment directly in our code, so we only
-            need to make the change in one place
-          </div>
-        </section>
-
-        <section>
-          <pre><code>
-function formatDate(date) {
-  if (!date) return ""
-
-  return moment(new Date(date)).format("yyyy-MM-D")
-}
-          </code></pre>
-          <div class="notes">
-            1 for 1 replacement maintain all existing behaviour some risk - can
-            take a few different kinds of input also, there's a bug in the code
-            that we want to preserve
-          </div>
-        </section>
-
-        <section>
-          <div class="inverse" style="width: fit-content; margin: auto">
-            <h4 style="font-size: 1em">So what <br />should we do?</h4>
-          </div>
-        </section>
-
-        <section>
-          <div style="display: flex">
-            <ol style="margin: auto">
-              <li>
-                Use tests to determine the<br />
-                current behaviour
-              </li>
-              <li>Refactor the code</li>
-              <li>Build new feature or whatever</li>
-            </ol>
           </div>
         </section>
 
@@ -469,6 +277,21 @@ function formatDate(date) {
         </section>
 
         <section>
+          <pre><code>
+function formatDate(date) {
+  if (!date) return ""
+
+  return moment(new Date(date)).format("yyyy-MM-D")
+}
+          </code></pre>
+          <div class="notes">
+            1 for 1 replacement maintain all existing behaviour some risk - can
+            take a few different kinds of input also, there's a bug in the code
+            that we want to preserve
+          </div>
+        </section>
+
+        <section>
           <div class="emoji-image">👩🏽‍💻</div>
           <div class="notes">
             start with momentjs format function tests - undefined - a date - a
@@ -551,124 +374,35 @@ function formatDate(date) {
         </section>
 
         <section>
-          <div class="inverse">
-            <h4>limitations of snapshot tests</h4>
-          </div>
-        </section>
-
-        <section>
-          <div style="margin: auto">
-            <h2
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.25em;
-              "
-            >
-              clarity
-            </h2>
-            <div style="display: flex; gap: 1rem; font-size: 0.9em">
-              <pre style="align-self: stretch"><code class="jsx" data-noescape>
-it("increments the number", () => {
-  const { container } =
-     render(
-       &lt;Increment initialNumber={4} />
-      )
-  <span class="fragment highlight" data-fragment-index="0">
-  expect(container)
-    .toMatchSnapshot()</span>
-
-  clickButton()
-  <span class="fragment highlight" data-fragment-index="0">
-  expect(container).toMatchSnapshot()</span>
-})
-          </code></pre>
-
-              <pre><code class="jsx" data-noescape>
-it("increments the number", () => {
-  render(
-    &lt;Increment initialNumber={4} />
-  )
-  <span class="fragment highlight" data-fragment-index="1">
-  expect(screen.getByText("4"))
-    .toBeInTheDocument()</span>
-
-  clickButton()
-
-  <span class="fragment highlight" data-fragment-index="1">
-  expect(screen.getByText("5"))
-    .toBeInTheDocument()</span>
-})
-          </code></pre>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div style="margin: auto; width: 100%">
-            <h2
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.25em;
-              "
-            >
-              No properties
-            </h2>
-            <pre
-              style="font-size: 0.4em"
-            ><code class="jsx" data-noescape>function Clickymajig() {
-  const [checked, setChecked] = useState(false)
-
-  useEffect(() => {
-    if (checked) {
-      setTimeout(() => setChecked(false), 2000)
-    }
-  })
-
-  return (
-    &lt;input
-      type="checkbox"
-      checked={checked}
-      onChange={() <span class="hljs-string">=> setChecked(true)}</span>
-    /&gt;
-  )
-}</code></pre>
-          </div>
-          <div class="notes">imagine this incredibly annoying component</div>
-        </section>
-
-        <section>
-          <pre
-            style="font-size: 0.4em"
-          ><code class="jsx">describe("Clickymajig", () => {
-  it("unchecks the checkbox after 2 seconds", () => {
-    jest.useFakeTimers()
-    const { container } = render(&lt;Clickymajig />)
-
-    const checkbox = screen.getByRole("checkbox")
-    userEvent.click(checkbox)
-
-    expect(container).toMatchSnapshot()
-
-    act(() => jest.advanceTimersByTime(2000))
-    expect(container).toMatchSnapshot()
-
-    jest.useRealTimers()
-  })
-})</code></pre>
-          <div class="notes">
-            we might be tempted to write this test, thinking thinking the
-            checkbox would be checked in the first snapshot and not checked in
-            the second one
+          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h2>Snapshot test gotchas</h2>
+            <ul>
+              <li class="fragment">async rendering</li>
+            </ul>
           </div>
         </section>
 
         <section>
           <pre style="font-size: 0.5em"><code class="text" style="color: white">
-exports[`Clickymajig unchecks the checkbox after 2 seconds 1`] = `
+exports[`renders something asynchronously`] = `
+&lt;div />
+`;
+          </code></pre>
+        </section>
+
+        <section>
+          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h2>Snapshot test gotchas</h2>
+            <ul>
+              <li>async rendering</li>
+              <li class="fragment">not everything is rendered</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.5em"><code class="text" style="color: white">
+exports[`updates the state of the checkbox`] = `
 &lt;div>
   &lt;input
     type="checkbox"
@@ -676,58 +410,16 @@ exports[`Clickymajig unchecks the checkbox after 2 seconds 1`] = `
   &lt;/div>
 `;
           </code></pre>
-          <div class="notes">
-            but in both cases the generated snapshot looks like this, which says
-            nothing about the state of the checkbox
-          </div>
-        </section>
-
-        <section>
-          <h1
-            style="
-              font-size: 4em;
-              margin: auto;
-              display: flex;
-              align-items: center;
-              gap: 0.25em;
-            "
-          >
-            no TDD
-          </h1>
-          <div class="notes">
-            not really a problem for the actual refactoring, but presumably
-            you're making some other change to the code after the refactor and
-            you're not really set-up well to use TDD on the new bit
-          </div>
-        </section>
-
-        <section>
-          <div style="margin: auto">
-            <h2 style="display: flex; align-items: center; gap: 0.25em">
-              Snapshot tests
-            </h2>
-            <ul style="list-style-type: '\2705">
-              <li class="fragment">components that are too big</li>
-              <li class="fragment">lots of presentation logic</li>
-            </ul>
-          </div>
-          <div class="notes">
-            like 1000 line components that you want to break into smaller
-            pieces, or stuff like tables
-          </div>
         </section>
 
         <section>
           <div class="inverse">
             <h4 style="font-family: 'Eagle Lake'">ye olde farme shoppe</h4>
           </div>
-          <div class="notes">
-            based on real patterns i've seen in production
-          </div>
         </section>
 
         <section>
-          <div class="emoji-image">🐄</div>
+          <img src="images/ye-old-farm-shoppe.png" />
         </section>
 
         <section>
@@ -762,10 +454,8 @@ exports[`Clickymajig unchecks the checkbox after 2 seconds 1`] = `
           <div style="margin: auto">
             <h2>What did we learn?</h2>
             <ul>
-              <li class="fragment">Should we refactor?</li>
               <li class="fragment">Characterisation tests</li>
               <li class="fragment">Snapshot tests</li>
-              <li class="fragment">"ye" == "þe"</li>
             </ul>
           </div>
         </section>
