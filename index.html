@@ -130,6 +130,9 @@
           <h1 style="width: 50%; font-size: 3em; margin: 0; text-align: left">
             Getting on the refactor tractor
           </h1>
+          <div style="font-weight: bold; color: white">
+            Use arrow keys to navigate
+          </div>
         </section>
 
         <section>
@@ -532,6 +535,7 @@ exports[`updates the state of the checkbox`] = `
       // - https://github.com/hakimel/reveal.js#dependencies
       Reveal.initialize({
         controls: false,
+        controlsLayout: "edges",
         history: true,
         display: "grid",
         progress: false,
@@ -544,227 +548,6 @@ exports[`updates the state of the checkbox`] = `
           { src: "plugin/highlight/highlight.js", async: true },
         ],
       })
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script>
-      let iris = document.querySelectorAll("#pupil")
-      let eyeBall = document.querySelectorAll("#moving")
-      let mask = document.querySelectorAll("#clip-path1, #outer-lid")
-
-      let animateEye = () => {
-        let irisTl = gsap.timeline({
-          repeat: -1,
-        })
-        irisTl.to(iris, 2, {
-          scale: 1,
-        })
-        irisTl.to(iris, 0.6, {
-          scale: 1.1,
-        })
-        irisTl.to(iris, 1, {
-          scale: 1.1,
-        })
-        irisTl.to(iris, 0.6, {
-          scale: 1,
-        })
-        irisTl.to(iris, 2, {
-          scale: 1,
-        })
-        irisTl.to(iris, 0.6, {
-          scale: 0.8,
-        })
-        irisTl.to(iris, 1, {
-          scale: 0.8,
-        })
-        irisTl.to(iris, 0.6, {
-          scale: 1,
-        })
-
-        let eyeTl = gsap.timeline({
-          repeat: -1,
-        })
-
-        let eyeXScene = () => {
-          let eyeXTl = gsap.timeline({
-            repeat: -1,
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "0%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "12%",
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "12%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "11%",
-          })
-          eyeXTl.to(eyeBall, 1.4, {
-            translateX: "11%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "22%",
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "22%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "-28%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "-4%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "1%",
-          })
-          eyeXTl.to(eyeBall, 0.5, {
-            translateX: "1%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "-30%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "-30%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "-26%",
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "-26%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "20%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "10%",
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "10%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "8%",
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "8%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "-5%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "0%",
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "0%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "7%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "1%",
-          })
-          eyeXTl.to(eyeBall, 1, {
-            translateX: "1%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "17%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "17%",
-          })
-          eyeXTl.to(eyeBall, 0.3, {
-            translateX: "0%",
-          })
-        }
-        let eyeYScene = () => {
-          let eyeYTl = gsap.timeline({
-            repeat: -1,
-          })
-          eyeYTl.to(eyeBall, 1, {
-            translateY: 0,
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "4%",
-          })
-          eyeYTl.to(eyeBall, 1, {
-            translateY: "4%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "4.8%",
-          })
-          eyeYTl.to(eyeBall, 1.4, {
-            translateY: "4.8%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "20%",
-          })
-          eyeYTl.to(eyeBall, 1, {
-            translateY: "20%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "20%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "12%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "10%",
-          })
-          eyeYTl.to(eyeBall, 0.5, {
-            translateY: "10%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "-20%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "-18%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "-20%",
-          })
-          eyeYTl.to(eyeBall, 1, {
-            translateY: "-20%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "7%",
-          })
-          eyeYTl.to(eyeBall, 1, {
-            translateY: "7%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "28%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "28%",
-          })
-          eyeYTl.to(eyeBall, 1, {
-            translateY: "28%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "33%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "33%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "33%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "13%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "13%",
-          })
-          eyeYTl.to(eyeBall, 0.3, {
-            translateY: "0%",
-          })
-        }
-
-        eyeTl.add(eyeXScene())
-        eyeTl.add(eyeYScene())
-      }
-
-      animateEye()
     </script>
   </body>
 </html>

@@ -258,9 +258,76 @@ pre code {
  * NAVIGATION CONTROLS
  *********************************************/
 .reveal .controls {
-  color: #268bd2;
+  color: hsl(200 90% 60%);
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  z-index: 11;
+  pointer-events: none;
+  font-size: 10px;
 }
 
+.reveal .controls .enabled {
+  visibility: visible;
+  opacity: 0.9;
+  cursor: pointer;
+  transform: none;
+}
+
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-down {
+  display: none;
+}
+
+.reveal .controls .navigate-left {
+  right: 6.4em;
+  bottom: 3.2em;
+  transform: translateX(-10px);
+  color: inherit;
+  opacity: 1;
+}
+.reveal .controls .navigate-right {
+  right: 0;
+  bottom: -0.3em;
+  transform: rotate(0.5turn);
+  color: inherit;
+  opacity: 1;
+}
+.reveal .controls button {
+  position: absolute;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+  pointer-events: auto;
+  font-size: inherit;
+  -webkit-appearance: none;
+}
+
+.reveal .controls .controls-arrow::before {
+  transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+}
+.reveal .controls .controls-arrow::after {
+  transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+}
+
+.reveal .controls .controls-arrow::after,
+.reveal .controls .controls-arrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.6em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  background-color: currentColor;
+  transition: all 0.15s ease, background-color 0.8s ease;
+  transform-origin: 0.2em 50%;
+  will-change: transform;
+  display: block;
+}
 /*********************************************
  * PROGRESS BAR
  *********************************************/
